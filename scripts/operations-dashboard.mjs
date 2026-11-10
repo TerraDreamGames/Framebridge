@@ -13,6 +13,7 @@ import { promisify } from "node:util";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { unstable_readConfig } from "wrangler";
+import { readRegularFile } from "./regular-file.mjs";
 import {
   PERIODS,
   analyticsQuery,
@@ -75,17 +76,11 @@ const tokenPath = resolve(
     ".artifacts/operations/admin-token.txt",
 );
 async function operatorToken() {
-  const stat = await lstat(tokenPath);
-  if (
-    !stat.isFile() ||
-    stat.isSymbolicLink() ||
-    stat.mode & 0o077 ||
-    stat.size > 66
+  const token = (
+    await readRegularFile(tokenPath, { private: true, maxBytes: 66 })
   )
-    throw new Error(
-      "Dashboard token requires an owner-only regular file (chmod 600).",
-    );
-  const token = (await readFile(tokenPath, "utf8")).trim();
+    .toString("utf8")
+    .trim();
   if (!/^[a-f0-9]{64}$/.test(token))
     throw new Error("Invalid dashboard token file.");
   return token;

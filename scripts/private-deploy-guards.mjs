@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { lstat, readFile } from "node:fs/promises";
+import { readRegularFile } from "./regular-file.mjs";
 import { resolve } from "node:path";
 
 const testerName = /^[a-z][a-z0-9-]{0,39}$/;
@@ -31,9 +31,7 @@ export async function readDeployInvitations(directory) {
   let records;
   try {
     const file = resolve(directory, "invitations.json");
-    if (!(await lstat(file)).isFile()) throw new Error();
-    const bytes = await readFile(file);
-    if (bytes.length > 65_536) throw new Error();
+    const bytes = await readRegularFile(file, { maxBytes: 65_536 });
     records = validateInvitations(JSON.parse(bytes.toString("utf8")));
   } catch {
     throw new Error(
@@ -47,9 +45,9 @@ export async function readDeployInvitations(directory) {
   for (const [name, expected] of Object.entries(records)) {
     try {
       const file = resolve(directory, "invitations", `${name}.txt`);
-      const info = await lstat(file);
-      if (!info.isFile() || info.size > 256) throw new Error();
-      const token = (await readFile(file, "utf8")).trim();
+      const token = (await readRegularFile(file, { maxBytes: 256 }))
+        .toString("utf8")
+        .trim();
       if (!hash.test(token) || digest(token) !== expected) throw new Error();
     } catch {
       throw new Error(

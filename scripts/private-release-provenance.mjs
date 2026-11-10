@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { lstat, readFile } from "node:fs/promises";
+import { readRegularFile } from "./regular-file.mjs";
 import { spawnSync } from "node:child_process";
 import { resolve } from "node:path";
 import {
@@ -58,9 +58,7 @@ export async function sourceProvenance(cwd = process.cwd()) {
   const inputs = {};
   for (const path of paths) {
     const full = resolve(cwd, path);
-    if (!(await lstat(full)).isFile())
-      throw new Error("Release source inputs must be regular files.");
-    inputs[path] = digest(await readFile(full));
+    inputs[path] = digest(await readRegularFile(full));
   }
   return { revision, sha256: digest(JSON.stringify(inputs)), inputs };
 }

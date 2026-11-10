@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from "react";
+import { previewImageSource } from "./preview-image-source";
 import type { SyncState } from "./live-sync";
 import { ConnectionExpiry } from "./ConnectionExpiry";
 import {
@@ -353,12 +354,13 @@ function StudioDesignSummary(props: {
   images(): void;
 }) {
   const d = props.design;
+  const thumbnail = previewImageSource(d.thumbnail);
   const action = d.problem?.action;
   return (
     <section className="studio-design-summary" aria-label="Design to export">
       <div className="studio-design-thumbnail">
-        {d.thumbnail ? (
-          <img src={d.thumbnail} alt="" draggable={false} />
+        {thumbnail ? (
+          <img src={thumbnail} alt="" draggable={false} />
         ) : (
           <Layers size={24} />
         )}

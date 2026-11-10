@@ -207,7 +207,10 @@ export function ThemeLibraryEditor({
         </Button>
       </Disclosure>
     );
-  const selected = value && value.modes[mode] ? mode : (value?.initial ?? "");
+  const selected =
+    value && Object.prototype.hasOwnProperty.call(value.modes, mode)
+      ? mode
+      : (value?.initial ?? "");
   const patch = (next: ThemeSettings) => {
     try {
       resolveThemes(next);
@@ -221,9 +224,13 @@ export function ThemeLibraryEditor({
   };
   const token = (id: string, next: ThemeToken) => {
     if (!value) return false;
-    const out = clone(value);
-    out.modes[selected][id] = next;
-    return patch(out);
+    return patch({
+      ...value,
+      modes: {
+        ...value.modes,
+        [selected]: { ...value.modes[selected], [id]: next },
+      },
+    });
   };
   return (
     <Disclosure

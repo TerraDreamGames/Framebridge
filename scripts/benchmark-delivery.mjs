@@ -11,6 +11,7 @@ const access = (
 ).trim();
 const call = async (path, token = "", body, method, headers = {}) => {
   const response = await fetch(url + path, {
+    redirect: "error",
     method: method ?? (body === undefined ? "GET" : "POST"),
     headers: {
       "Content-Type": "application/json",

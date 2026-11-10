@@ -452,6 +452,11 @@ export function validProperty(
   key: string,
   value: unknown,
 ): value is Value {
+  if (
+    !Object.prototype.hasOwnProperty.call(PROPERTY_SCHEMAS, className) ||
+    !Object.prototype.hasOwnProperty.call(PROPERTY_SCHEMAS[className], key)
+  )
+    return false;
   const spec = PROPERTY_SCHEMAS[className]?.[key];
   if (!spec) return false;
   if (

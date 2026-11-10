@@ -196,7 +196,7 @@ export function ImageLibrary(props: {
   useEffect(() => {
     let current = true;
     const run = async () => {
-      const next: Record<string, string> = {};
+      const next: Record<string, string> = Object.create(null);
       const memo = new WeakMap<number[], Promise<string>>();
       for (const [id, bytes] of Object.entries(props.result?.assets ?? {})) {
         if (bytes)

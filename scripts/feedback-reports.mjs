@@ -1,4 +1,5 @@
-import { readFile, lstat, open } from "node:fs/promises";
+import { readFile, open } from "node:fs/promises";
+import { readRegularFile } from "./regular-file.mjs";
 import { resolve } from "node:path";
 
 function argumentsFor(argv) {
@@ -35,14 +36,14 @@ function argumentsFor(argv) {
 }
 async function main() {
   const options = argumentsFor(process.argv.slice(2));
-  const path = resolve(options["--token-file"]),
-    stat = await lstat(path);
-  if (!stat.isFile() || stat.isSymbolicLink() || (stat.mode & 0o077) !== 0)
-    throw new Error(
-      "Operator token must be a regular owner-only file (chmod 600).",
-    );
-  if (stat.size > 66) throw new Error("Invalid operator token file.");
-  const token = (await readFile(path, "utf8")).trim();
+  const token = (
+    await readRegularFile(resolve(options["--token-file"]), {
+      private: true,
+      maxBytes: 66,
+    })
+  )
+    .toString("utf8")
+    .trim();
   if (!/^[a-f0-9]{64}$/.test(token))
     throw new Error("Invalid operator token file.");
   const configured =

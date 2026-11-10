@@ -196,7 +196,10 @@ export function applyOverrideChanges(
 ): Record<string, LayerOverride> {
   if (new Set(changes.map((change) => change.id)).size !== changes.length)
     throw new Error("Duplicate batch layer.");
-  const result = { ...before };
+  const result: Record<string, LayerOverride> = Object.assign(
+    Object.create(null),
+    before,
+  );
   for (const { id, value } of changes) {
     if (!value) {
       delete result[id];
