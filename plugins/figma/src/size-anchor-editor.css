@@ -1,0 +1,151 @@
+.size-anchor-editor {
+  padding: 0 16px 14px;
+}
+.focused-app .size-anchor-editor .geometry-units {
+  display: flex;
+  width: 100%;
+  height: 32px;
+  padding: 3px;
+  border: 0;
+  margin: 0 0 9px;
+  background: var(--secondary);
+}
+.focused-app .geometry-units [data-slot="toggle-group-item"] {
+  flex: 1;
+  min-width: 0;
+  height: 26px;
+  min-height: 26px;
+  font-size: 12px;
+  padding: 3px 10px;
+}
+.geometry-dimensions {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.geometry-dimension {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  width: 50%;
+  min-width: 0;
+  font-size: 13px;
+}
+.geometry-dimension > span {
+  flex: none;
+}
+.geometry-number {
+  min-width: 0;
+  flex: 1;
+}
+.focused-app .geometry-number [data-slot="input"],
+.geometry-anchor-popover [data-slot="input"] {
+  min-height: 30px;
+  height: 30px;
+  padding: 4px 7px;
+  font-size: 13px;
+  border: 1px solid var(--input);
+  border-radius: 8px;
+  background: var(--card);
+  appearance: textfield;
+}
+.geometry-number input::-webkit-inner-spin-button,
+.geometry-number input::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+.geometry-number .property-error {
+  display: block;
+  font-size: 10px;
+  line-height: 1.5;
+  padding-top: 4px;
+}
+.geometry-number .property-error button {
+  color: var(--primary);
+  text-decoration: underline;
+  font: inherit;
+}
+.geometry-anchor-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  font-size: 13px;
+}
+.geometry-anchor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 14px);
+  gap: 4px;
+}
+.geometry-anchor-grid button {
+  width: 14px;
+  height: 14px;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--input);
+  border-radius: 4px;
+  background: var(--card);
+}
+.geometry-anchor-grid button:hover:not(:disabled) {
+  background: var(--fb-selected);
+  border-color: var(--primary);
+}
+.geometry-anchor-grid button[aria-checked="true"] {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.geometry-anchor-grid button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.geometry-anchor-grid button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.focused-app .geometry-anchor-value {
+  min-width: 89px;
+  height: 30px;
+  padding: 4px 9px;
+  font-size: 13px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+.geometry-anchor-popover {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  width: 220px;
+  max-width: calc(100vw - 24px);
+  padding: 12px;
+  z-index: 60;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--popover);
+  color: var(--foreground);
+  box-shadow: var(--fb-shadow);
+}
+.geometry-anchor-popover > label {
+  display: grid;
+  gap: 5px;
+  font-size: 12px;
+}
+.focused-app .geometry-more-layout > .fb-disclosure-body {
+  padding-inline: 0;
+}
+.focused-app .geometry-more-layout .layout-presets {
+  padding: 8px 12px;
+}
+@media (max-width: 400px) {
+  .size-anchor-editor {
+    padding-inline: 12px;
+  }
+  .geometry-dimensions {
+    gap: 8px;
+  }
+  .geometry-dimension {
+    gap: 4px;
+    font-size: 12px;
+  }
+}

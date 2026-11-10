@@ -1,0 +1,315 @@
+/* Artwork, account and export surfaces share the compact workspace controls. */
+.app .image-library.artwork-resource {
+  margin: 0 0 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--background);
+  box-shadow: 0 6px 20px rgb(22 35 58 / 3%);
+}
+.app .artwork-resource > summary {
+  min-height: 24px;
+  font-size: 13px;
+  font-weight: 550;
+  gap: 8px;
+}
+.app .artwork-resource > summary > svg {
+  width: 14px;
+  height: 14px;
+}
+.app .artwork-resource > summary > span {
+  overflow-wrap: normal;
+}
+.app .artwork-resource p,
+.app .artwork-account p,
+.app .handoff-panel p,
+.app .export-panel p {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+.app .artwork-resource p[role="alert"],
+.app .artwork-account p[role="alert"],
+.app .handoff-panel p[role="alert"] {
+  color: var(--danger-text);
+}
+.app .artwork-hint,
+.app .artwork-file-meta {
+  color: var(--muted-foreground);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.app .artwork-resource label {
+  display: grid;
+  align-items: center;
+  grid-template-columns: minmax(100px, 0.7fr) minmax(0, 1fr);
+  gap: 12px;
+  margin: 12px 0;
+  font-size: 12px;
+}
+.app .artwork-resource label > [data-slot="select-trigger"],
+.app .artwork-resource label > [data-slot="input"] {
+  margin: 0;
+  min-width: 0;
+}
+.app .artwork-resource label.artwork-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+.app .artwork-consent [data-slot="checkbox"] {
+  flex: none;
+  margin-top: 2px;
+}
+.app .artwork-resource [data-slot="button"],
+.app .artwork-account [data-slot="button"],
+.app .export-panel [data-slot="button"],
+.app .handoff-panel [data-slot="button"] {
+  min-height: 30px;
+  height: auto;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.app .artwork-dropzone,
+.app .artwork-resource .library-drop {
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  background: var(--card);
+}
+.app .artwork-dropzone > label,
+.app .artwork-resource .library-drop > label {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  margin: 0 0 10px;
+}
+.app .artwork-resource input[type="file"] {
+  width: 100%;
+  max-width: 100%;
+  padding: 5px;
+  min-height: 34px;
+  font-size: 11px;
+  border-radius: 9px;
+  background: var(--background);
+}
+.app .artwork-resource input::file-selector-button {
+  border: 0;
+  border-radius: 6px;
+  padding: 4px 8px;
+  background: var(--secondary);
+}
+.app .artwork-local .artwork-dropzone > img {
+  display: block;
+  margin: 12px auto;
+  border-radius: 8px;
+}
+.app .artwork-resource .library-grid {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  max-height: 520px;
+  padding: 2px;
+  margin-block: 12px;
+  scrollbar-width: thin;
+}
+.app .artwork-resource .library-grid article {
+  padding: 10px;
+  gap: 7px;
+  background: var(--card);
+  border: 1px solid transparent;
+  border-radius: 13px;
+}
+.app .artwork-resource .library-grid article:hover {
+  border-color: var(--border);
+}
+.app .artwork-resource .library-grid article img {
+  width: 100%;
+  height: 104px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+.app .artwork-resource .library-grid article strong {
+  font-weight: 550;
+  line-height: 1.4;
+}
+.app .artwork-resource .library-grid article details {
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.app .artwork-resource .library-grid article details summary {
+  padding: 4px 0;
+}
+.app .artwork-empty {
+  padding: 14px 0;
+  text-align: center;
+  color: var(--muted-foreground);
+}
+.app .roblox-account-panel.artwork-account {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: transparent;
+  box-shadow: 0 6px 20px rgb(22 35 58 / 3%);
+}
+.app .artwork-account .roblox-account-heading {
+  margin-bottom: 4px;
+}
+.app .artwork-account .roblox-account-heading strong {
+  font-size: 14px;
+  font-weight: 550;
+  letter-spacing: -0.2px;
+}
+.app .artwork-account .roblox-account-heading strong > svg {
+  color: var(--status-success-text);
+}
+.app .artwork-account .roblox-account-actions,
+.app .artwork-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-block: 10px;
+}
+.app .artwork-account .roblox-owner-field {
+  display: grid;
+  grid-template-columns: minmax(90px, 0.55fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  margin-top: 14px;
+  font-size: 12px;
+}
+.app .artwork-account .account-help {
+  font-size: 11px;
+  margin-bottom: 0;
+}
+.app .artwork-inline-help {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  margin: 8px 0 12px;
+}
+.app .artwork-inline-help > summary {
+  padding-block: 3px;
+}
+.app .artwork-cloud-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.app .artwork-cloud-item > strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-weight: 550;
+  font-size: 12px;
+}
+.app .artwork-cloud-item > span {
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.app .artwork-cloud-item .artwork-actions {
+  margin-bottom: 0;
+}
+.app .artwork-cloud-item .artwork-actions > button {
+  padding: 5px 10px;
+  min-height: 28px;
+  font-size: 11px;
+}
+.app .artwork-edit-sheet,
+.app .artwork-confirm,
+.app .artwork-preview-sheet {
+  border-radius: 12px;
+  padding: 12px;
+  margin: 12px 0;
+  background: var(--card);
+}
+.app .artwork-preview-sheet > strong,
+.app .artwork-preview-sheet > img {
+  display: block;
+  margin-bottom: 10px;
+}
+.app .artwork-confirm {
+  border: 1px solid color-mix(in srgb, var(--destructive) 25%, var(--border));
+}
+.app .export-panel {
+  margin-top: 0;
+  border-top: 1px solid var(--border);
+}
+.app .export-panel [data-slot="accordion-trigger"] {
+  padding-block: 12px;
+  font-size: 13px;
+  font-weight: 550;
+}
+.app .export-panel .source-export-controls {
+  gap: 10px;
+  padding-bottom: 4px;
+}
+.app .export-panel .source-export-format {
+  grid-template-columns: minmax(94px, 0.55fr) minmax(0, 1fr);
+  gap: 12px;
+  font-size: 12px;
+}
+.app .export-panel .font-form,
+.app .handoff-panel .font-form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.app .export-panel .source-export-notice {
+  font-size: 11px;
+}
+.app .handoff-panel.settings-group {
+  margin: 0;
+}
+.app .handoff-panel > h3 {
+  font-size: 14px;
+  font-weight: 550;
+  letter-spacing: -0.2px;
+}
+.app .handoff-panel .font-form > [data-slot="select-trigger"] {
+  flex: 1 1 120px;
+  min-width: 100px;
+}
+.app .handoff-panel .handoff-record {
+  border: 0;
+  border-top: 1px solid var(--border);
+  padding: 12px 0;
+  margin-top: 12px;
+  display: block;
+}
+.app .handoff-record > div > strong {
+  font-weight: 550;
+  overflow-wrap: anywhere;
+}
+.app .handoff-record > div > p:first-of-type {
+  font-family: var(--font-mono);
+}
+@container sidebar (max-width: 310px) {
+  .app .artwork-resource label,
+  .app .artwork-account .roblox-owner-field,
+  .app .export-panel .source-export-format {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+  .app .artwork-resource .library-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 540px) {
+  .app .artwork-resource label,
+  .app .artwork-account .roblox-owner-field,
+  .app .export-panel .source-export-format {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+  .app .artwork-resource .library-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+}

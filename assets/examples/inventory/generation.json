@@ -1,0 +1,64 @@
+{
+  "generator": "Built-in image_gen",
+  "created": "2026-11-09",
+  "transparent_background": true,
+  "shared_prompt": "Use case: stylized-concept. Asset type: production game inventory item icon, transparent PNG cutout for a Roblox inventory UI. Style: polished stylized 3D game art, chunky low-poly forms with softly beveled edges, carefully shaped simple silhouette, subtle hand-painted material gradients, premium playful adventure-game feel, never emoji/flat glyph/photorealism. Orthographic three-quarter product view, centered isolated single item, fills 80% of a square canvas with equal padding on every side, entire item visible. Soft studio light from upper left, clean readable highlights and subtle ambient occlusion on the object itself, no ground or cast shadow outside the object. True transparent background. Must read clearly at 64x64 and still look detailed at 160x160. No lettering, labels, numbers, logos, watermark, frame, panel, slot, UI, border, decorative sparkles, scene or floor. Cohesive cool steel-blue / warm leather / soft gold material language. 1024x1024 square image.",
+  "assets": [
+    {
+      "file": "wayfinder-sword.png",
+      "prompt": "Use case: stylized-concept. Asset type: production game inventory item icon, transparent PNG cutout for a Roblox inventory UI. Style: polished stylized 3D game art, chunky low-poly forms with softly beveled edges, carefully shaped simple silhouette, subtle hand-painted material gradients, premium playful adventure-game feel, never emoji/flat glyph/photorealism. Orthographic three-quarter product view, centered isolated single item, fills 80% of a square canvas with equal padding on every side, entire item visible. Soft studio light from upper left, clean readable highlights and subtle ambient occlusion on the object itself, no ground or cast shadow outside the object. True transparent background. Must read clearly at 64x64 and still look detailed at 160x160. No lettering, labels, numbers, logos, watermark, frame, panel, slot, UI, border, decorative sparkles, scene or floor. Cohesive cool steel-blue / warm leather / soft gold material language. 1024x1024 square image.\nSubject: One fantasy travel sword angled diagonally, steel-blue broad blade pointing upper right, a beveled pale silver cutting edge, small brass crossguard and pommel, dark walnut leather grip. Friendly chunky design, tasteful two or three facets on the blade, no runes or writing."
+    },
+    {
+      "file": "iron-shield.png",
+      "prompt": "Use case: stylized-concept. Asset type: production game inventory item icon, transparent PNG cutout for a Roblox inventory UI. Style: polished stylized 3D game art, chunky low-poly forms with softly beveled edges, carefully shaped simple silhouette, subtle hand-painted material gradients, premium playful adventure-game feel, never emoji/flat glyph/photorealism. Orthographic three-quarter product view, centered isolated single item, fills 80% of a square canvas with equal padding on every side, entire item visible. Soft studio light from upper left, clean readable highlights and subtle ambient occlusion on the object itself, no ground or cast shadow outside the object. True transparent background. Must read clearly at 64x64 and still look detailed at 160x160. No lettering, labels, numbers, logos, watermark, frame, panel, slot, UI, border, decorative sparkles, scene or floor. Cohesive cool steel-blue / warm leather / soft gold material language. 1024x1024 square image.\nSubject: One sturdy rounded kite shield in three-quarter view. Cool slate-blue enameled metal center, softly beveled silver steel rim, small central raised steel boss, four small brass rivets, subtle material detail. Clean strong shield silhouette."
+    },
+    {
+      "file": "health-potion.png",
+      "prompt": "Use case: stylized-concept. Asset type: production game inventory item icon, transparent PNG cutout for a Roblox inventory UI. Style: polished stylized 3D game art, chunky low-poly forms with softly beveled edges, carefully shaped simple silhouette, subtle hand-painted material gradients, premium playful adventure-game feel, never emoji/flat glyph/photorealism. Orthographic three-quarter product view, centered isolated single item, fills 80% of a square canvas with equal padding on every side, entire item visible. Soft studio light from upper left, clean readable highlights and subtle ambient occlusion on the object itself, no ground or cast shadow outside the object. True transparent background. Must read clearly at 64x64 and still look detailed at 160x160. No lettering, labels, numbers, logos, watermark, frame, panel, slot, UI, border, decorative sparkles, scene or floor. Cohesive cool steel-blue / warm leather / soft gold material language. 1024x1024 square image.\nSubject: One small round glass health-potion flask containing vivid coral-red glowing liquid, short narrow neck and a warm tan cork stopper, a simple brass ring around the neck. Thick translucent glass with just a few crisp highlights; no label or writing."
+    },
+    {
+      "file": "azure-crystal.png",
+      "prompt": "Use case: stylized-concept. Asset type: production game inventory item icon, transparent PNG cutout for a Roblox inventory UI. Style: polished stylized 3D game art, chunky low-poly forms with softly beveled edges, carefully shaped simple silhouette, subtle hand-painted material gradients, premium playful adventure-game feel, never emoji/flat glyph/photorealism. Orthographic three-quarter product view, centered isolated single item, fills 80% of a square canvas with equal padding on every side, entire item visible. Soft studio light from upper left, clean readable highlights and subtle ambient occlusion on the object itself, no ground or cast shadow outside the object. True transparent background. Must read clearly at 64x64 and still look detailed at 160x160. No lettering, labels, numbers, logos, watermark, frame, panel, slot, UI, border, decorative sparkles, scene or floor. Cohesive cool steel-blue / warm leather / soft gold material language. 1024x1024 square image.\nSubject: One large collectible faceted azure-blue crystal gemstone in three-quarter view, asymmetrical clean hexagonal crystal shape with one main tip and two small connected facets. Saturated luminous blue middle, cyan highlights and darker sapphire side faces. No loose floating particles or base."
+    },
+    {
+      "file": "oak-wood.png",
+      "prompt": "Use case: stylized-concept. Asset type: production game inventory item icon, transparent PNG cutout for a Roblox inventory UI. Style: polished stylized 3D game art, chunky low-poly forms with softly beveled edges, carefully shaped simple silhouette, subtle hand-painted material gradients, premium playful adventure-game feel, never emoji/flat glyph/photorealism. Orthographic three-quarter product view, centered isolated single item, fills 80% of a square canvas with equal padding on every side, entire item visible. Soft studio light from upper left, clean readable highlights and subtle ambient occlusion on the object itself, no ground or cast shadow outside the object. True transparent background. Must read clearly at 64x64 and still look detailed at 160x160. No lettering, labels, numbers, logos, watermark, frame, panel, slot, UI, border, decorative sparkles, scene or floor. Cohesive cool steel-blue / warm leather / soft gold material language. 1024x1024 square image.\nSubject: One bundle of three short oak logs tied neatly with a simple tan rope, warm honey brown bark, round end grain visible on one side, three-quarter view. Chunky softly beveled surfaces and restrained bark ridges, not realistic debris."
+    },
+    {
+      "file": "gold-coins.png",
+      "prompt": "Use case: stylized-concept. Asset type: production game inventory item icon, transparent PNG cutout for a Roblox inventory UI. Style: polished stylized 3D game art, chunky low-poly forms with softly beveled edges, carefully shaped simple silhouette, subtle hand-painted material gradients, premium playful adventure-game feel, never emoji/flat glyph/photorealism. Orthographic three-quarter product view, centered isolated single item, fills 80% of a square canvas with equal padding on every side, entire item visible. Soft studio light from upper left, clean readable highlights and subtle ambient occlusion on the object itself, no ground or cast shadow outside the object. True transparent background. Must read clearly at 64x64 and still look detailed at 160x160. No lettering, labels, numbers, logos, watermark, frame, panel, slot, UI, border, decorative sparkles, scene or floor. Cohesive cool steel-blue / warm leather / soft gold material language. 1024x1024 square image.\nSubject: A small tidy pile of six chunky gold coins, three stacked and three overlapping in front, warm matte gold with softly beveled bright edges, simple embossed diamond at the center instead of writing. One compact inventory object in three-quarter view."
+    }
+  ],
+  "variants": [
+    {
+      "file": "energy-potion.png",
+      "reference": "health-potion.png",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent game inventory icon variant.\nChange only the potion liquid from coral-red to luminous fresh green. Preserve the identical flask shape, cork, brass ring, glass reflections, framing, soft stylized 3D materials and genuine transparent background. No label, text, UI or added objects."
+    },
+    {
+      "file": "mana-potion.png",
+      "reference": "health-potion.png",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent game inventory icon variant.\nChange only the potion liquid from coral-red to luminous sapphire-blue. Preserve the identical flask shape, cork, brass ring, glass reflections, framing, soft stylized 3D materials and genuine transparent background. No label, text, UI or added objects."
+    },
+    {
+      "file": "amethyst-crystal.png",
+      "reference": "azure-crystal.png",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent game inventory icon variant.\nChange only the crystal color to violet amethyst: lavender highlights, luminous purple facets and deep violet side faces. Preserve the identical geometry, lighting, framing, polished stylized game art and genuine transparent background. No text, UI or added objects."
+    },
+    {
+      "file": "ruby-crystal.png",
+      "reference": "azure-crystal.png",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent game inventory icon variant.\nChange only the crystal color to ruby red: soft pink highlights, luminous crimson facets and deep garnet side faces. Preserve the identical geometry, lighting, framing, polished stylized game art and genuine transparent background. No text, UI or added objects."
+    },
+    {
+      "file": "emerald-crystal.png",
+      "reference": "azure-crystal.png",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent game inventory icon variant.\nChange only the crystal color to emerald green: pale mint highlights, luminous emerald facets and deep forest green side faces. Preserve the identical geometry, lighting, framing, polished stylized game art and genuine transparent background. No text, UI or added objects."
+    },
+    {
+      "file": "trail-dagger.png",
+      "reference": "wayfinder-sword.png",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent game inventory icon variant.\nMake a matching companion trail dagger for the same inventory art set: shorten and narrow the steel-blue blade significantly so it is a short dagger rather than a broad sword, simplify the small brass crossguard, preserve the brown leather grip, same diagonal orientation, chunky beveled stylized 3D material language and lighting. Keep the single item centered with equal margin at about80% canvas occupancy. Genuine transparent background, no letters, logos, text, frame or extra objects."
+    }
+  ]
+}

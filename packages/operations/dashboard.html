@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Framebridge activity</title>
+    <link rel="stylesheet" href="/dashboard.css" />
+    <script type="module" src="/dashboard.js"></script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">Framebridge <span>Activity</span></a>
+      <div class="actions">
+        <span id="refresh-status" role="status">Connecting…</span
+        ><button id="refresh">Refresh</button>
+      </div>
+    </header>
+    <main>
+      <div class="intro">
+        <div>
+          <h1>Backend overview</h1>
+          <p id="environment">Cloudflare · Private operator dashboard</p>
+        </div>
+        <div class="period" role="group" aria-label="Traffic period">
+          <button data-period="1h">1 hour</button
+          ><button data-period="24h" aria-pressed="true">24 hours</button
+          ><button data-period="7d">7 days</button>
+        </div>
+      </div>
+      <div id="messages" role="status"></div>
+      <section class="metrics" aria-label="Key metrics">
+        <article>
+          <h2>Studio online</h2>
+          <strong id="online">—</strong>
+          <p>Activity in the last 90 seconds</p>
+        </article>
+        <article>
+          <h2>Paired sessions</h2>
+          <strong id="paired">—</strong>
+          <p>Unexpired Figma–Studio pairings</p>
+        </article>
+        <article>
+          <h2>Worker requests</h2>
+          <strong id="requests">—</strong>
+          <p id="traffic-period">Selected reporting period</p>
+        </article>
+        <article>
+          <h2>Worker exceptions</h2>
+          <strong id="errors">—</strong>
+          <p id="error-rate">Cloudflare invocation failures</p>
+        </article>
+      </section>
+      <div class="columns">
+        <section class="panel traffic">
+          <div class="section-head">
+            <h2>Traffic over time</h2>
+            <a id="worker-link" target="_blank" rel="noreferrer"
+              >Open Cloudflare ↗</a
+            >
+          </div>
+          <p class="muted">
+            Requests per hour · first and last hours may be partial
+          </p>
+          <div id="chart" aria-live="polite"></div>
+          <div class="traffic-detail">
+            <span>Subrequests <b id="subrequests">—</b></span
+            ><span id="traffic-freshness">Waiting for analytics</span>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="section-head">
+            <h2>Daily service limits</h2>
+            <span class="muted">UTC</span>
+          </div>
+          <div id="quotas"></div>
+          <p id="quota-reset" class="muted">Waiting for usage</p>
+          <p class="note">
+            These are Framebridge’s configured limits, not Cloudflare billing
+            allowances. Reserved transfers and upload attempts consume usage.
+          </p>
+        </section>
+      </div>
+      <div class="columns lower">
+        <section class="panel">
+          <div class="section-head">
+            <h2>Connections & uploads</h2>
+            <span id="app-freshness" class="muted"></span>
+          </div>
+          <dl>
+            <div>
+              <dt>Session slots used</dt>
+              <dd id="session-slots">—</dd>
+            </div>
+            <div>
+              <dt>Upload-only sessions</dt>
+              <dd id="upload-sessions">—</dd>
+            </div>
+            <div>
+              <dt>Saved Roblox sign-ins</dt>
+              <dd id="accounts">—</dd>
+            </div>
+          </dl>
+          <h3>Retained image upload jobs</h3>
+          <div id="uploads" class="upload-states"></div>
+          <p class="note">
+            Upload results remain while their session is retained. These counts
+            are not lifetime uploads.
+          </p>
+        </section>
+        <section class="panel">
+          <div class="section-head">
+            <h2>Storage</h2>
+            <a id="storage-link" target="_blank" rel="noreferrer">Open R2 ↗</a>
+          </div>
+          <dl>
+            <div>
+              <dt>Durable Object SQLite</dt>
+              <dd id="sqlite">—</dd>
+            </div>
+            <div>
+              <dt>Cloud artwork / R2</dt>
+              <dd id="artwork-status">—</dd>
+            </div>
+            <div id="artwork-usage-row" hidden>
+              <dt>Tracked artwork objects / bytes</dt>
+              <dd id="artwork-usage">—</dd>
+            </div>
+          </dl>
+          <p id="storage-note" class="note">
+            Waiting for storage configuration.
+          </p>
+        </section>
+      </div>
+      <details class="sources">
+        <summary>Metric definitions & sources</summary>
+        <p>
+          Traffic comes from Cloudflare’s Workers GraphQL Analytics API for this
+          relay Worker only. It includes health checks and operator requests.
+          Cloudflare may use adaptive sampling and reporting can lag. Worker
+          exceptions are runtime failures, not every HTTP 4xx/5xx response.
+        </p>
+        <p>
+          Connections, uploads, quotas and storage come from the protected
+          aggregate endpoint in the existing RelayRoom. Online means Studio
+          authenticated within 90 seconds; it is not a WebSocket count or
+          unique-user count. Presence writes are throttled to 30 seconds.
+          Expired sessions are excluded. Saved pairings can outlast an open app.
+        </p>
+        <p>
+          SQLite size includes metadata and retained data. Artwork bytes come
+          from tracked metadata, including pending/cleanup objects; they are not
+          an R2 billing measurement. Uploaded Roblox images reside with Roblox,
+          not in an S3 bucket. Quotas reset at midnight UTC. No names, IPs,
+          images, tokens or transfer contents are returned.
+        </p>
+        <p id="monitoring-since"></p>
+      </details>
+      <footer>
+        <span
+          >Auto-refresh every 30 seconds while visible · traffic cached for 2
+          minutes</span
+        ><a id="billing-link" target="_blank" rel="noreferrer"
+          >Cloudflare billing ↗</a
+        >
+      </footer>
+    </main>
+  </body>
+</html>

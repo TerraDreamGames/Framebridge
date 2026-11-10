@@ -1,0 +1,518 @@
+/* Shared expanded-panel anatomy. Keep feature-specific CSS out of these rows. */
+:root {
+  --panel-row-height: 36px;
+  --panel-field-height: 32px;
+  --panel-inset: 12px;
+  --panel-body-gap: 10px;
+}
+.focused-app .fb-disclosure.fb-disclosure {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+.focused-app .fb-disclosure > .fb-disclosure-trigger,
+.focused-app .export-panel [data-slot="accordion-trigger"] {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100%;
+  min-height: var(--panel-row-height);
+  padding: 8px var(--panel-inset);
+  margin: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--foreground);
+  font-size: 12px;
+  font-weight: 550;
+  line-height: 1.5;
+  text-align: left;
+  white-space: normal;
+  overflow: visible;
+  list-style: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+.focused-app .fb-disclosure-trigger::marker {
+  content: "";
+}
+.focused-app .fb-disclosure-trigger::-webkit-details-marker {
+  display: none;
+}
+.focused-app .fb-disclosure-trigger:hover,
+.focused-app .export-panel [data-slot="accordion-trigger"]:hover {
+  background: var(--secondary);
+  text-decoration: none;
+}
+.focused-app .fb-disclosure-trigger > .fb-disclosure-chevron,
+.focused-app .export-panel .accordion-chevron {
+  width: 13px;
+  height: 13px;
+  margin: 0;
+  flex: 0 0 13px;
+  color: var(--muted-foreground);
+  transform: rotate(0);
+  transition: transform 0.14s ease;
+}
+.focused-app
+  .fb-disclosure[open]
+  > .fb-disclosure-trigger
+  > .fb-disclosure-chevron,
+.focused-app .export-panel [data-state="open"] > .accordion-chevron {
+  transform: rotate(90deg);
+}
+.focused-app .fb-disclosure-trigger > :is(span, strong) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.focused-app
+  .fb-disclosure-trigger
+  > :is(.export-setup-summary, .structure-review-count, .disclosure-count) {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: var(--muted-foreground);
+  font-size: 11px;
+  font-weight: 400;
+  white-space: normal;
+  text-align: right;
+}
+.focused-app .fb-disclosure > .fb-disclosure-body,
+.focused-app .export-panel [data-slot="accordion-content"] > div {
+  display: grid;
+  align-content: start;
+  gap: var(--panel-body-gap);
+  padding: 4px var(--panel-inset) 12px;
+  min-width: 0;
+  font-size: 12px;
+}
+.focused-app .fb-disclosure-body > :is(p, label, fieldset, div),
+.focused-app
+  .fb-disclosure-body
+  :is(.theme-library-body, .structure-review-body, .conditional-fields) {
+  margin: 0;
+}
+.focused-app .fb-disclosure-body > p,
+.focused-app .fb-disclosure-body .property-note,
+.focused-app .review-hint {
+  margin: 0;
+  padding: 0;
+  color: var(--muted-foreground);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.focused-app .fb-disclosure-body .property-error,
+.focused-app .fb-disclosure-body [role="alert"] {
+  color: var(--danger-text);
+}
+.focused-app .fb-disclosure-body > button,
+.focused-app .source-export-controls > button {
+  justify-self: start;
+  width: auto;
+}
+.focused-app
+  .fb-disclosure-body
+  :is([data-slot="input"], [data-slot="select-trigger"]) {
+  min-height: var(--panel-field-height);
+  height: auto;
+  min-width: 0;
+  border-radius: 9px;
+  font-size: 12px;
+}
+.focused-app .fb-disclosure-body .theme-library-body {
+  padding: 0;
+}
+.focused-app .fb-disclosure-body .theme-token {
+  border-top: 1px solid var(--border);
+}
+.focused-app .fb-disclosure-body .property-row {
+  min-height: 36px;
+  padding: 3px 0;
+  margin: 0;
+  align-items: center;
+}
+.focused-app .fb-disclosure-body :is(.export-setup-summary, .account-help) {
+  font-size: 11px;
+}
+/* Selection rules use the same compact field grid and action bar as editors. */
+.focused-app .layer-rule-matcher .conditional-fields {
+  display: grid;
+  gap: 8px;
+  padding: 0;
+}
+.focused-app .layer-rule-matcher .conditional-predicate {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 6px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.focused-app .layer-rule-matcher .conditional-predicate > :nth-child(n + 3) {
+  grid-column: 1 / -1;
+}
+.focused-app .rule-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.focused-app .rule-actions button {
+  height: 29px;
+  min-height: 29px;
+  padding: 4px 10px;
+  font-size: 11px;
+}
+.focused-app .explorer-pane .fb-disclosure-body {
+  max-height: min(360px, 45dvh);
+  overflow: auto;
+}
+.focused-app .class-shortcut-list {
+  display: grid;
+  gap: 4px;
+  font-size: 11px;
+}
+.focused-app .class-shortcut-list > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 22px;
+}
+.focused-app .class-shortcut-list kbd {
+  width: 36px;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-foreground);
+}
+.focused-app .explorer-selection-help {
+  padding: 0;
+  border: 0;
+}
+/* Compound values stay a compact two-column grid, not full-width stacked rows. */
+.focused-app .studio-property-table .compound-details {
+  margin: 2px 12px 8px;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--secondary);
+}
+.focused-app
+  .studio-property-table
+  .compound-details
+  :is(.vector-property, .font-property),
+.focused-app .studio-property-table .vector-property[data-components="3"] {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.focused-app
+  .studio-property-table
+  .compound-details
+  :is(.vector-property > label, .compound-component) {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  min-width: 0;
+}
+.focused-app
+  .studio-property-table
+  .compound-details
+  :is(label > span, .compound-component > span) {
+  padding: 0;
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+.focused-app
+  .studio-property-table
+  .compound-details
+  :is(input, [data-slot="select-trigger"]) {
+  min-height: 30px;
+  padding: 5px 7px;
+  background: var(--card);
+  border: 1px solid var(--input);
+  border-radius: 8px;
+}
+.focused-app
+  .studio-property-table
+  .font-property
+  > .compound-component:first-child {
+  grid-column: 1 / -1;
+}
+.focused-app .studio-modifier-navigation .modifier-back {
+  margin: 0 12px 8px;
+  padding: 4px 9px;
+  min-height: 28px;
+  width: fit-content;
+  max-width: calc(100% - 24px);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  font-size: 11px;
+  white-space: normal;
+}
+.focused-app .studio-modifier-navigation .modifier-back:hover {
+  background: var(--secondary);
+}
+/* Styled file pickers retain the original file validation and drop handlers. */
+.focused-app .file-picker {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+.focused-app .file-picker > input {
+  display: none;
+}
+.focused-app .file-picker > button {
+  min-height: 30px;
+  height: auto;
+  padding: 5px 11px;
+  font-size: 12px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+.focused-app .file-picker-name {
+  min-width: 0;
+  font-size: 11px;
+  color: var(--muted-foreground);
+  overflow-wrap: anywhere;
+}
+.focused-app .artwork-resource :is(.library-drop, .artwork-dropzone) {
+  margin: 0;
+  padding: 10px;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  background: transparent;
+}
+.focused-app .artwork-resource :is(.library-drop, .artwork-dropzone) > label {
+  margin: 0;
+  gap: 8px;
+}
+.focused-app .artwork-resource .resource-empty {
+  text-align: left;
+  padding: 3px 0;
+  margin: 0;
+}
+.focused-app .artwork-resource .library-grid:empty {
+  display: none;
+}
+.focused-app .artwork-resource .artwork-empty {
+  padding: 3px 0;
+  text-align: left;
+  margin: 0;
+}
+/* Review filters, checkboxes, disclosures and action rows share one rhythm. */
+.focused-app .editor-review {
+  padding: 12px 20px 16px;
+}
+.focused-app .editor-review .fb-disclosure {
+  margin: 0;
+}
+.focused-app .editor-review .check-options {
+  border: 0;
+  border-bottom: 1px solid var(--border);
+}
+.focused-app .check-toggles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  max-width: 660px;
+  gap: 8px 16px;
+  padding: 0;
+  margin: 0;
+}
+.focused-app label:has(> [data-slot="checkbox"]) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  min-height: 28px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.focused-app label > [data-slot="checkbox"] {
+  flex: 0 0 15px;
+  width: 15px;
+  height: 15px;
+  border-radius: 4px;
+}
+.focused-app .check-options .fb-disclosure-body > label {
+  display: grid;
+  grid-template-columns: minmax(0, 160px) minmax(0, 280px);
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+.focused-app .check-actions {
+  padding: 10px 0 0;
+  margin: 0;
+  border: 0;
+  gap: 8px;
+}
+.focused-app .structure-review-toolbar {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) minmax(140px, 210px) auto;
+  gap: 8px;
+  margin: 0 0 10px;
+  align-items: start;
+}
+.focused-app .review-empty {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 10px 0 14px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+.focused-app .source-export-controls {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+.focused-app .source-export-controls p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.focused-app .source-export-controls > button {
+  min-height: 30px;
+  padding: 5px 12px;
+  font-size: 12px;
+}
+.focused-app .export-panel {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+.focused-app .export-panel [data-slot="accordion-item"] {
+  border: 0;
+}
+.focused-app .images-inspector > [data-slot="empty"] {
+  min-height: 0;
+  padding: 10px 0;
+  gap: 4px;
+  border: 0;
+  align-items: flex-start;
+  text-align: left;
+}
+.focused-app .images-inspector > [data-slot="empty"] [data-slot="empty-media"] {
+  display: none;
+}
+.focused-app
+  .images-inspector
+  > [data-slot="empty"]
+  [data-slot="empty-header"] {
+  align-items: flex-start;
+  text-align: left;
+  gap: 3px;
+}
+.focused-app
+  .images-inspector
+  > [data-slot="empty"]
+  :is([data-slot="empty-title"], [data-slot="empty-description"]) {
+  font-size: 11px;
+  font-weight: 400;
+}
+@media (max-width: 720px) {
+  .focused-app .editor-review {
+    padding: 10px 14px 14px;
+  }
+  .focused-app .structure-review-toolbar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 450px) {
+  .focused-app .check-options .fb-disclosure-body > label {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 5px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .focused-app .fb-disclosure-chevron {
+    transition: none;
+  }
+}
+.focused-app .studio-property-table .compound-details {
+  width: calc(100% - 24px);
+  max-width: calc(100% - 24px);
+}
+.focused-app .check-actions > button {
+  height: 32px;
+  min-height: 32px;
+  padding: 5px 12px;
+  font-size: 12px;
+}
+.focused-app .images-inspector .asset-list [data-slot="empty"] {
+  grid-column: 1 / -1;
+  min-height: 0;
+  padding: 10px 0;
+  gap: 0;
+  border: 0;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+}
+.focused-app .images-inspector .asset-list [data-slot="empty-icon"] {
+  display: none;
+}
+.focused-app .images-inspector .asset-list [data-slot="empty-header"] {
+  align-items: flex-start;
+  text-align: left;
+  max-width: none;
+  gap: 3px;
+}
+.focused-app
+  .images-inspector
+  .asset-list
+  :is([data-slot="empty-title"], [data-slot="empty-description"]) {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.focused-app .resource-file-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.focused-app .resource-file-actions > button {
+  min-height: 30px;
+  height: 30px;
+  font-size: 12px;
+  padding: 5px 12px;
+}
+.focused-app .check-toggles {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 600px;
+}
+@media (max-width: 720px) {
+  .focused-app .check-toggles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.focused-app .accordion-chevron {
+  rotate: 0deg;
+}
+.focused-app
+  [data-slot="accordion-trigger"][data-state="open"]
+  > .accordion-chevron-rotates {
+  rotate: 0deg;
+  transform: rotate(90deg);
+}
+.focused-app .structure-review-toolbar > button {
+  justify-self: start;
+  width: auto;
+}

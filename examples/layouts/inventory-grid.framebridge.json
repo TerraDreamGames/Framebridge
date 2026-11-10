@@ -1,0 +1,2984 @@
+{
+  "format": "framebridge",
+  "version": 1,
+  "sourceId": "framebridge-example:inventory-grid",
+  "name": "Inventory grid",
+  "createdAt": "2026-10-01T00:00:00Z",
+  "options": {
+    "layout": "responsive",
+    "appearance": "editable",
+    "preserveText": true,
+    "imageScale": 2
+  },
+  "roots": [
+    {
+      "id": "screen:inventory-grid:root",
+      "name": "Inventory grid",
+      "className": "ScreenGui",
+      "referenceSize": [
+        640,
+        480
+      ],
+      "properties": {
+        "ResetOnSpawn": false,
+        "IgnoreGuiInset": true,
+        "ZIndexBehavior": {
+          "type": "Enum",
+          "value": [
+            "ZIndexBehavior",
+            "Sibling"
+          ]
+        },
+        "DisplayOrder": 0,
+        "Enabled": true
+      },
+      "children": [
+        {
+          "id": "inventory-grid:root",
+          "name": "Inventory grid",
+          "className": "Frame",
+          "sourceType": "FRAME",
+          "properties": {
+            "Position": {
+              "type": "UDim2",
+              "value": [
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "Size": {
+              "type": "UDim2",
+              "value": [
+                1,
+                0,
+                1,
+                0
+              ]
+            },
+            "AnchorPoint": {
+              "type": "Vector2",
+              "value": [
+                0,
+                0
+              ]
+            },
+            "Rotation": 0,
+            "Visible": true,
+            "BorderSizePixel": 0,
+            "BackgroundTransparency": 0,
+            "LayoutOrder": 0,
+            "ZIndex": 1,
+            "ClipsDescendants": false,
+            "BackgroundColor3": {
+              "type": "Color3",
+              "value": [
+                0.04706,
+                0.07843,
+                0.13333
+              ]
+            }
+          },
+          "children": [
+            {
+              "id": "inventory-grid:title",
+              "name": "title",
+              "className": "TextLabel",
+              "sourceType": "TEXT",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    24,
+                    0,
+                    20
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    592,
+                    0,
+                    36
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 1,
+                "LayoutOrder": 0,
+                "ZIndex": 1,
+                "ClipsDescendants": false,
+                "Text": "Inventory grid",
+                "FontFace": {
+                  "type": "Font",
+                  "family": "rbxasset://fonts/families/Roboto.json",
+                  "weight": "Regular",
+                  "style": "Normal"
+                },
+                "TextSize": 26,
+                "TextColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.90196,
+                    0.93333,
+                    0.98824
+                  ]
+                },
+                "TextTransparency": 0,
+                "TextXAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextXAlignment",
+                    "Left"
+                  ]
+                },
+                "TextYAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextYAlignment",
+                    "Center"
+                  ]
+                },
+                "TextWrapped": true,
+                "TextScaled": false,
+                "RichText": false,
+                "AutoLocalize": false
+              },
+              "children": []
+            },
+            {
+              "id": "inventory-grid:hint",
+              "name": "hint",
+              "className": "TextLabel",
+              "sourceType": "TEXT",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    24,
+                    0,
+                    60
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    592,
+                    0,
+                    36
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 1,
+                "LayoutOrder": 1,
+                "ZIndex": 2,
+                "ClipsDescendants": false,
+                "Text": "A scrolling native grid that wraps cells as the viewport changes, with no positioning scripts.",
+                "FontFace": {
+                  "type": "Font",
+                  "family": "rbxasset://fonts/families/Roboto.json",
+                  "weight": "Regular",
+                  "style": "Normal"
+                },
+                "TextSize": 13,
+                "TextColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.90196,
+                    0.93333,
+                    0.98824
+                  ]
+                },
+                "TextTransparency": 0,
+                "TextXAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextXAlignment",
+                    "Left"
+                  ]
+                },
+                "TextYAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextYAlignment",
+                    "Center"
+                  ]
+                },
+                "TextWrapped": true,
+                "TextScaled": false,
+                "RichText": false,
+                "AutoLocalize": false
+              },
+              "children": []
+            },
+            {
+              "id": "inventory-grid:scroll",
+              "name": "Inventory",
+              "className": "ScrollingFrame",
+              "sourceType": "FRAME",
+              "properties": {
+                "CanvasSize": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "AutomaticCanvasSize": {
+                  "type": "Enum",
+                  "value": [
+                    "AutomaticSize",
+                    "Y"
+                  ]
+                },
+                "ScrollingDirection": {
+                  "type": "Enum",
+                  "value": [
+                    "ScrollingDirection",
+                    "Y"
+                  ]
+                },
+                "ScrollingEnabled": true,
+                "ScrollBarThickness": 6,
+                "Active": true,
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    24,
+                    0,
+                    104
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    1,
+                    -48,
+                    1,
+                    -128
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 0,
+                "LayoutOrder": 2,
+                "ZIndex": 3,
+                "ClipsDescendants": true,
+                "BackgroundColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.0902,
+                    0.13333,
+                    0.20784
+                  ]
+                },
+                "ScrollBarImageColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.36,
+                    0.64,
+                    1
+                  ]
+                }
+              },
+              "children": [
+                {
+                  "id": "inventory-grid:scroll/corner",
+                  "name": "UICorner",
+                  "className": "UICorner",
+                  "properties": {
+                    "CornerRadius": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        8
+                      ]
+                    }
+                  },
+                  "children": []
+                },
+                {
+                  "id": "inventory-grid:item-1",
+                  "name": "Item 01",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        12,
+                        0,
+                        12
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 0,
+                    "ZIndex": 1,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-1/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-1",
+                      "name": "item-name-1",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Supplies\n01",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-2",
+                  "name": "Item 02",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        156,
+                        0,
+                        12
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 1,
+                    "ZIndex": 2,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-2/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-2",
+                      "name": "item-name-2",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Equipment\n02",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-3",
+                  "name": "Item 03",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        300,
+                        0,
+                        12
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 2,
+                    "ZIndex": 3,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.16078,
+                        0.29412,
+                        0.32549
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-3/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-3",
+                      "name": "item-name-3",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Materials\n03",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-4",
+                  "name": "Item 04",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        444,
+                        0,
+                        12
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 3,
+                    "ZIndex": 4,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-4/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-4",
+                      "name": "item-name-4",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Supplies\n04",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-5",
+                  "name": "Item 05",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        12,
+                        0,
+                        116
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 4,
+                    "ZIndex": 5,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-5/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-5",
+                      "name": "item-name-5",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Equipment\n05",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-6",
+                  "name": "Item 06",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        156,
+                        0,
+                        116
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 5,
+                    "ZIndex": 6,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.16078,
+                        0.29412,
+                        0.32549
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-6/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-6",
+                      "name": "item-name-6",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Materials\n06",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-7",
+                  "name": "Item 07",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        300,
+                        0,
+                        116
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 6,
+                    "ZIndex": 7,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-7/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-7",
+                      "name": "item-name-7",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Supplies\n07",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-8",
+                  "name": "Item 08",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        444,
+                        0,
+                        116
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 7,
+                    "ZIndex": 8,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-8/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-8",
+                      "name": "item-name-8",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Equipment\n08",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-9",
+                  "name": "Item 09",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        12,
+                        0,
+                        220
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 8,
+                    "ZIndex": 9,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.16078,
+                        0.29412,
+                        0.32549
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-9/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-9",
+                      "name": "item-name-9",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Materials\n09",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-10",
+                  "name": "Item 10",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        156,
+                        0,
+                        220
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 9,
+                    "ZIndex": 10,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-10/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-10",
+                      "name": "item-name-10",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Supplies\n10",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-11",
+                  "name": "Item 11",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        300,
+                        0,
+                        220
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 10,
+                    "ZIndex": 11,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-11/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-11",
+                      "name": "item-name-11",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Equipment\n11",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-12",
+                  "name": "Item 12",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        444,
+                        0,
+                        220
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 11,
+                    "ZIndex": 12,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.16078,
+                        0.29412,
+                        0.32549
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-12/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-12",
+                      "name": "item-name-12",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Materials\n12",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-13",
+                  "name": "Item 13",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        12,
+                        0,
+                        324
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 12,
+                    "ZIndex": 13,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-13/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-13",
+                      "name": "item-name-13",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Supplies\n13",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-14",
+                  "name": "Item 14",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        156,
+                        0,
+                        324
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 13,
+                    "ZIndex": 14,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-14/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-14",
+                      "name": "item-name-14",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Equipment\n14",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-15",
+                  "name": "Item 15",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        300,
+                        0,
+                        324
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 14,
+                    "ZIndex": 15,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.16078,
+                        0.29412,
+                        0.32549
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-15/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-15",
+                      "name": "item-name-15",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Materials\n15",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-16",
+                  "name": "Item 16",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        444,
+                        0,
+                        324
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 15,
+                    "ZIndex": 16,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-16/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-16",
+                      "name": "item-name-16",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Supplies\n16",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-17",
+                  "name": "Item 17",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        12,
+                        0,
+                        428
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 16,
+                    "ZIndex": 17,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-17/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-17",
+                      "name": "item-name-17",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Equipment\n17",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:item-18",
+                  "name": "Item 18",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        156,
+                        0,
+                        428
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 17,
+                    "ZIndex": 18,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.16078,
+                        0.29412,
+                        0.32549
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "inventory-grid:item-18/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "inventory-grid:item-name-18",
+                      "name": "item-name-18",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            112,
+                            0,
+                            64
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Materials\n18",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "inventory-grid:scroll/grid",
+                  "name": "UIGridLayout",
+                  "className": "UIGridLayout",
+                  "properties": {
+                    "CellSize": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        136,
+                        0,
+                        96
+                      ]
+                    },
+                    "CellPadding": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        8,
+                        0,
+                        8
+                      ]
+                    },
+                    "FillDirection": {
+                      "type": "Enum",
+                      "value": [
+                        "FillDirection",
+                        "Horizontal"
+                      ]
+                    },
+                    "FillDirectionMaxCells": 4,
+                    "StartCorner": {
+                      "type": "Enum",
+                      "value": [
+                        "StartCorner",
+                        "TopLeft"
+                      ]
+                    },
+                    "SortOrder": {
+                      "type": "Enum",
+                      "value": [
+                        "SortOrder",
+                        "LayoutOrder"
+                      ]
+                    },
+                    "HorizontalAlignment": {
+                      "type": "Enum",
+                      "value": [
+                        "HorizontalAlignment",
+                        "Left"
+                      ]
+                    },
+                    "VerticalAlignment": {
+                      "type": "Enum",
+                      "value": [
+                        "VerticalAlignment",
+                        "Top"
+                      ]
+                    }
+                  },
+                  "children": []
+                },
+                {
+                  "id": "inventory-grid:scroll/padding",
+                  "name": "UIPadding",
+                  "className": "UIPadding",
+                  "properties": {
+                    "PaddingTop": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        12
+                      ]
+                    },
+                    "PaddingBottom": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        12
+                      ]
+                    },
+                    "PaddingLeft": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        12
+                      ]
+                    },
+                    "PaddingRight": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        12
+                      ]
+                    }
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "assets": [],
+  "issues": [],
+  "stats": {
+    "layers": 40,
+    "native": 40,
+    "raster": 0,
+    "instances": 62
+  }
+}

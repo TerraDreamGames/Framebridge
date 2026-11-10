@@ -1,0 +1,1948 @@
+{
+  "format": "framebridge",
+  "version": 1,
+  "sourceId": "framebridge-example:keyframes",
+  "name": "keyframe-screen",
+  "createdAt": "2026-10-03T00:00:00Z",
+  "options": {
+    "layout": "exact",
+    "appearance": "faithful",
+    "preserveText": true,
+    "imageScale": 2
+  },
+  "roots": [
+    {
+      "id": "screen:keyframe-screen",
+      "name": "keyframe-screen",
+      "className": "ScreenGui",
+      "referenceSize": [
+        800,
+        600
+      ],
+      "properties": {
+        "ResetOnSpawn": false,
+        "IgnoreGuiInset": true,
+        "ZIndexBehavior": {
+          "type": "Enum",
+          "value": [
+            "ZIndexBehavior",
+            "Sibling"
+          ]
+        },
+        "DisplayOrder": 0,
+        "Enabled": true
+      },
+      "children": [
+        {
+          "id": "keyframe-screen",
+          "name": "keyframe-screen",
+          "className": "Frame",
+          "sourceType": "FRAME",
+          "properties": {
+            "Position": {
+              "type": "UDim2",
+              "value": [
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "Size": {
+              "type": "UDim2",
+              "value": [
+                0,
+                800,
+                0,
+                600
+              ]
+            },
+            "AnchorPoint": {
+              "type": "Vector2",
+              "value": [
+                0,
+                0
+              ]
+            },
+            "Rotation": 0,
+            "Visible": true,
+            "BorderSizePixel": 0,
+            "BackgroundTransparency": 0,
+            "LayoutOrder": 0,
+            "ZIndex": 1,
+            "ClipsDescendants": false,
+            "BackgroundColor3": {
+              "type": "Color3",
+              "value": [
+                0.2,
+                0.3,
+                0.5
+              ]
+            }
+          },
+          "children": [
+            {
+              "id": "title",
+              "name": "Keyframe chains · recorded native poses",
+              "className": "TextLabel",
+              "sourceType": "TEXT",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    20,
+                    0,
+                    20
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    700,
+                    0,
+                    30
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 1,
+                "LayoutOrder": 0,
+                "ZIndex": 1,
+                "ClipsDescendants": false,
+                "Text": "Keyframe chains · recorded native poses",
+                "FontFace": {
+                  "type": "Font",
+                  "family": "rbxasset://fonts/families/Roboto.json",
+                  "weight": "Regular",
+                  "style": "Normal"
+                },
+                "TextSize": 16,
+                "TextColor3": {
+                  "type": "Color3",
+                  "value": [
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                "TextTransparency": 0,
+                "TextXAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextXAlignment",
+                    "Center"
+                  ]
+                },
+                "TextYAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextYAlignment",
+                    "Center"
+                  ]
+                },
+                "TextWrapped": true,
+                "TextScaled": false,
+                "RichText": false,
+                "AutoLocalize": false
+              },
+              "children": []
+            },
+            {
+              "id": "mount/motion-slot",
+              "name": "mount Motion slot",
+              "className": "Frame",
+              "sourceType": "MOTION_SLOT",
+              "properties": {
+                "BackgroundTransparency": 1,
+                "BorderSizePixel": 0,
+                "ClipsDescendants": false,
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    30,
+                    0,
+                    80
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    170,
+                    0,
+                    45
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "LayoutOrder": 1,
+                "ZIndex": 2,
+                "Visible": true
+              },
+              "children": [
+                {
+                  "id": "mount",
+                  "name": "mount",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0.5,
+                        0,
+                        0.5,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        1,
+                        0
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0.5,
+                        0.5
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 1,
+                    "ZIndex": 2,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.2,
+                        0.3,
+                        0.5
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "mount-label",
+                      "name": "Mount · repeat/yoyo",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            0,
+                            0,
+                            6
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            170,
+                            0,
+                            30
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Mount · repeat/yoyo",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            1,
+                            1,
+                            1
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ],
+                  "behavior": {
+                    "keyframes": {
+                      "trigger": "mount",
+                      "interruption": "restart",
+                      "finish": "restore",
+                      "repeats": 1,
+                      "yoyo": true,
+                      "frames": [
+                        {
+                          "x": 0,
+                          "y": 0,
+                          "scale": 1,
+                          "rotation": 0,
+                          "opacity": 1,
+                          "time": 0,
+                          "easing": "linear",
+                          "direction": "out"
+                        },
+                        {
+                          "x": 40,
+                          "y": -12,
+                          "scale": 1.1,
+                          "rotation": 12,
+                          "opacity": 0.5,
+                          "time": 0.5,
+                          "easing": "quad",
+                          "direction": "inOut"
+                        },
+                        {
+                          "x": 60,
+                          "y": 0,
+                          "scale": 1,
+                          "rotation": 0,
+                          "opacity": 1,
+                          "time": 1,
+                          "easing": "cubic",
+                          "direction": "out"
+                        }
+                      ],
+                      "slot": "mount/motion-slot"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "hover/motion-slot",
+              "name": "hover Motion slot",
+              "className": "Frame",
+              "sourceType": "MOTION_SLOT",
+              "properties": {
+                "BackgroundTransparency": 1,
+                "BorderSizePixel": 0,
+                "ClipsDescendants": false,
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    300,
+                    0,
+                    80
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    170,
+                    0,
+                    45
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "LayoutOrder": 2,
+                "ZIndex": 3,
+                "Visible": true
+              },
+              "children": [
+                {
+                  "id": "hover",
+                  "name": "hover",
+                  "className": "ImageButton",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Image": "",
+                    "ImageColor3": {
+                      "type": "Color3",
+                      "value": [
+                        1,
+                        1,
+                        1
+                      ]
+                    },
+                    "ImageTransparency": 0,
+                    "ScaleType": {
+                      "type": "Enum",
+                      "value": [
+                        "ScaleType",
+                        "Stretch"
+                      ]
+                    },
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0.5,
+                        0,
+                        0.5,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        1,
+                        0
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0.5,
+                        0.5
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 2,
+                    "ZIndex": 3,
+                    "ClipsDescendants": false,
+                    "AutoButtonColor": false,
+                    "Active": true,
+                    "Selectable": true,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.2,
+                        0.3,
+                        0.5
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "hover-label",
+                      "name": "Hover / focus",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            0,
+                            0,
+                            6
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            170,
+                            0,
+                            30
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Hover / focus",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            1,
+                            1,
+                            1
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ],
+                  "behavior": {
+                    "keyframes": {
+                      "trigger": "hover",
+                      "interruption": "restart",
+                      "finish": "restore",
+                      "repeats": 0,
+                      "yoyo": false,
+                      "frames": [
+                        {
+                          "x": 0,
+                          "y": 0,
+                          "scale": 1,
+                          "rotation": 0,
+                          "opacity": 1,
+                          "time": 0,
+                          "easing": "linear",
+                          "direction": "out"
+                        },
+                        {
+                          "x": 40,
+                          "y": -12,
+                          "scale": 1.1,
+                          "rotation": 12,
+                          "opacity": 0.5,
+                          "time": 0.5,
+                          "easing": "quad",
+                          "direction": "inOut"
+                        },
+                        {
+                          "x": 60,
+                          "y": 0,
+                          "scale": 1,
+                          "rotation": 0,
+                          "opacity": 1,
+                          "time": 1,
+                          "easing": "cubic",
+                          "direction": "out"
+                        }
+                      ],
+                      "owner": "hover",
+                      "slot": "hover/motion-slot"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "press/motion-slot",
+              "name": "press Motion slot",
+              "className": "Frame",
+              "sourceType": "MOTION_SLOT",
+              "properties": {
+                "BackgroundTransparency": 1,
+                "BorderSizePixel": 0,
+                "ClipsDescendants": false,
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    30,
+                    0,
+                    200
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    170,
+                    0,
+                    45
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "LayoutOrder": 3,
+                "ZIndex": 4,
+                "Visible": true
+              },
+              "children": [
+                {
+                  "id": "press",
+                  "name": "press",
+                  "className": "ImageButton",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Image": "",
+                    "ImageColor3": {
+                      "type": "Color3",
+                      "value": [
+                        1,
+                        1,
+                        1
+                      ]
+                    },
+                    "ImageTransparency": 0,
+                    "ScaleType": {
+                      "type": "Enum",
+                      "value": [
+                        "ScaleType",
+                        "Stretch"
+                      ]
+                    },
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0.5,
+                        0,
+                        0.5,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        1,
+                        0
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0.5,
+                        0.5
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 3,
+                    "ZIndex": 4,
+                    "ClipsDescendants": false,
+                    "AutoButtonColor": false,
+                    "Active": true,
+                    "Selectable": true,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.2,
+                        0.3,
+                        0.5
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "press-label",
+                      "name": "Hold pressed",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            0,
+                            0,
+                            6
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            170,
+                            0,
+                            30
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Hold pressed",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            1,
+                            1,
+                            1
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ],
+                  "behavior": {
+                    "keyframes": {
+                      "trigger": "pressed",
+                      "interruption": "restart",
+                      "finish": "restore",
+                      "repeats": 0,
+                      "yoyo": false,
+                      "frames": [
+                        {
+                          "x": 0,
+                          "y": 0,
+                          "scale": 1,
+                          "rotation": 0,
+                          "opacity": 1,
+                          "time": 0,
+                          "easing": "linear",
+                          "direction": "out"
+                        },
+                        {
+                          "x": 40,
+                          "y": -12,
+                          "scale": 1.1,
+                          "rotation": 12,
+                          "opacity": 0.5,
+                          "time": 0.5,
+                          "easing": "quad",
+                          "direction": "inOut"
+                        },
+                        {
+                          "x": 60,
+                          "y": 0,
+                          "scale": 1,
+                          "rotation": 0,
+                          "opacity": 1,
+                          "time": 1,
+                          "easing": "cubic",
+                          "direction": "out"
+                        }
+                      ],
+                      "owner": "press",
+                      "slot": "press/motion-slot"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "activate/motion-slot",
+              "name": "activate Motion slot",
+              "className": "Frame",
+              "sourceType": "MOTION_SLOT",
+              "properties": {
+                "BackgroundTransparency": 1,
+                "BorderSizePixel": 0,
+                "ClipsDescendants": false,
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    300,
+                    0,
+                    200
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    170,
+                    0,
+                    45
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "LayoutOrder": 4,
+                "ZIndex": 5,
+                "Visible": true
+              },
+              "children": [
+                {
+                  "id": "activate",
+                  "name": "activate",
+                  "className": "ImageButton",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Image": "",
+                    "ImageColor3": {
+                      "type": "Color3",
+                      "value": [
+                        1,
+                        1,
+                        1
+                      ]
+                    },
+                    "ImageTransparency": 0,
+                    "ScaleType": {
+                      "type": "Enum",
+                      "value": [
+                        "ScaleType",
+                        "Stretch"
+                      ]
+                    },
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0.5,
+                        0,
+                        0.5,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        1,
+                        0
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0.5,
+                        0.5
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 4,
+                    "ZIndex": 5,
+                    "ClipsDescendants": false,
+                    "AutoButtonColor": false,
+                    "Active": true,
+                    "Selectable": true,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.2,
+                        0.3,
+                        0.5
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "activate-label",
+                      "name": "Activate / restart",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            0,
+                            0,
+                            6
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            170,
+                            0,
+                            30
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Activate / restart",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            1,
+                            1,
+                            1
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ],
+                  "behavior": {
+                    "keyframes": {
+                      "trigger": "activate",
+                      "interruption": "restart",
+                      "finish": "hold",
+                      "repeats": 0,
+                      "yoyo": false,
+                      "frames": [
+                        {
+                          "x": 0,
+                          "y": 0,
+                          "scale": 1,
+                          "rotation": 0,
+                          "opacity": 1,
+                          "time": 0,
+                          "easing": "linear",
+                          "direction": "out"
+                        },
+                        {
+                          "x": 40,
+                          "y": -12,
+                          "scale": 1.1,
+                          "rotation": 12,
+                          "opacity": 0.5,
+                          "time": 0.5,
+                          "easing": "quad",
+                          "direction": "inOut"
+                        },
+                        {
+                          "x": 60,
+                          "y": 0,
+                          "scale": 1,
+                          "rotation": 0,
+                          "opacity": 1,
+                          "time": 1,
+                          "easing": "cubic",
+                          "direction": "out"
+                        }
+                      ],
+                      "owner": "activate",
+                      "slot": "activate/motion-slot"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "open",
+              "name": "open",
+              "className": "ImageButton",
+              "sourceType": "FRAME",
+              "properties": {
+                "Image": "",
+                "ImageColor3": {
+                  "type": "Color3",
+                  "value": [
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                "ImageTransparency": 0,
+                "ScaleType": {
+                  "type": "Enum",
+                  "value": [
+                    "ScaleType",
+                    "Stretch"
+                  ]
+                },
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    550,
+                    0,
+                    80
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    180,
+                    0,
+                    45
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 0,
+                "LayoutOrder": 5,
+                "ZIndex": 6,
+                "ClipsDescendants": false,
+                "AutoButtonColor": false,
+                "Active": true,
+                "Selectable": true,
+                "BackgroundColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.2,
+                    0.3,
+                    0.5
+                  ]
+                }
+              },
+              "children": [
+                {
+                  "id": "open-label",
+                  "name": "Toggle animated panel",
+                  "className": "TextLabel",
+                  "sourceType": "TEXT",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        6
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        180,
+                        0,
+                        30
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 1,
+                    "LayoutOrder": 0,
+                    "ZIndex": 1,
+                    "ClipsDescendants": false,
+                    "Text": "Toggle animated panel",
+                    "FontFace": {
+                      "type": "Font",
+                      "family": "rbxasset://fonts/families/Roboto.json",
+                      "weight": "Regular",
+                      "style": "Normal"
+                    },
+                    "TextSize": 16,
+                    "TextColor3": {
+                      "type": "Color3",
+                      "value": [
+                        1,
+                        1,
+                        1
+                      ]
+                    },
+                    "TextTransparency": 0,
+                    "TextXAlignment": {
+                      "type": "Enum",
+                      "value": [
+                        "TextXAlignment",
+                        "Center"
+                      ]
+                    },
+                    "TextYAlignment": {
+                      "type": "Enum",
+                      "value": [
+                        "TextYAlignment",
+                        "Center"
+                      ]
+                    },
+                    "TextWrapped": true,
+                    "TextScaled": false,
+                    "RichText": false,
+                    "AutoLocalize": false
+                  },
+                  "children": []
+                }
+              ],
+              "behavior": {
+                "action": {
+                  "kind": "toggle",
+                  "target": "panel"
+                }
+              }
+            },
+            {
+              "id": "panel/motion-slot",
+              "name": "panel Motion slot",
+              "className": "Frame",
+              "sourceType": "MOTION_SLOT",
+              "properties": {
+                "BackgroundTransparency": 1,
+                "BorderSizePixel": 0,
+                "ClipsDescendants": false,
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    550,
+                    0,
+                    170
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    180,
+                    0,
+                    120
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "LayoutOrder": 6,
+                "ZIndex": 7,
+                "Visible": false
+              },
+              "children": [
+                {
+                  "id": "panel",
+                  "name": "panel",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0.5,
+                        0,
+                        0.5,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        1,
+                        0
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0.5,
+                        0.5
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": false,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 6,
+                    "ZIndex": 7,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.2,
+                        0.3,
+                        0.5
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "panel-label",
+                      "name": "Entrance on visible",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            0,
+                            0,
+                            45
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            180,
+                            0,
+                            30
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Entrance on visible",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            1,
+                            1,
+                            1
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ],
+                  "behavior": {
+                    "role": "panel",
+                    "keyframes": {
+                      "trigger": "visible",
+                      "interruption": "restart",
+                      "finish": "hold",
+                      "repeats": 0,
+                      "yoyo": false,
+                      "frames": [
+                        {
+                          "x": 0,
+                          "y": 30,
+                          "scale": 1,
+                          "rotation": 0,
+                          "opacity": 0,
+                          "time": 0,
+                          "easing": "linear",
+                          "direction": "out"
+                        },
+                        {
+                          "x": 0,
+                          "y": 0,
+                          "scale": 1,
+                          "rotation": 0,
+                          "opacity": 1,
+                          "time": 0.5,
+                          "easing": "back",
+                          "direction": "out"
+                        }
+                      ],
+                      "slot": "panel/motion-slot"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "selected/motion-slot",
+              "name": "selected Motion slot",
+              "className": "Frame",
+              "sourceType": "MOTION_SLOT",
+              "properties": {
+                "BackgroundTransparency": 1,
+                "BorderSizePixel": 0,
+                "ClipsDescendants": false,
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    30,
+                    0,
+                    330
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    170,
+                    0,
+                    45
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "LayoutOrder": 7,
+                "ZIndex": 8,
+                "Visible": true
+              },
+              "children": [
+                {
+                  "id": "selected",
+                  "name": "selected",
+                  "className": "ImageButton",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Image": "",
+                    "ImageColor3": {
+                      "type": "Color3",
+                      "value": [
+                        1,
+                        1,
+                        1
+                      ]
+                    },
+                    "ImageTransparency": 0,
+                    "ScaleType": {
+                      "type": "Enum",
+                      "value": [
+                        "ScaleType",
+                        "Stretch"
+                      ]
+                    },
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0.5,
+                        0,
+                        0.5,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        1,
+                        0
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0.5,
+                        0.5
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 7,
+                    "ZIndex": 8,
+                    "ClipsDescendants": false,
+                    "AutoButtonColor": false,
+                    "Active": true,
+                    "Selectable": true,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.2,
+                        0.3,
+                        0.5
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "selected-label",
+                      "name": "Selected state",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            0,
+                            0,
+                            6
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            170,
+                            0,
+                            30
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Selected state",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            1,
+                            1,
+                            1
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ],
+                  "behavior": {
+                    "keyframes": {
+                      "trigger": "selected",
+                      "interruption": "restart",
+                      "finish": "restore",
+                      "repeats": 0,
+                      "yoyo": false,
+                      "frames": [
+                        {
+                          "x": 0,
+                          "y": 0,
+                          "scale": 1,
+                          "rotation": 0,
+                          "opacity": 1,
+                          "time": 0,
+                          "easing": "linear",
+                          "direction": "out"
+                        },
+                        {
+                          "x": 40,
+                          "y": -12,
+                          "scale": 1.1,
+                          "rotation": 12,
+                          "opacity": 0.5,
+                          "time": 0.5,
+                          "easing": "quad",
+                          "direction": "inOut"
+                        },
+                        {
+                          "x": 60,
+                          "y": 0,
+                          "scale": 1,
+                          "rotation": 0,
+                          "opacity": 1,
+                          "time": 1,
+                          "easing": "cubic",
+                          "direction": "out"
+                        }
+                      ],
+                      "owner": "selected",
+                      "slot": "selected/motion-slot"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "attribute/motion-slot",
+              "name": "attribute Motion slot",
+              "className": "Frame",
+              "sourceType": "MOTION_SLOT",
+              "properties": {
+                "BackgroundTransparency": 1,
+                "BorderSizePixel": 0,
+                "ClipsDescendants": false,
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    300,
+                    0,
+                    330
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    170,
+                    0,
+                    45
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "LayoutOrder": 8,
+                "ZIndex": 9,
+                "Visible": true
+              },
+              "children": [
+                {
+                  "id": "attribute",
+                  "name": "attribute",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0.5,
+                        0,
+                        0.5,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        1,
+                        0
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0.5,
+                        0.5
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 8,
+                    "ZIndex": 9,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.2,
+                        0.3,
+                        0.5
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "attribute-label",
+                      "name": "Layer attribute trigger",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            0,
+                            0,
+                            6
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            170,
+                            0,
+                            30
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "Layer attribute trigger",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            1,
+                            1,
+                            1
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ],
+                  "behavior": {
+                    "keyframes": {
+                      "trigger": "attribute",
+                      "interruption": "restart",
+                      "finish": "hold",
+                      "repeats": 0,
+                      "yoyo": false,
+                      "frames": [
+                        {
+                          "x": 0,
+                          "y": 0,
+                          "scale": 1,
+                          "rotation": 0,
+                          "opacity": 1,
+                          "time": 0,
+                          "easing": "linear",
+                          "direction": "out"
+                        },
+                        {
+                          "x": 40,
+                          "y": -12,
+                          "scale": 1.1,
+                          "rotation": 12,
+                          "opacity": 0.5,
+                          "time": 0.5,
+                          "easing": "quad",
+                          "direction": "inOut"
+                        },
+                        {
+                          "x": 60,
+                          "y": 0,
+                          "scale": 1,
+                          "rotation": 0,
+                          "opacity": 1,
+                          "time": 1,
+                          "easing": "cubic",
+                          "direction": "out"
+                        }
+                      ],
+                      "attribute": "FramebridgeAnimate",
+                      "slot": "attribute/motion-slot"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "note",
+              "name": "Choose poses, easing and triggers. Game scripts own application state.",
+              "className": "TextLabel",
+              "sourceType": "TEXT",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    20,
+                    0,
+                    510
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    750,
+                    0,
+                    30
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 1,
+                "LayoutOrder": 9,
+                "ZIndex": 10,
+                "ClipsDescendants": false,
+                "Text": "Choose poses, easing and triggers. Game scripts own application state.",
+                "FontFace": {
+                  "type": "Font",
+                  "family": "rbxasset://fonts/families/Roboto.json",
+                  "weight": "Regular",
+                  "style": "Normal"
+                },
+                "TextSize": 16,
+                "TextColor3": {
+                  "type": "Color3",
+                  "value": [
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                "TextTransparency": 0,
+                "TextXAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextXAlignment",
+                    "Center"
+                  ]
+                },
+                "TextYAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextYAlignment",
+                    "Center"
+                  ]
+                },
+                "TextWrapped": true,
+                "TextScaled": false,
+                "RichText": false,
+                "AutoLocalize": false
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "assets": [],
+  "issues": [
+    {
+      "nodeId": "open",
+      "nodeName": "open",
+      "code": "button-detected",
+      "message": "Detected ImageButton from action name and button content. Choose Frame or another instance type in Export setup to override it.",
+      "severity": "info"
+    }
+  ],
+  "stats": {
+    "layers": 19,
+    "native": 19,
+    "raster": 0,
+    "instances": 27
+  }
+}

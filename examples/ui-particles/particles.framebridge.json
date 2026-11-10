@@ -1,0 +1,469 @@
+{
+  "format": "framebridge",
+  "version": 1,
+  "sourceId": "particle-qa",
+  "name": "Particles QA",
+  "createdAt": "2026-10-03T00:00:00Z",
+  "options": {
+    "layout": "exact",
+    "appearance": "faithful",
+    "preserveText": true,
+    "imageScale": 2
+  },
+  "roots": [
+    {
+      "id": "screen:particle-screen",
+      "name": "Particles QA",
+      "className": "ScreenGui",
+      "referenceSize": [
+        480,
+        320
+      ],
+      "properties": {
+        "ResetOnSpawn": false,
+        "IgnoreGuiInset": true,
+        "ZIndexBehavior": {
+          "type": "Enum",
+          "value": [
+            "ZIndexBehavior",
+            "Sibling"
+          ]
+        },
+        "DisplayOrder": 0,
+        "Enabled": true
+      },
+      "children": [
+        {
+          "id": "particle-screen",
+          "name": "Particles QA",
+          "className": "Frame",
+          "sourceType": "FRAME",
+          "properties": {
+            "Position": {
+              "type": "UDim2",
+              "value": [
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "Size": {
+              "type": "UDim2",
+              "value": [
+                0,
+                480,
+                0,
+                320
+              ]
+            },
+            "AnchorPoint": {
+              "type": "Vector2",
+              "value": [
+                0,
+                0
+              ]
+            },
+            "Rotation": 0,
+            "Visible": true,
+            "BorderSizePixel": 0,
+            "BackgroundTransparency": 1,
+            "LayoutOrder": 0,
+            "ZIndex": 1,
+            "ClipsDescendants": false
+          },
+          "children": [
+            {
+              "id": "celebrate",
+              "name": "Celebrate",
+              "className": "ImageButton",
+              "sourceType": "FRAME",
+              "properties": {
+                "Image": "",
+                "ImageColor3": {
+                  "type": "Color3",
+                  "value": [
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                "ImageTransparency": 0,
+                "ScaleType": {
+                  "type": "Enum",
+                  "value": [
+                    "ScaleType",
+                    "Stretch"
+                  ]
+                },
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    30,
+                    0,
+                    80
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    180,
+                    0,
+                    60
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 0,
+                "LayoutOrder": 0,
+                "ZIndex": 1,
+                "ClipsDescendants": false,
+                "AutoButtonColor": false,
+                "Active": true,
+                "Selectable": true,
+                "BackgroundColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.94,
+                    0.96,
+                    1
+                  ]
+                }
+              },
+              "children": [],
+              "behavior": {
+                "particles": {
+                  "version": 1,
+                  "kind": "confetti",
+                  "engine": "framebridge-v1",
+                  "trigger": "activate",
+                  "enabled": true,
+                  "count": 12,
+                  "rate": 0,
+                  "capacity": 24,
+                  "lifetime": [
+                    0.5,
+                    0.5
+                  ],
+                  "speed": [
+                    80,
+                    180
+                  ],
+                  "size": [
+                    4,
+                    8
+                  ],
+                  "rotationSpeed": [
+                    -180,
+                    180
+                  ],
+                  "direction": 0,
+                  "spread": 120,
+                  "acceleration": [
+                    0,
+                    180
+                  ],
+                  "drag": 0,
+                  "colors": [
+                    [
+                      0.9,
+                      0.2,
+                      0.4
+                    ],
+                    [
+                      0.2,
+                      0.6,
+                      1
+                    ],
+                    [
+                      1,
+                      0.85,
+                      0.2
+                    ]
+                  ],
+                  "texture": "",
+                  "shape": "point",
+                  "clip": false,
+                  "respectReducedMotion": true,
+                  "seed": 1,
+                  "owner": "celebrate"
+                }
+              },
+              "theme": {
+                "base": {
+                  "BackgroundColor3": [
+                    "surface",
+                    "Color"
+                  ],
+                  "BackgroundTransparency": [
+                    "surface",
+                    "Transparency"
+                  ]
+                }
+              }
+            },
+            {
+              "id": "ambient",
+              "name": "Ambient emitter",
+              "className": "Frame",
+              "sourceType": "FRAME",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    250,
+                    0,
+                    60
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    180,
+                    0,
+                    80
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 0,
+                "LayoutOrder": 1,
+                "ZIndex": 2,
+                "ClipsDescendants": false,
+                "BackgroundColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.1,
+                    0.15,
+                    0.2
+                  ]
+                }
+              },
+              "children": [],
+              "behavior": {
+                "particles": {
+                  "version": 1,
+                  "kind": "emitter2d",
+                  "engine": "framebridge-v1",
+                  "trigger": "mount",
+                  "enabled": true,
+                  "count": 4,
+                  "rate": 4,
+                  "capacity": 12,
+                  "lifetime": [
+                    1,
+                    1
+                  ],
+                  "speed": [
+                    20,
+                    40
+                  ],
+                  "size": [
+                    4,
+                    8
+                  ],
+                  "rotationSpeed": [
+                    -180,
+                    180
+                  ],
+                  "direction": 0,
+                  "spread": 360,
+                  "acceleration": [
+                    0,
+                    0
+                  ],
+                  "drag": 0,
+                  "colors": [
+                    [
+                      0.9,
+                      0.2,
+                      0.4
+                    ],
+                    [
+                      0.2,
+                      0.6,
+                      1
+                    ],
+                    [
+                      1,
+                      0.85,
+                      0.2
+                    ]
+                  ],
+                  "texture": "",
+                  "shape": "point",
+                  "clip": true,
+                  "respectReducedMotion": true,
+                  "seed": 1
+                }
+              }
+            },
+            {
+              "id": "external",
+              "name": "Installed Emitter2D",
+              "className": "Frame",
+              "sourceType": "FRAME",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    250,
+                    0,
+                    170
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    180,
+                    0,
+                    80
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 1,
+                "LayoutOrder": 2,
+                "ZIndex": 3,
+                "ClipsDescendants": false
+              },
+              "children": [],
+              "behavior": {
+                "particles": {
+                  "version": 1,
+                  "kind": "emitter2d",
+                  "engine": "dogwarrior24-template-v1",
+                  "trigger": "manual",
+                  "enabled": true,
+                  "count": 3,
+                  "rate": 0,
+                  "capacity": 6,
+                  "lifetime": [
+                    0.1,
+                    2
+                  ],
+                  "speed": [
+                    80,
+                    180
+                  ],
+                  "size": [
+                    4,
+                    8
+                  ],
+                  "rotationSpeed": [
+                    -180,
+                    180
+                  ],
+                  "direction": 0,
+                  "spread": 120,
+                  "acceleration": [
+                    0,
+                    0
+                  ],
+                  "drag": 0,
+                  "colors": [
+                    [
+                      0.9,
+                      0.2,
+                      0.4
+                    ],
+                    [
+                      0.2,
+                      0.6,
+                      1
+                    ],
+                    [
+                      1,
+                      0.85,
+                      0.2
+                    ]
+                  ],
+                  "texture": "rbxassetid://123456789",
+                  "shape": "point",
+                  "clip": true,
+                  "respectReducedMotion": true,
+                  "seed": 1,
+                  "dependency": {
+                    "template": "FramebridgeParticleQA",
+                    "configVersion": "1",
+                    "clientRevision": "reviewed-qa-v1"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "themes": {
+        "version": 1,
+        "initial": "Light",
+        "modes": {
+          "Light": {
+            "surface": {
+              "Color": {
+                "type": "Color3",
+                "value": [
+                  0.94,
+                  0.96,
+                  1
+                ]
+              },
+              "Transparency": 0
+            }
+          },
+          "Dark": {
+            "surface": {
+              "Color": {
+                "type": "Color3",
+                "value": [
+                  0.1,
+                  0.12,
+                  0.2
+                ]
+              },
+              "Transparency": 0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "assets": [],
+  "issues": [],
+  "stats": {
+    "layers": 4,
+    "native": 4,
+    "raster": 0,
+    "instances": 5
+  }
+}

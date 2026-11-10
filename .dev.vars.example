@@ -1,0 +1,15 @@
+# Copy to .dev.vars for local Wrangler development; the copy is ignored.
+# Supply your own Roblox OAuth app. Empty values disable sign-in.
+ROBLOX_OAUTH_CLIENT_ID=
+ROBLOX_OAUTH_CLIENT_SECRET=
+# Optional former app credentials for an app migration; keep saved grants working.
+ROBLOX_OAUTH_LEGACY_CLIENT_ID=
+ROBLOX_OAUTH_LEGACY_CLIENT_SECRET=
+ROBLOX_OAUTH_REDIRECT_URI=http://localhost:8787/oauth/roblox/callback
+# Generate independent 32-byte hexadecimal values. Never commit them.
+ROBLOX_OAUTH_SEALING_KEY=
+ROBLOX_OAUTH_GATEWAY_SECRET=
+# Optional SHA-256 hash of a separate feedback administrator token.
+FEEDBACK_ADMIN_HASH=
+# AI review remains off unless deliberately configured by the operator.
+VISION_ENABLED=0

@@ -1,0 +1,31 @@
+name: Bug report
+description: Report a reproducible plugin problem.
+body:
+  - type: markdown
+    attributes:
+      value: "This is a public issue. Remove tokens, pairing codes, private designs and account details. Report security vulnerabilities privately to security@terradream.games."
+  - type: input
+    id: version
+    attributes:
+      label: Plugin version or revision
+      description: Include Figma and Studio revisions when available.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include the application and operating system. Use a minimal non-private example.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Redacted diagnostics or screenshots
+      description: Review attachments for credentials and private data before posting.

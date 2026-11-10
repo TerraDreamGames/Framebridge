@@ -1,0 +1,238 @@
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.demo-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--fb-canvas);
+}
+.demo-root .app {
+  height: 100%;
+  width: 100%;
+}
+.demo-root .header .preview-toolbar {
+  margin-left: auto;
+}
+.demo-root .header-right {
+  margin-left: auto;
+}
+.demo-root .workspace-preview-tools + .header-right {
+  margin-left: 8px;
+}
+.demo-root .workspace-layers-heading {
+  width: var(--workspace-layers-width, 280px);
+  flex: none;
+}
+.demo-page-panel {
+  min-width: 0;
+  max-height: 100%;
+}
+.demo-root .demo-footer {
+  display: flex !important;
+  min-height: 38px;
+  padding: 4px 16px;
+  gap: 12px;
+  align-items: center;
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+.demo-footer > button {
+  margin-left: auto;
+}
+.demo-embedded .workspace-rail,
+.demo-embedded > .app > .header,
+.demo-embedded > .app > .footer,
+.demo-embedded .demo-page-panel > .inspector-heading {
+  display: none !important;
+}
+.demo-embedded .app {
+  padding: 0;
+  grid-template-rows: minmax(0, 1fr);
+}
+.demo-embedded .workspace {
+  padding: 0;
+}
+.demo-embedded .demo-page-panel {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.demo-section-properties .layer-workbench,
+.demo-section-layers .layer-workbench {
+  display: block;
+  height: 100%;
+}
+.demo-section-properties .explorer-pane,
+.demo-section-properties .preview-pane,
+.demo-section-properties .sidebar-resize-handle,
+.demo-section-properties .workbench-compact-controls,
+.demo-section-layers .properties-pane,
+.demo-section-layers .preview-pane,
+.demo-section-layers .sidebar-resize-handle,
+.demo-section-layers .workbench-compact-controls {
+  display: none !important;
+}
+.demo-section-properties .layer-workbench .properties-pane {
+  display: flex !important;
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.demo-section-layers .layer-workbench .explorer-pane {
+  display: flex !important;
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.demo-section-properties
+  .properties-pane
+  .inspector-actions
+  > button:last-child {
+  display: none;
+}
+.demo-service-note {
+  padding: 20px;
+  color: var(--muted-foreground);
+  line-height: 1.7;
+}
+.demo-service-note > h3 {
+  font-size: 15px;
+  color: var(--foreground);
+  margin: 12px 0 6px;
+}
+.demo-service-note > p {
+  margin: 0 0 14px;
+}
+.demo-asset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  gap: 14px;
+}
+.demo-asset {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+}
+.demo-asset > div {
+  display: grid;
+  place-items: center;
+  height: 112px;
+  background: var(--secondary);
+  border-radius: 12px;
+  padding: 12px;
+}
+.demo-asset img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.demo-asset strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.demo-asset span {
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+.demo-loading {
+  margin: auto;
+  color: var(--muted-foreground);
+}
+.demo-capture-tools {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  color: var(--foreground);
+}
+.demo-capture-tools select {
+  margin-left: 8px;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.demo-capture-tools ~ .demo-root {
+  height: calc(100% - 62px);
+}
+.demo-capture-tools span {
+  color: var(--muted-foreground);
+  font-size: 12px;
+}
+
+.demo-section-properties .layer-workbench .properties-pane {
+  max-width: none;
+}
+.demo-section-properties .workbench-panels,
+.demo-section-layers .workbench-panels {
+  display: none !important;
+}
+
+.demo-inspector .layer-workbench {
+  display: block;
+  height: 100%;
+}
+.demo-inspector .explorer-pane,
+.demo-inspector .preview-pane,
+.demo-inspector .sidebar-resize-handle,
+.demo-inspector .workbench-panels {
+  display: none !important;
+}
+.demo-inspector .layer-workbench .properties-pane {
+  display: flex !important;
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.demo-feature {
+  padding: 20px;
+  overflow: auto;
+  min-height: 100%;
+  background: var(--card);
+}
+.demo-feature > .export-setup:first-child {
+  margin-top: 0;
+}
+.demo-feature > .image-preparation {
+  padding: 0;
+}
+/* Section embeds own the full viewport; the production workspace's second grid column is only for the full editor. */
+.demo-embedded .workspace {
+  display: block;
+  height: 100%;
+}
+.demo-feature {
+  width: 100%;
+  box-sizing: border-box;
+}

@@ -1,0 +1,742 @@
+[
+  {
+    "id": "116:10",
+    "name": "Native structure QA · Repeat Pixels",
+    "type": "FRAME",
+    "width": 180,
+    "height": 100,
+    "transform": [
+      [1, 0, 1620],
+      [0, 1, 160]
+    ],
+    "visible": true,
+    "opacity": 1,
+    "fills": [],
+    "strokes": [],
+    "strokeWeight": 1,
+    "strokeAlign": "INSIDE",
+    "radius": 0,
+    "corners": [0, 0, 0, 0],
+    "cornerSmoothing": 0,
+    "clipsContent": false,
+    "effects": [],
+    "shadows": [],
+    "blendMode": "PASS_THROUGH",
+    "isMask": false,
+    "maskType": "ALPHA",
+    "unsupported": [],
+    "constraints": {
+      "horizontal": "MIN",
+      "vertical": "MIN"
+    },
+    "layoutSizing": {
+      "horizontal": "FIXED",
+      "vertical": "FIXED"
+    },
+    "grow": 0,
+    "stretch": false,
+    "absolute": false,
+    "children": [
+      {
+        "id": "116:12",
+        "name": "Repeat Pixels group",
+        "type": "TRANSFORM_GROUP",
+        "width": 80,
+        "height": 10,
+        "transform": [
+          [1, 0, 30],
+          [0, 1, 20]
+        ],
+        "visible": true,
+        "opacity": 1,
+        "fills": [],
+        "strokes": [],
+        "strokeWeight": 0,
+        "radius": 0,
+        "cornerSmoothing": 0,
+        "clipsContent": false,
+        "effects": [],
+        "shadows": [],
+        "blendMode": "PASS_THROUGH",
+        "isMask": false,
+        "maskType": "ALPHA",
+        "transformModifiers": [
+          {
+            "type": "REPEAT",
+            "count": 3,
+            "offset": 30,
+            "unitType": "PIXELS",
+            "repeatType": "LINEAR",
+            "axis": "HORIZONTAL"
+          }
+        ],
+        "unsupported": [],
+        "layoutSizing": {
+          "horizontal": "FIXED",
+          "vertical": "FIXED"
+        },
+        "grow": 0,
+        "stretch": false,
+        "absolute": false,
+        "children": [
+          {
+            "id": "116:11",
+            "name": "Repeat item",
+            "type": "RECTANGLE",
+            "width": 20,
+            "height": 10,
+            "transform": [
+              [1, 0, 0],
+              [0, 1, 0]
+            ],
+            "visible": true,
+            "opacity": 1,
+            "fills": [
+              {
+                "type": "SOLID",
+                "visible": true,
+                "opacity": 1,
+                "blendMode": "NORMAL",
+                "color": {
+                  "r": 1,
+                  "g": 0,
+                  "b": 0
+                },
+                "boundVariables": {}
+              }
+            ],
+            "strokes": [],
+            "strokeWeight": 1,
+            "strokeAlign": "INSIDE",
+            "radius": 0,
+            "corners": [0, 0, 0, 0],
+            "cornerSmoothing": 0,
+            "clipsContent": false,
+            "effects": [],
+            "shadows": [],
+            "blendMode": "PASS_THROUGH",
+            "isMask": false,
+            "maskType": "ALPHA",
+            "unsupported": [],
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "layoutSizing": {
+              "horizontal": "FIXED",
+              "vertical": "FIXED"
+            },
+            "grow": 0,
+            "stretch": false,
+            "absolute": false,
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "116:13",
+    "name": "Native structure QA · Repeat Relative",
+    "type": "FRAME",
+    "width": 180,
+    "height": 100,
+    "transform": [
+      [1, 0, 1860],
+      [0, 1, 160]
+    ],
+    "visible": true,
+    "opacity": 1,
+    "fills": [],
+    "strokes": [],
+    "strokeWeight": 1,
+    "strokeAlign": "INSIDE",
+    "radius": 0,
+    "corners": [0, 0, 0, 0],
+    "cornerSmoothing": 0,
+    "clipsContent": false,
+    "effects": [],
+    "shadows": [],
+    "blendMode": "PASS_THROUGH",
+    "isMask": false,
+    "maskType": "ALPHA",
+    "unsupported": [],
+    "constraints": {
+      "horizontal": "MIN",
+      "vertical": "MIN"
+    },
+    "layoutSizing": {
+      "horizontal": "FIXED",
+      "vertical": "FIXED"
+    },
+    "grow": 0,
+    "stretch": false,
+    "absolute": false,
+    "children": [
+      {
+        "id": "116:15",
+        "name": "Repeat Relative group",
+        "type": "TRANSFORM_GROUP",
+        "width": 80,
+        "height": 10,
+        "transform": [
+          [1, 0, 30],
+          [0, 1, 20]
+        ],
+        "visible": true,
+        "opacity": 1,
+        "fills": [],
+        "strokes": [],
+        "strokeWeight": 0,
+        "radius": 0,
+        "cornerSmoothing": 0,
+        "clipsContent": false,
+        "effects": [],
+        "shadows": [],
+        "blendMode": "PASS_THROUGH",
+        "isMask": false,
+        "maskType": "ALPHA",
+        "transformModifiers": [
+          {
+            "type": "REPEAT",
+            "count": 3,
+            "offset": 1.5,
+            "unitType": "RELATIVE",
+            "repeatType": "LINEAR",
+            "axis": "HORIZONTAL"
+          }
+        ],
+        "unsupported": [],
+        "layoutSizing": {
+          "horizontal": "FIXED",
+          "vertical": "FIXED"
+        },
+        "grow": 0,
+        "stretch": false,
+        "absolute": false,
+        "children": [
+          {
+            "id": "116:14",
+            "name": "Repeat item",
+            "type": "RECTANGLE",
+            "width": 20,
+            "height": 10,
+            "transform": [
+              [1, 0, 0],
+              [0, 1, 0]
+            ],
+            "visible": true,
+            "opacity": 1,
+            "fills": [
+              {
+                "type": "SOLID",
+                "visible": true,
+                "opacity": 1,
+                "blendMode": "NORMAL",
+                "color": {
+                  "r": 1,
+                  "g": 0,
+                  "b": 0
+                },
+                "boundVariables": {}
+              }
+            ],
+            "strokes": [],
+            "strokeWeight": 1,
+            "strokeAlign": "INSIDE",
+            "radius": 0,
+            "corners": [0, 0, 0, 0],
+            "cornerSmoothing": 0,
+            "clipsContent": false,
+            "effects": [],
+            "shadows": [],
+            "blendMode": "PASS_THROUGH",
+            "isMask": false,
+            "maskType": "ALPHA",
+            "unsupported": [],
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "layoutSizing": {
+              "horizontal": "FIXED",
+              "vertical": "FIXED"
+            },
+            "grow": 0,
+            "stretch": false,
+            "absolute": false,
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "116:16",
+    "name": "Native structure QA · Repeat Pair",
+    "type": "FRAME",
+    "width": 180,
+    "height": 100,
+    "transform": [
+      [1, 0, 2100],
+      [0, 1, 160]
+    ],
+    "visible": true,
+    "opacity": 1,
+    "fills": [],
+    "strokes": [],
+    "strokeWeight": 1,
+    "strokeAlign": "INSIDE",
+    "radius": 0,
+    "corners": [0, 0, 0, 0],
+    "cornerSmoothing": 0,
+    "clipsContent": false,
+    "effects": [],
+    "shadows": [],
+    "blendMode": "PASS_THROUGH",
+    "isMask": false,
+    "maskType": "ALPHA",
+    "unsupported": [],
+    "constraints": {
+      "horizontal": "MIN",
+      "vertical": "MIN"
+    },
+    "layoutSizing": {
+      "horizontal": "FIXED",
+      "vertical": "FIXED"
+    },
+    "grow": 0,
+    "stretch": false,
+    "absolute": false,
+    "children": [
+      {
+        "id": "116:18",
+        "name": "Repeat Pair group",
+        "type": "TRANSFORM_GROUP",
+        "width": 50,
+        "height": 10,
+        "transform": [
+          [1, 0, 30],
+          [0, 1, 20]
+        ],
+        "visible": true,
+        "opacity": 1,
+        "fills": [],
+        "strokes": [],
+        "strokeWeight": 0,
+        "radius": 0,
+        "cornerSmoothing": 0,
+        "clipsContent": false,
+        "effects": [],
+        "shadows": [],
+        "blendMode": "PASS_THROUGH",
+        "isMask": false,
+        "maskType": "ALPHA",
+        "transformModifiers": [
+          {
+            "type": "REPEAT",
+            "count": 2,
+            "offset": 30,
+            "unitType": "PIXELS",
+            "repeatType": "LINEAR",
+            "axis": "HORIZONTAL"
+          }
+        ],
+        "unsupported": [],
+        "layoutSizing": {
+          "horizontal": "FIXED",
+          "vertical": "FIXED"
+        },
+        "grow": 0,
+        "stretch": false,
+        "absolute": false,
+        "children": [
+          {
+            "id": "116:17",
+            "name": "Repeat item",
+            "type": "RECTANGLE",
+            "width": 20,
+            "height": 10,
+            "transform": [
+              [1, 0, 0],
+              [0, 1, 0]
+            ],
+            "visible": true,
+            "opacity": 1,
+            "fills": [
+              {
+                "type": "SOLID",
+                "visible": true,
+                "opacity": 1,
+                "blendMode": "NORMAL",
+                "color": {
+                  "r": 1,
+                  "g": 0,
+                  "b": 0
+                },
+                "boundVariables": {}
+              }
+            ],
+            "strokes": [],
+            "strokeWeight": 1,
+            "strokeAlign": "INSIDE",
+            "radius": 0,
+            "corners": [0, 0, 0, 0],
+            "cornerSmoothing": 0,
+            "clipsContent": false,
+            "effects": [],
+            "shadows": [],
+            "blendMode": "PASS_THROUGH",
+            "isMask": false,
+            "maskType": "ALPHA",
+            "unsupported": [],
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "layoutSizing": {
+              "horizontal": "FIXED",
+              "vertical": "FIXED"
+            },
+            "grow": 0,
+            "stretch": false,
+            "absolute": false,
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "118:2",
+    "name": "Native structure QA · Multi-child repeat",
+    "type": "FRAME",
+    "width": 240,
+    "height": 150,
+    "transform": [
+      [1, 0, 1620],
+      [0, 1, 420]
+    ],
+    "visible": true,
+    "opacity": 1,
+    "fills": [],
+    "strokes": [],
+    "strokeWeight": 1,
+    "strokeAlign": "INSIDE",
+    "radius": 0,
+    "corners": [0, 0, 0, 0],
+    "cornerSmoothing": 0,
+    "clipsContent": false,
+    "effects": [],
+    "shadows": [],
+    "blendMode": "PASS_THROUGH",
+    "isMask": false,
+    "maskType": "ALPHA",
+    "unsupported": [],
+    "constraints": {
+      "horizontal": "MIN",
+      "vertical": "MIN"
+    },
+    "layoutSizing": {
+      "horizontal": "FIXED",
+      "vertical": "FIXED"
+    },
+    "grow": 0,
+    "stretch": false,
+    "absolute": false,
+    "children": [
+      {
+        "id": "118:5",
+        "name": "Multi-child repeat",
+        "type": "TRANSFORM_GROUP",
+        "width": 200,
+        "height": 40,
+        "transform": [
+          [1, 0, 30],
+          [0, 1, 20]
+        ],
+        "visible": true,
+        "opacity": 1,
+        "fills": [],
+        "strokes": [],
+        "strokeWeight": 0,
+        "radius": 0,
+        "cornerSmoothing": 0,
+        "clipsContent": false,
+        "effects": [],
+        "shadows": [],
+        "blendMode": "PASS_THROUGH",
+        "isMask": false,
+        "maskType": "ALPHA",
+        "transformModifiers": [
+          {
+            "type": "REPEAT",
+            "count": 3,
+            "offset": 1.5,
+            "unitType": "RELATIVE",
+            "repeatType": "LINEAR",
+            "axis": "HORIZONTAL"
+          }
+        ],
+        "unsupported": [],
+        "layoutSizing": {
+          "horizontal": "FIXED",
+          "vertical": "FIXED"
+        },
+        "grow": 0,
+        "stretch": false,
+        "absolute": false,
+        "children": [
+          {
+            "id": "118:3",
+            "name": "Rectangle",
+            "type": "RECTANGLE",
+            "width": 20,
+            "height": 10,
+            "transform": [
+              [1, 0, 0],
+              [0, 1, 0]
+            ],
+            "visible": true,
+            "opacity": 1,
+            "fills": [
+              {
+                "type": "SOLID",
+                "visible": true,
+                "opacity": 1,
+                "blendMode": "NORMAL",
+                "color": {
+                  "r": 1,
+                  "g": 0,
+                  "b": 0
+                },
+                "boundVariables": {}
+              }
+            ],
+            "strokes": [],
+            "strokeWeight": 1,
+            "strokeAlign": "INSIDE",
+            "radius": 0,
+            "corners": [0, 0, 0, 0],
+            "cornerSmoothing": 0,
+            "clipsContent": false,
+            "effects": [],
+            "shadows": [],
+            "blendMode": "PASS_THROUGH",
+            "isMask": false,
+            "maskType": "ALPHA",
+            "unsupported": [],
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "layoutSizing": {
+              "horizontal": "FIXED",
+              "vertical": "FIXED"
+            },
+            "grow": 0,
+            "stretch": false,
+            "absolute": false,
+            "children": []
+          },
+          {
+            "id": "118:4",
+            "name": "Rectangle",
+            "type": "RECTANGLE",
+            "width": 10,
+            "height": 20,
+            "transform": [
+              [1, 0, 40],
+              [0, 1, 20]
+            ],
+            "visible": true,
+            "opacity": 1,
+            "fills": [
+              {
+                "type": "SOLID",
+                "visible": true,
+                "opacity": 1,
+                "blendMode": "NORMAL",
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 1
+                },
+                "boundVariables": {}
+              }
+            ],
+            "strokes": [],
+            "strokeWeight": 1,
+            "strokeAlign": "INSIDE",
+            "radius": 0,
+            "corners": [0, 0, 0, 0],
+            "cornerSmoothing": 0,
+            "clipsContent": false,
+            "effects": [],
+            "shadows": [],
+            "blendMode": "PASS_THROUGH",
+            "isMask": false,
+            "maskType": "ALPHA",
+            "unsupported": [],
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "layoutSizing": {
+              "horizontal": "FIXED",
+              "vertical": "FIXED"
+            },
+            "grow": 0,
+            "stretch": false,
+            "absolute": false,
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "118:6",
+    "name": "Native structure QA · Stacked repeat",
+    "type": "FRAME",
+    "width": 240,
+    "height": 150,
+    "transform": [
+      [1, 0, 1920],
+      [0, 1, 420]
+    ],
+    "visible": true,
+    "opacity": 1,
+    "fills": [],
+    "strokes": [],
+    "strokeWeight": 1,
+    "strokeAlign": "INSIDE",
+    "radius": 0,
+    "corners": [0, 0, 0, 0],
+    "cornerSmoothing": 0,
+    "clipsContent": false,
+    "effects": [],
+    "shadows": [],
+    "blendMode": "PASS_THROUGH",
+    "isMask": false,
+    "maskType": "ALPHA",
+    "unsupported": [],
+    "constraints": {
+      "horizontal": "MIN",
+      "vertical": "MIN"
+    },
+    "layoutSizing": {
+      "horizontal": "FIXED",
+      "vertical": "FIXED"
+    },
+    "grow": 0,
+    "stretch": false,
+    "absolute": false,
+    "children": [
+      {
+        "id": "118:8",
+        "name": "Stacked repeat",
+        "type": "TRANSFORM_GROUP",
+        "width": 80,
+        "height": 35,
+        "transform": [
+          [1, 0, 30],
+          [0, 1, 20]
+        ],
+        "visible": true,
+        "opacity": 1,
+        "fills": [],
+        "strokes": [],
+        "strokeWeight": 0,
+        "radius": 0,
+        "cornerSmoothing": 0,
+        "clipsContent": false,
+        "effects": [],
+        "shadows": [],
+        "blendMode": "PASS_THROUGH",
+        "isMask": false,
+        "maskType": "ALPHA",
+        "transformModifiers": [
+          {
+            "type": "REPEAT",
+            "count": 3,
+            "offset": 30,
+            "unitType": "PIXELS",
+            "repeatType": "LINEAR",
+            "axis": "HORIZONTAL"
+          },
+          {
+            "type": "REPEAT",
+            "count": 2,
+            "offset": 25,
+            "unitType": "PIXELS",
+            "repeatType": "LINEAR",
+            "axis": "VERTICAL"
+          }
+        ],
+        "unsupported": [],
+        "layoutSizing": {
+          "horizontal": "FIXED",
+          "vertical": "FIXED"
+        },
+        "grow": 0,
+        "stretch": false,
+        "absolute": false,
+        "children": [
+          {
+            "id": "118:7",
+            "name": "Rectangle",
+            "type": "RECTANGLE",
+            "width": 20,
+            "height": 10,
+            "transform": [
+              [1, 0, 0],
+              [0, 1, 0]
+            ],
+            "visible": true,
+            "opacity": 1,
+            "fills": [
+              {
+                "type": "SOLID",
+                "visible": true,
+                "opacity": 1,
+                "blendMode": "NORMAL",
+                "color": {
+                  "r": 1,
+                  "g": 0,
+                  "b": 0
+                },
+                "boundVariables": {}
+              }
+            ],
+            "strokes": [],
+            "strokeWeight": 1,
+            "strokeAlign": "INSIDE",
+            "radius": 0,
+            "corners": [0, 0, 0, 0],
+            "cornerSmoothing": 0,
+            "clipsContent": false,
+            "effects": [],
+            "shadows": [],
+            "blendMode": "PASS_THROUGH",
+            "isMask": false,
+            "maskType": "ALPHA",
+            "unsupported": [],
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "layoutSizing": {
+              "horizontal": "FIXED",
+              "vertical": "FIXED"
+            },
+            "grow": 0,
+            "stretch": false,
+            "absolute": false,
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+]

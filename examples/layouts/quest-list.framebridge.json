@@ -1,0 +1,2057 @@
+{
+  "format": "framebridge",
+  "version": 1,
+  "sourceId": "framebridge-example:quest-list",
+  "name": "Quest list",
+  "createdAt": "2026-10-01T00:00:00Z",
+  "options": {
+    "layout": "responsive",
+    "appearance": "editable",
+    "preserveText": true,
+    "imageScale": 2
+  },
+  "roots": [
+    {
+      "id": "screen:quest-list:root",
+      "name": "Quest list",
+      "className": "ScreenGui",
+      "referenceSize": [
+        640,
+        480
+      ],
+      "properties": {
+        "ResetOnSpawn": false,
+        "IgnoreGuiInset": true,
+        "ZIndexBehavior": {
+          "type": "Enum",
+          "value": [
+            "ZIndexBehavior",
+            "Sibling"
+          ]
+        },
+        "DisplayOrder": 0,
+        "Enabled": true
+      },
+      "children": [
+        {
+          "id": "quest-list:root",
+          "name": "Quest list",
+          "className": "Frame",
+          "sourceType": "FRAME",
+          "properties": {
+            "Position": {
+              "type": "UDim2",
+              "value": [
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "Size": {
+              "type": "UDim2",
+              "value": [
+                1,
+                0,
+                1,
+                0
+              ]
+            },
+            "AnchorPoint": {
+              "type": "Vector2",
+              "value": [
+                0,
+                0
+              ]
+            },
+            "Rotation": 0,
+            "Visible": true,
+            "BorderSizePixel": 0,
+            "BackgroundTransparency": 0,
+            "LayoutOrder": 0,
+            "ZIndex": 1,
+            "ClipsDescendants": false,
+            "BackgroundColor3": {
+              "type": "Color3",
+              "value": [
+                0.04706,
+                0.07843,
+                0.13333
+              ]
+            }
+          },
+          "children": [
+            {
+              "id": "quest-list:title",
+              "name": "title",
+              "className": "TextLabel",
+              "sourceType": "TEXT",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    24,
+                    0,
+                    20
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    592,
+                    0,
+                    36
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 1,
+                "LayoutOrder": 0,
+                "ZIndex": 1,
+                "ClipsDescendants": false,
+                "Text": "Quest list",
+                "FontFace": {
+                  "type": "Font",
+                  "family": "rbxasset://fonts/families/Roboto.json",
+                  "weight": "Regular",
+                  "style": "Normal"
+                },
+                "TextSize": 26,
+                "TextColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.90196,
+                    0.93333,
+                    0.98824
+                  ]
+                },
+                "TextTransparency": 0,
+                "TextXAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextXAlignment",
+                    "Left"
+                  ]
+                },
+                "TextYAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextYAlignment",
+                    "Center"
+                  ]
+                },
+                "TextWrapped": true,
+                "TextScaled": false,
+                "RichText": false,
+                "AutoLocalize": false
+              },
+              "children": []
+            },
+            {
+              "id": "quest-list:hint",
+              "name": "hint",
+              "className": "TextLabel",
+              "sourceType": "TEXT",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    24,
+                    0,
+                    60
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    592,
+                    0,
+                    36
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 1,
+                "LayoutOrder": 1,
+                "ZIndex": 2,
+                "ClipsDescendants": false,
+                "Text": "Vertical scrolling with a native list, inner padding and editable quest rows.",
+                "FontFace": {
+                  "type": "Font",
+                  "family": "rbxasset://fonts/families/Roboto.json",
+                  "weight": "Regular",
+                  "style": "Normal"
+                },
+                "TextSize": 13,
+                "TextColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.90196,
+                    0.93333,
+                    0.98824
+                  ]
+                },
+                "TextTransparency": 0,
+                "TextXAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextXAlignment",
+                    "Left"
+                  ]
+                },
+                "TextYAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextYAlignment",
+                    "Center"
+                  ]
+                },
+                "TextWrapped": true,
+                "TextScaled": false,
+                "RichText": false,
+                "AutoLocalize": false
+              },
+              "children": []
+            },
+            {
+              "id": "quest-list:scroll",
+              "name": "Quests",
+              "className": "ScrollingFrame",
+              "sourceType": "FRAME",
+              "properties": {
+                "CanvasSize": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "AutomaticCanvasSize": {
+                  "type": "Enum",
+                  "value": [
+                    "AutomaticSize",
+                    "Y"
+                  ]
+                },
+                "ScrollingDirection": {
+                  "type": "Enum",
+                  "value": [
+                    "ScrollingDirection",
+                    "Y"
+                  ]
+                },
+                "ScrollingEnabled": true,
+                "ScrollBarThickness": 6,
+                "Active": true,
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    24,
+                    0,
+                    104
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    1,
+                    -48,
+                    1,
+                    -128
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 0,
+                "LayoutOrder": 2,
+                "ZIndex": 3,
+                "ClipsDescendants": true,
+                "BackgroundColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.0902,
+                    0.13333,
+                    0.20784
+                  ]
+                },
+                "ScrollBarImageColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.36,
+                    0.64,
+                    1
+                  ]
+                }
+              },
+              "children": [
+                {
+                  "id": "quest-list:scroll/corner",
+                  "name": "UICorner",
+                  "className": "UICorner",
+                  "properties": {
+                    "CornerRadius": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        8
+                      ]
+                    }
+                  },
+                  "children": []
+                },
+                {
+                  "id": "quest-list:row-1",
+                  "name": "Quest 01",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        0,
+                        64
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 0,
+                    "ZIndex": 1,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "quest-list:row-1/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:quest-title-1",
+                      "name": "quest-title-1",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            12
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            536,
+                            0,
+                            40
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "01  Explore the forest",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:row-1/size",
+                      "name": "UISizeConstraint",
+                      "className": "UISizeConstraint",
+                      "properties": {
+                        "MinSize": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            48
+                          ]
+                        },
+                        "MaxSize": {
+                          "type": "Vector2",
+                          "value": [
+                            100000,
+                            96
+                          ]
+                        }
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "quest-list:row-2",
+                  "name": "Quest 02",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        0,
+                        64
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 1,
+                    "ZIndex": 2,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.1098,
+                        0.16863,
+                        0.25098
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "quest-list:row-2/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:quest-title-2",
+                      "name": "quest-title-2",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            12
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            536,
+                            0,
+                            40
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "02  Collect supplies",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:row-2/size",
+                      "name": "UISizeConstraint",
+                      "className": "UISizeConstraint",
+                      "properties": {
+                        "MinSize": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            48
+                          ]
+                        },
+                        "MaxSize": {
+                          "type": "Vector2",
+                          "value": [
+                            100000,
+                            96
+                          ]
+                        }
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "quest-list:row-3",
+                  "name": "Quest 03",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        0,
+                        64
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 2,
+                    "ZIndex": 3,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "quest-list:row-3/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:quest-title-3",
+                      "name": "quest-title-3",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            12
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            536,
+                            0,
+                            40
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "03  Return to camp",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:row-3/size",
+                      "name": "UISizeConstraint",
+                      "className": "UISizeConstraint",
+                      "properties": {
+                        "MinSize": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            48
+                          ]
+                        },
+                        "MaxSize": {
+                          "type": "Vector2",
+                          "value": [
+                            100000,
+                            96
+                          ]
+                        }
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "quest-list:row-4",
+                  "name": "Quest 04",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        0,
+                        64
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 3,
+                    "ZIndex": 4,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.1098,
+                        0.16863,
+                        0.25098
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "quest-list:row-4/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:quest-title-4",
+                      "name": "quest-title-4",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            12
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            536,
+                            0,
+                            40
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "04  Build a shelter",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:row-4/size",
+                      "name": "UISizeConstraint",
+                      "className": "UISizeConstraint",
+                      "properties": {
+                        "MinSize": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            48
+                          ]
+                        },
+                        "MaxSize": {
+                          "type": "Vector2",
+                          "value": [
+                            100000,
+                            96
+                          ]
+                        }
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "quest-list:row-5",
+                  "name": "Quest 05",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        0,
+                        64
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 4,
+                    "ZIndex": 5,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "quest-list:row-5/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:quest-title-5",
+                      "name": "quest-title-5",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            12
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            536,
+                            0,
+                            40
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "05  Find the beacon",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:row-5/size",
+                      "name": "UISizeConstraint",
+                      "className": "UISizeConstraint",
+                      "properties": {
+                        "MinSize": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            48
+                          ]
+                        },
+                        "MaxSize": {
+                          "type": "Vector2",
+                          "value": [
+                            100000,
+                            96
+                          ]
+                        }
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "quest-list:row-6",
+                  "name": "Quest 06",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        0,
+                        64
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 5,
+                    "ZIndex": 6,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.1098,
+                        0.16863,
+                        0.25098
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "quest-list:row-6/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:quest-title-6",
+                      "name": "quest-title-6",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            12
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            536,
+                            0,
+                            40
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "06  Explore the forest",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:row-6/size",
+                      "name": "UISizeConstraint",
+                      "className": "UISizeConstraint",
+                      "properties": {
+                        "MinSize": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            48
+                          ]
+                        },
+                        "MaxSize": {
+                          "type": "Vector2",
+                          "value": [
+                            100000,
+                            96
+                          ]
+                        }
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "quest-list:row-7",
+                  "name": "Quest 07",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        0,
+                        64
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 6,
+                    "ZIndex": 7,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "quest-list:row-7/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:quest-title-7",
+                      "name": "quest-title-7",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            12
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            536,
+                            0,
+                            40
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "07  Collect supplies",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:row-7/size",
+                      "name": "UISizeConstraint",
+                      "className": "UISizeConstraint",
+                      "properties": {
+                        "MinSize": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            48
+                          ]
+                        },
+                        "MaxSize": {
+                          "type": "Vector2",
+                          "value": [
+                            100000,
+                            96
+                          ]
+                        }
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "quest-list:row-8",
+                  "name": "Quest 08",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        0,
+                        64
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 7,
+                    "ZIndex": 8,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.1098,
+                        0.16863,
+                        0.25098
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "quest-list:row-8/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:quest-title-8",
+                      "name": "quest-title-8",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            12
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            536,
+                            0,
+                            40
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "08  Return to camp",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:row-8/size",
+                      "name": "UISizeConstraint",
+                      "className": "UISizeConstraint",
+                      "properties": {
+                        "MinSize": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            48
+                          ]
+                        },
+                        "MaxSize": {
+                          "type": "Vector2",
+                          "value": [
+                            100000,
+                            96
+                          ]
+                        }
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "quest-list:row-9",
+                  "name": "Quest 09",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        0,
+                        64
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 8,
+                    "ZIndex": 9,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "quest-list:row-9/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:quest-title-9",
+                      "name": "quest-title-9",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            12
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            536,
+                            0,
+                            40
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "09  Build a shelter",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:row-9/size",
+                      "name": "UISizeConstraint",
+                      "className": "UISizeConstraint",
+                      "properties": {
+                        "MinSize": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            48
+                          ]
+                        },
+                        "MaxSize": {
+                          "type": "Vector2",
+                          "value": [
+                            100000,
+                            96
+                          ]
+                        }
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "quest-list:row-10",
+                  "name": "Quest 10",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        0,
+                        64
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 9,
+                    "ZIndex": 10,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.1098,
+                        0.16863,
+                        0.25098
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "quest-list:row-10/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:quest-title-10",
+                      "name": "quest-title-10",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            12
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            536,
+                            0,
+                            40
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "10  Find the beacon",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 16,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "quest-list:row-10/size",
+                      "name": "UISizeConstraint",
+                      "className": "UISizeConstraint",
+                      "properties": {
+                        "MinSize": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            48
+                          ]
+                        },
+                        "MaxSize": {
+                          "type": "Vector2",
+                          "value": [
+                            100000,
+                            96
+                          ]
+                        }
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "quest-list:scroll/layout",
+                  "name": "UIListLayout",
+                  "className": "UIListLayout",
+                  "properties": {
+                    "FillDirection": {
+                      "type": "Enum",
+                      "value": [
+                        "FillDirection",
+                        "Vertical"
+                      ]
+                    },
+                    "SortOrder": {
+                      "type": "Enum",
+                      "value": [
+                        "SortOrder",
+                        "LayoutOrder"
+                      ]
+                    },
+                    "Padding": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        8
+                      ]
+                    },
+                    "HorizontalAlignment": {
+                      "type": "Enum",
+                      "value": [
+                        "HorizontalAlignment",
+                        "Left"
+                      ]
+                    },
+                    "VerticalAlignment": {
+                      "type": "Enum",
+                      "value": [
+                        "VerticalAlignment",
+                        "Top"
+                      ]
+                    }
+                  },
+                  "children": []
+                },
+                {
+                  "id": "quest-list:scroll/padding",
+                  "name": "UIPadding",
+                  "className": "UIPadding",
+                  "properties": {
+                    "PaddingTop": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        12
+                      ]
+                    },
+                    "PaddingRight": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        12
+                      ]
+                    },
+                    "PaddingBottom": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        12
+                      ]
+                    },
+                    "PaddingLeft": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        12
+                      ]
+                    }
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "assets": [],
+  "issues": [],
+  "stats": {
+    "layers": 24,
+    "native": 24,
+    "raster": 0,
+    "instances": 48
+  }
+}

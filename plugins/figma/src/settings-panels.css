@@ -1,0 +1,205 @@
+/* Compact settings controls, shared by screen setup and reusable theme tokens. */
+.settings-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+.settings-label .settings-hint {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  padding: 3px;
+  color: var(--fb-muted, var(--muted-foreground));
+  border-radius: 50%;
+}
+.settings-hint-content {
+  max-width: min(280px, calc(100vw - 24px));
+  font-size: 12px;
+  line-height: 1.5;
+}
+.design-screen-settings {
+  container: design-screen / inline-size;
+}
+.design-screen-settings .setting {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr);
+  align-items: center;
+  gap: 8px 12px;
+  padding-block: 9px;
+}
+.design-screen-settings .setting > [data-slot="select-trigger"] {
+  grid-column: auto;
+  min-height: 32px;
+  height: auto;
+}
+.design-screen-settings .design-screen-dimensions {
+  grid-column: 1 / -1;
+  gap: 10px;
+  padding-top: 2px;
+}
+.design-screen-settings .design-screen-field {
+  gap: 5px;
+  font-size: 11px;
+}
+.design-screen-field > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+.design-screen-field small {
+  color: var(--fb-muted, var(--muted-foreground));
+  font-size: 10px;
+}
+.design-screen-settings .design-screen-field input {
+  height: 32px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.design-screen-field .property-error {
+  grid-column: auto;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.theme-library {
+  min-width: 0;
+}
+.settings-page .theme-library {
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+}
+.theme-library-body {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  padding: 0 0 12px;
+}
+.theme-library .theme-export-row {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  padding: 0;
+}
+.theme-mode-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.theme-mode-controls > label {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  min-width: 0;
+  font-size: 11px;
+  color: var(--fb-muted, var(--muted-foreground));
+}
+.theme-mode-controls [data-slot="select-trigger"] {
+  color: var(--fb-ink, var(--foreground));
+}
+.theme-token-list {
+  display: grid;
+  gap: 0;
+  min-width: 0;
+}
+.theme-library .theme-token {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-top: 1px solid var(--fb-line, var(--border));
+  border-radius: 0;
+  background: transparent;
+  min-width: 0;
+}
+.theme-library .theme-token > summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 0;
+  font-size: 12px;
+  border: 0;
+}
+.theme-token > summary > span:first-of-type {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.theme-token > summary .export-setup-summary {
+  flex-shrink: 0;
+  font-size: 10px;
+}
+.theme-library .theme-token > .property-row,
+.theme-bindings > .property-row {
+  grid-template-columns: minmax(0, 38%) minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+.theme-token .property-row > label,
+.theme-bindings .property-row > label {
+  padding: 0;
+  font-size: 11px;
+}
+.theme-library .theme-token [data-slot="input"],
+.theme-library .theme-token [data-slot="select-trigger"],
+.theme-bindings [data-slot="select-trigger"] {
+  min-height: 30px;
+  height: auto;
+  border-radius: 8px;
+}
+.theme-font-value {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+  min-width: 0;
+}
+.theme-font-value > input {
+  grid-column: 1 / -1;
+}
+.theme-number-value {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+  min-width: 0;
+}
+.theme-token input[type="color"] {
+  width: 100%;
+  padding: 4px;
+}
+.theme-token .theme-remove-token {
+  margin: 4px 0 8px;
+  padding-inline: 10px;
+  font-size: 11px;
+}
+.theme-new-token {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 8px;
+  min-width: 0;
+}
+.theme-library-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.theme-library-actions > button,
+.theme-library-body > button {
+  justify-self: start;
+  min-height: 30px;
+  height: auto;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  white-space: normal;
+}
+.theme-bindings > .property-note {
+  padding-block: 4px 8px;
+  font-size: 11px;
+}
+@container design-screen (max-width: 310px) {
+  .design-screen-settings .setting {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .design-screen-settings .setting > [data-slot="select-trigger"] {
+    grid-column: 1;
+  }
+}

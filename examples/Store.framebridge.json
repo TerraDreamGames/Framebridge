@@ -1,0 +1,1348 @@
+{
+  "format": "framebridge",
+  "version": 1,
+  "sourceId": "framebridge-example-store-v1",
+  "name": "Store / Desktop",
+  "createdAt": "2026-09-27T00:00:00Z",
+  "options": {
+    "layout": "exact",
+    "appearance": "faithful",
+    "imageScale": 2
+  },
+  "roots": [
+    {
+      "id": "screen:demo:27",
+      "name": "Store / Desktop",
+      "className": "ScreenGui",
+      "referenceSize": [540, 358],
+      "properties": {
+        "ResetOnSpawn": false,
+        "IgnoreGuiInset": true,
+        "ZIndexBehavior": {
+          "type": "Enum",
+          "value": ["ZIndexBehavior", "Sibling"]
+        },
+        "DisplayOrder": 0,
+        "Enabled": true
+      },
+      "children": [
+        {
+          "id": "demo:27",
+          "name": "Store / Desktop",
+          "className": "Frame",
+          "properties": {
+            "Position": {
+              "type": "UDim2",
+              "value": [0, 0, 0, 0]
+            },
+            "Size": {
+              "type": "UDim2",
+              "value": [0, 540, 0, 358]
+            },
+            "AnchorPoint": {
+              "type": "Vector2",
+              "value": [0, 0]
+            },
+            "Rotation": 0,
+            "Visible": true,
+            "BorderSizePixel": 0,
+            "BackgroundTransparency": 0,
+            "LayoutOrder": 0,
+            "ZIndex": 1,
+            "ClipsDescendants": false,
+            "BackgroundColor3": {
+              "type": "Color3",
+              "value": [0.09412, 0.11765, 0.12941]
+            }
+          },
+          "children": [
+            {
+              "id": "demo:27/corner",
+              "name": "UICorner",
+              "className": "UICorner",
+              "properties": {
+                "CornerRadius": {
+                  "type": "UDim",
+                  "value": [0, 18]
+                }
+              },
+              "children": []
+            },
+            {
+              "id": "demo:22",
+              "name": "Eyebrow",
+              "className": "TextLabel",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [0, 24, 0, 23]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [0, 240, 0, 14]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [0, 0]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 1,
+                "LayoutOrder": 0,
+                "ZIndex": 1,
+                "ClipsDescendants": false,
+                "Text": "THE OUTPOST",
+                "FontFace": {
+                  "type": "Font",
+                  "family": "rbxasset://fonts/families/Roboto.json",
+                  "weight": "Bold",
+                  "style": "Normal"
+                },
+                "TextSize": 10,
+                "TextColor3": {
+                  "type": "Color3",
+                  "value": [0.73333, 0.91765, 0.56863]
+                },
+                "TextTransparency": 0,
+                "TextXAlignment": {
+                  "type": "Enum",
+                  "value": ["TextXAlignment", "Left"]
+                },
+                "TextYAlignment": {
+                  "type": "Enum",
+                  "value": ["TextYAlignment", "Top"]
+                },
+                "TextWrapped": false,
+                "TextScaled": false,
+                "RichText": false,
+                "AutoLocalize": false
+              },
+              "children": []
+            },
+            {
+              "id": "demo:23",
+              "name": "Title",
+              "className": "TextLabel",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [0, 24, 0, 49]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [0, 420, 0, 35]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [0, 0]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 1,
+                "LayoutOrder": 1,
+                "ZIndex": 2,
+                "ClipsDescendants": false,
+                "Text": "A new adventure awaits.",
+                "FontFace": {
+                  "type": "Font",
+                  "family": "rbxasset://fonts/families/Roboto.json",
+                  "weight": "Bold",
+                  "style": "Normal"
+                },
+                "TextSize": 25,
+                "TextColor3": {
+                  "type": "Color3",
+                  "value": [0.93725, 0.95294, 0.93725]
+                },
+                "TextTransparency": 0,
+                "TextXAlignment": {
+                  "type": "Enum",
+                  "value": ["TextXAlignment", "Left"]
+                },
+                "TextYAlignment": {
+                  "type": "Enum",
+                  "value": ["TextYAlignment", "Top"]
+                },
+                "TextWrapped": false,
+                "TextScaled": false,
+                "RichText": false,
+                "AutoLocalize": false
+              },
+              "children": []
+            },
+            {
+              "id": "demo:24",
+              "name": "Subtitle",
+              "className": "TextLabel",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [0, 24, 0, 88]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [0, 420, 0, 16.8]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [0, 0]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 1,
+                "LayoutOrder": 2,
+                "ZIndex": 3,
+                "ClipsDescendants": false,
+                "Text": "Gear up. Head out. Make it yours.",
+                "FontFace": {
+                  "type": "Font",
+                  "family": "rbxasset://fonts/families/Roboto.json",
+                  "weight": "Regular",
+                  "style": "Normal"
+                },
+                "TextSize": 12,
+                "TextColor3": {
+                  "type": "Color3",
+                  "value": [0.56471, 0.61569, 0.58431]
+                },
+                "TextTransparency": 0,
+                "TextXAlignment": {
+                  "type": "Enum",
+                  "value": ["TextXAlignment", "Left"]
+                },
+                "TextYAlignment": {
+                  "type": "Enum",
+                  "value": ["TextYAlignment", "Top"]
+                },
+                "TextWrapped": false,
+                "TextScaled": false,
+                "RichText": false,
+                "AutoLocalize": false
+              },
+              "children": []
+            },
+            {
+              "id": "demo:26",
+              "name": "Close",
+              "className": "TextButton",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [0, 486, 0, 23]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [0, 30, 0, 30]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [0, 0]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 0,
+                "LayoutOrder": 3,
+                "ZIndex": 4,
+                "ClipsDescendants": false,
+                "AutoButtonColor": false,
+                "Active": true,
+                "Selectable": true,
+                "Text": "",
+                "BackgroundColor3": {
+                  "type": "Color3",
+                  "value": [0.16863, 0.2, 0.21176]
+                }
+              },
+              "children": [
+                {
+                  "id": "demo:26/corner",
+                  "name": "UICorner",
+                  "className": "UICorner",
+                  "properties": {
+                    "CornerRadius": {
+                      "type": "UDim",
+                      "value": [0, 8]
+                    }
+                  },
+                  "children": []
+                },
+                {
+                  "id": "demo:25",
+                  "name": "Close icon",
+                  "className": "TextLabel",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [0, 9, 0, 2]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [0, 20, 0, 30.8]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [0, 0]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 1,
+                    "LayoutOrder": 0,
+                    "ZIndex": 1,
+                    "ClipsDescendants": false,
+                    "Text": "\u00d7",
+                    "FontFace": {
+                      "type": "Font",
+                      "family": "rbxasset://fonts/families/Roboto.json",
+                      "weight": "Regular",
+                      "style": "Normal"
+                    },
+                    "TextSize": 22,
+                    "TextColor3": {
+                      "type": "Color3",
+                      "value": [0.76078, 0.8, 0.77647]
+                    },
+                    "TextTransparency": 0,
+                    "TextXAlignment": {
+                      "type": "Enum",
+                      "value": ["TextXAlignment", "Left"]
+                    },
+                    "TextYAlignment": {
+                      "type": "Enum",
+                      "value": ["TextYAlignment", "Top"]
+                    },
+                    "TextWrapped": false,
+                    "TextScaled": false,
+                    "RichText": false,
+                    "AutoLocalize": false
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "demo:7",
+              "name": "Starter pack",
+              "className": "Frame",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [0, 24, 0, 125]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [0, 156, 0, 209]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [0, 0]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 0,
+                "LayoutOrder": 4,
+                "ZIndex": 5,
+                "ClipsDescendants": false,
+                "BackgroundColor3": {
+                  "type": "Color3",
+                  "value": [0.13333, 0.15686, 0.17255]
+                }
+              },
+              "children": [
+                {
+                  "id": "demo:7/corner",
+                  "name": "UICorner",
+                  "className": "UICorner",
+                  "properties": {
+                    "CornerRadius": {
+                      "type": "UDim",
+                      "value": [0, 12]
+                    }
+                  },
+                  "children": []
+                },
+                {
+                  "id": "demo:2",
+                  "name": "Icon background",
+                  "className": "Frame",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [0, 48, 0, 17]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [0, 60, 0, 60]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [0, 0]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 0,
+                    "ZIndex": 1,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [0.15686, 0.21176, 0.27451]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "demo:2/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [0, 30]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "demo:1",
+                      "name": "Pack icon",
+                      "className": "Frame",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [0, 20, 0, 20]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [0, 20, 0, 20]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [0, 0]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 0,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "BackgroundColor3": {
+                          "type": "Color3",
+                          "value": [0.72941, 0.82745, 1]
+                        }
+                      },
+                      "children": [
+                        {
+                          "id": "demo:1/corner",
+                          "name": "UICorner",
+                          "className": "UICorner",
+                          "properties": {
+                            "CornerRadius": {
+                              "type": "UDim",
+                              "value": [0, 4]
+                            }
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "demo:3",
+                  "name": "Pack title",
+                  "className": "TextLabel",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [0, 14, 0, 91]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [0, 138, 0, 19.6]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [0, 0]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 1,
+                    "LayoutOrder": 1,
+                    "ZIndex": 2,
+                    "ClipsDescendants": false,
+                    "Text": "Starter pack",
+                    "FontFace": {
+                      "type": "Font",
+                      "family": "rbxasset://fonts/families/Roboto.json",
+                      "weight": "Bold",
+                      "style": "Normal"
+                    },
+                    "TextSize": 14,
+                    "TextColor3": {
+                      "type": "Color3",
+                      "value": [0.92549, 0.94118, 0.92941]
+                    },
+                    "TextTransparency": 0,
+                    "TextXAlignment": {
+                      "type": "Enum",
+                      "value": ["TextXAlignment", "Left"]
+                    },
+                    "TextYAlignment": {
+                      "type": "Enum",
+                      "value": ["TextYAlignment", "Top"]
+                    },
+                    "TextWrapped": false,
+                    "TextScaled": false,
+                    "RichText": false,
+                    "AutoLocalize": false
+                  },
+                  "children": []
+                },
+                {
+                  "id": "demo:4",
+                  "name": "Description",
+                  "className": "TextLabel",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [0, 14, 0, 113]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [0, 138, 0, 14]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [0, 0]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 1,
+                    "LayoutOrder": 2,
+                    "ZIndex": 3,
+                    "ClipsDescendants": false,
+                    "Text": "A little head start",
+                    "FontFace": {
+                      "type": "Font",
+                      "family": "rbxasset://fonts/families/Roboto.json",
+                      "weight": "Regular",
+                      "style": "Normal"
+                    },
+                    "TextSize": 10,
+                    "TextColor3": {
+                      "type": "Color3",
+                      "value": [0.57647, 0.62353, 0.60392]
+                    },
+                    "TextTransparency": 0,
+                    "TextXAlignment": {
+                      "type": "Enum",
+                      "value": ["TextXAlignment", "Left"]
+                    },
+                    "TextYAlignment": {
+                      "type": "Enum",
+                      "value": ["TextYAlignment", "Top"]
+                    },
+                    "TextWrapped": false,
+                    "TextScaled": false,
+                    "RichText": false,
+                    "AutoLocalize": false
+                  },
+                  "children": []
+                },
+                {
+                  "id": "demo:6",
+                  "name": "Purchase",
+                  "className": "TextButton",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [0, 12, 0, 157]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [0, 132, 0, 36]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [0, 0]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 3,
+                    "ZIndex": 4,
+                    "ClipsDescendants": false,
+                    "AutoButtonColor": false,
+                    "Active": true,
+                    "Selectable": true,
+                    "Text": "",
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [0.72941, 0.82745, 1]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "demo:6/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [0, 7]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "demo:5",
+                      "name": "Price",
+                      "className": "TextLabel",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [0, 24, 0, 9]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [0, 114, 0, 16.8]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [0, 0]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "500 coins",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Bold",
+                          "style": "Normal"
+                        },
+                        "TextSize": 12,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [0.12549, 0.16471, 0.13725]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": ["TextXAlignment", "Left"]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": ["TextYAlignment", "Top"]
+                        },
+                        "TextWrapped": false,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "demo:14",
+              "name": "Explorer pack",
+              "className": "Frame",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [0, 192, 0, 125]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [0, 156, 0, 209]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [0, 0]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 0,
+                "LayoutOrder": 5,
+                "ZIndex": 6,
+                "ClipsDescendants": false,
+                "BackgroundColor3": {
+                  "type": "Color3",
+                  "value": [0.13333, 0.15686, 0.17255]
+                }
+              },
+              "children": [
+                {
+                  "id": "demo:14/corner",
+                  "name": "UICorner",
+                  "className": "UICorner",
+                  "properties": {
+                    "CornerRadius": {
+                      "type": "UDim",
+                      "value": [0, 12]
+                    }
+                  },
+                  "children": []
+                },
+                {
+                  "id": "demo:9",
+                  "name": "Icon background",
+                  "className": "Frame",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [0, 48, 0, 17]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [0, 60, 0, 60]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [0, 0]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 0,
+                    "ZIndex": 1,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [0.20392, 0.2549, 0.17647]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "demo:9/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [0, 30]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "demo:8",
+                      "name": "Pack icon",
+                      "className": "Frame",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [0, 20, 0, 20]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [0, 20, 0, 20]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [0, 0]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 0,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "BackgroundColor3": {
+                          "type": "Color3",
+                          "value": [0.79608, 0.92157, 0.58824]
+                        }
+                      },
+                      "children": [
+                        {
+                          "id": "demo:8/corner",
+                          "name": "UICorner",
+                          "className": "UICorner",
+                          "properties": {
+                            "CornerRadius": {
+                              "type": "UDim",
+                              "value": [0, 4]
+                            }
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "demo:10",
+                  "name": "Pack title",
+                  "className": "TextLabel",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [0, 14, 0, 91]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [0, 138, 0, 19.6]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [0, 0]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 1,
+                    "LayoutOrder": 1,
+                    "ZIndex": 2,
+                    "ClipsDescendants": false,
+                    "Text": "Explorer pack",
+                    "FontFace": {
+                      "type": "Font",
+                      "family": "rbxasset://fonts/families/Roboto.json",
+                      "weight": "Bold",
+                      "style": "Normal"
+                    },
+                    "TextSize": 14,
+                    "TextColor3": {
+                      "type": "Color3",
+                      "value": [0.92549, 0.94118, 0.92941]
+                    },
+                    "TextTransparency": 0,
+                    "TextXAlignment": {
+                      "type": "Enum",
+                      "value": ["TextXAlignment", "Left"]
+                    },
+                    "TextYAlignment": {
+                      "type": "Enum",
+                      "value": ["TextYAlignment", "Top"]
+                    },
+                    "TextWrapped": false,
+                    "TextScaled": false,
+                    "RichText": false,
+                    "AutoLocalize": false
+                  },
+                  "children": []
+                },
+                {
+                  "id": "demo:11",
+                  "name": "Description",
+                  "className": "TextLabel",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [0, 14, 0, 113]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [0, 138, 0, 14]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [0, 0]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 1,
+                    "LayoutOrder": 2,
+                    "ZIndex": 3,
+                    "ClipsDescendants": false,
+                    "Text": "Find your next adventure",
+                    "FontFace": {
+                      "type": "Font",
+                      "family": "rbxasset://fonts/families/Roboto.json",
+                      "weight": "Regular",
+                      "style": "Normal"
+                    },
+                    "TextSize": 10,
+                    "TextColor3": {
+                      "type": "Color3",
+                      "value": [0.57647, 0.62353, 0.60392]
+                    },
+                    "TextTransparency": 0,
+                    "TextXAlignment": {
+                      "type": "Enum",
+                      "value": ["TextXAlignment", "Left"]
+                    },
+                    "TextYAlignment": {
+                      "type": "Enum",
+                      "value": ["TextYAlignment", "Top"]
+                    },
+                    "TextWrapped": false,
+                    "TextScaled": false,
+                    "RichText": false,
+                    "AutoLocalize": false
+                  },
+                  "children": []
+                },
+                {
+                  "id": "demo:13",
+                  "name": "Purchase",
+                  "className": "TextButton",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [0, 12, 0, 157]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [0, 132, 0, 36]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [0, 0]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 3,
+                    "ZIndex": 4,
+                    "ClipsDescendants": false,
+                    "AutoButtonColor": false,
+                    "Active": true,
+                    "Selectable": true,
+                    "Text": "",
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [0.79608, 0.92157, 0.58824]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "demo:13/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [0, 7]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "demo:12",
+                      "name": "Price",
+                      "className": "TextLabel",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [0, 24, 0, 9]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [0, 114, 0, 16.8]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [0, 0]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "1,200 coins",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Bold",
+                          "style": "Normal"
+                        },
+                        "TextSize": 12,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [0.12549, 0.16471, 0.13725]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": ["TextXAlignment", "Left"]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": ["TextYAlignment", "Top"]
+                        },
+                        "TextWrapped": false,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "demo:21",
+              "name": "Legend pack",
+              "className": "Frame",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [0, 360, 0, 125]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [0, 156, 0, 209]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [0, 0]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 0,
+                "LayoutOrder": 6,
+                "ZIndex": 7,
+                "ClipsDescendants": false,
+                "BackgroundColor3": {
+                  "type": "Color3",
+                  "value": [0.13333, 0.15686, 0.17255]
+                }
+              },
+              "children": [
+                {
+                  "id": "demo:21/corner",
+                  "name": "UICorner",
+                  "className": "UICorner",
+                  "properties": {
+                    "CornerRadius": {
+                      "type": "UDim",
+                      "value": [0, 12]
+                    }
+                  },
+                  "children": []
+                },
+                {
+                  "id": "demo:16",
+                  "name": "Icon background",
+                  "className": "Frame",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [0, 48, 0, 17]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [0, 60, 0, 60]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [0, 0]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 0,
+                    "ZIndex": 1,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [0.23137, 0.18824, 0.28627]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "demo:16/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [0, 30]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "demo:15",
+                      "name": "Pack icon",
+                      "className": "Frame",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [0, 20, 0, 20]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [0, 20, 0, 20]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [0, 0]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 0,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "BackgroundColor3": {
+                          "type": "Color3",
+                          "value": [0.83922, 0.72549, 0.95686]
+                        }
+                      },
+                      "children": [
+                        {
+                          "id": "demo:15/corner",
+                          "name": "UICorner",
+                          "className": "UICorner",
+                          "properties": {
+                            "CornerRadius": {
+                              "type": "UDim",
+                              "value": [0, 4]
+                            }
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "demo:17",
+                  "name": "Pack title",
+                  "className": "TextLabel",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [0, 14, 0, 91]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [0, 138, 0, 19.6]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [0, 0]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 1,
+                    "LayoutOrder": 1,
+                    "ZIndex": 2,
+                    "ClipsDescendants": false,
+                    "Text": "Legend pack",
+                    "FontFace": {
+                      "type": "Font",
+                      "family": "rbxasset://fonts/families/Roboto.json",
+                      "weight": "Bold",
+                      "style": "Normal"
+                    },
+                    "TextSize": 14,
+                    "TextColor3": {
+                      "type": "Color3",
+                      "value": [0.92549, 0.94118, 0.92941]
+                    },
+                    "TextTransparency": 0,
+                    "TextXAlignment": {
+                      "type": "Enum",
+                      "value": ["TextXAlignment", "Left"]
+                    },
+                    "TextYAlignment": {
+                      "type": "Enum",
+                      "value": ["TextYAlignment", "Top"]
+                    },
+                    "TextWrapped": false,
+                    "TextScaled": false,
+                    "RichText": false,
+                    "AutoLocalize": false
+                  },
+                  "children": []
+                },
+                {
+                  "id": "demo:18",
+                  "name": "Description",
+                  "className": "TextLabel",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [0, 14, 0, 113]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [0, 138, 0, 14]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [0, 0]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 1,
+                    "LayoutOrder": 2,
+                    "ZIndex": 3,
+                    "ClipsDescendants": false,
+                    "Text": "Make your mark",
+                    "FontFace": {
+                      "type": "Font",
+                      "family": "rbxasset://fonts/families/Roboto.json",
+                      "weight": "Regular",
+                      "style": "Normal"
+                    },
+                    "TextSize": 10,
+                    "TextColor3": {
+                      "type": "Color3",
+                      "value": [0.57647, 0.62353, 0.60392]
+                    },
+                    "TextTransparency": 0,
+                    "TextXAlignment": {
+                      "type": "Enum",
+                      "value": ["TextXAlignment", "Left"]
+                    },
+                    "TextYAlignment": {
+                      "type": "Enum",
+                      "value": ["TextYAlignment", "Top"]
+                    },
+                    "TextWrapped": false,
+                    "TextScaled": false,
+                    "RichText": false,
+                    "AutoLocalize": false
+                  },
+                  "children": []
+                },
+                {
+                  "id": "demo:20",
+                  "name": "Purchase",
+                  "className": "TextButton",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [0, 12, 0, 157]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [0, 132, 0, 36]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [0, 0]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 3,
+                    "ZIndex": 4,
+                    "ClipsDescendants": false,
+                    "AutoButtonColor": false,
+                    "Active": true,
+                    "Selectable": true,
+                    "Text": "",
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [0.83922, 0.72549, 0.95686]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "demo:20/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [0, 7]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "demo:19",
+                      "name": "Price",
+                      "className": "TextLabel",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [0, 24, 0, 9]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [0, 114, 0, 16.8]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [0, 0]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "2,500 coins",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Bold",
+                          "style": "Normal"
+                        },
+                        "TextSize": 12,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [0.12549, 0.16471, 0.13725]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": ["TextXAlignment", "Left"]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": ["TextYAlignment", "Top"]
+                        },
+                        "TextWrapped": false,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "assets": [],
+  "issues": [],
+  "stats": {
+    "layers": 27,
+    "native": 27,
+    "raster": 0,
+    "instances": 42
+  }
+}

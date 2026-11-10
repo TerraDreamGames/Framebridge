@@ -1,0 +1,534 @@
+/* Feature panels share the workspace's compact, rounded control language. */
+.editor-section.editor-section,
+.editor-preferences.editor-preferences {
+  min-width: 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  margin: 0;
+  padding: 0 12px 10px;
+}
+.editor-section.editor-section > summary,
+.editor-preferences.editor-preferences > summary {
+  min-height: 38px;
+  margin: 0 -12px;
+  padding: 8px 12px;
+  border: 0;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 550;
+  line-height: 1.4;
+  border-radius: 10px;
+}
+.editor-section.editor-section > summary:hover,
+.editor-preferences.editor-preferences > summary:hover {
+  background: var(--secondary);
+}
+.editor-section.editor-section .export-setup-summary {
+  color: var(--muted-foreground);
+  font-size: 11px;
+  font-weight: 400;
+}
+.editor-section.editor-section .property-row {
+  min-height: 35px;
+  padding: 4px 0;
+  gap: 10px;
+  border: 0;
+  align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(110px, 1.1fr);
+}
+.editor-section.editor-section .property-row > label {
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: anywhere;
+}
+.editor-section.editor-section .property-note,
+.editor-section.editor-section .property-error {
+  margin: 6px 0 9px;
+  padding: 0;
+  font-size: 11px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.editor-section.editor-section
+  :is(
+    input:not([type="checkbox"]):not([type="range"]):not([type="color"]),
+    textarea,
+    [data-slot="select-trigger"]
+  ),
+.editor-preferences.editor-preferences
+  :is(input:not([type="checkbox"]), [data-slot="select-trigger"]) {
+  min-width: 0;
+  min-height: 30px;
+  border: 1px solid var(--input);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--foreground);
+  box-shadow: none;
+  font-size: 12px;
+}
+.editor-section.editor-section textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 8px;
+}
+.editor-section.editor-section input[type="range"] {
+  accent-color: var(--primary);
+}
+.editor-section.editor-section input[type="checkbox"],
+.editor-preferences.editor-preferences input[type="checkbox"] {
+  accent-color: var(--primary);
+  width: 15px;
+  height: 15px;
+  flex: none;
+  border-radius: 4px;
+}
+.editor-section.editor-section
+  :is(
+    .motion-preset,
+    .conditional-rule,
+    .conditional-branch,
+    .conditional-predicate,
+    .conditional-action
+  ) {
+  min-width: 0;
+  margin: 6px 0;
+  padding: 5px 0 5px 10px;
+  border: 0;
+  border-left: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+}
+.editor-section.editor-section .motion-preset > summary {
+  min-height: 32px;
+  padding: 4px 0;
+  font-size: 12px;
+  gap: 7px;
+}
+.editor-section.editor-section .conditional-rule > summary {
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.editor-section.editor-section
+  :is(.conditional-branch, .conditional-action)
+  > strong {
+  color: var(--accent-text);
+  font-size: 10px;
+  font-weight: 600;
+}
+.editor-section.editor-section
+  :is(.control-prerequisites, .control-prerequisite-choices) {
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  margin: 7px 0;
+}
+.editor-section.editor-section .control-prerequisites legend {
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.editor-section.editor-section .control-prerequisite-choice {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  min-height: 28px;
+  padding: 3px 0;
+  font-size: 12px;
+}
+.editor-section.editor-section .control-prerequisite-choice span {
+  overflow-wrap: anywhere;
+}
+.editor-section.editor-section
+  :is(.keyframe-preview, .image-resize-viewport, .slice-source) {
+  border-radius: 12px;
+  border-color: var(--border);
+  overflow: hidden;
+}
+.editor-section.editor-section .keyframe-row {
+  border: 0;
+  border-radius: 9px;
+  background: var(--secondary);
+  padding: 6px;
+}
+.editor-section.editor-section :is(.keyframe-playback, .scrollbar-actions) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+.editor-section.editor-section .scrollbar-pieces {
+  gap: 6px;
+}
+.editor-section.editor-section .scrollbar-pieces > div {
+  border: 0;
+  background: var(--secondary);
+  border-radius: 10px;
+  padding: 8px;
+}
+.editor-section.editor-section :is(.slice-editor, .image-resize-preview) {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  margin-top: 8px;
+}
+.editor-section.editor-section
+  :is(.slice-editor, .image-resize-preview)
+  > summary {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 0;
+}
+.editor-preferences.editor-preferences {
+  margin-top: 12px;
+  padding-top: 4px;
+}
+.editor-preferences.editor-preferences > p {
+  font-size: 11px;
+  line-height: 1.55;
+  margin: 7px 0;
+  color: var(--muted-foreground);
+}
+.editor-preferences.editor-preferences .structure-review-toolbar {
+  gap: 6px;
+}
+.editor-feedback.editor-feedback {
+  min-width: 0;
+  gap: 14px;
+  font-size: 12px;
+}
+.editor-feedback.editor-feedback > p {
+  font-size: 12px;
+  line-height: 1.55;
+  margin: 0 0 6px;
+  color: var(--muted-foreground);
+}
+.editor-feedback.editor-feedback :is(form, section) {
+  gap: 12px;
+}
+.editor-feedback.editor-feedback .feedback-field {
+  min-width: 0;
+  gap: 5px;
+}
+.editor-feedback.editor-feedback .feedback-field > span {
+  font-size: 12px;
+  font-weight: 500;
+}
+.editor-feedback.editor-feedback
+  :is(input:not([type="checkbox"]), textarea, [data-slot="select-trigger"]) {
+  min-width: 0;
+  border-radius: 9px;
+  background: var(--card);
+  box-shadow: none;
+}
+.editor-feedback.editor-feedback .feedback-check {
+  gap: 8px;
+  align-items: flex-start;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-size: 12px;
+}
+.editor-feedback.editor-feedback input[type="checkbox"] {
+  accent-color: var(--primary);
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+.editor-feedback.editor-feedback :is(.feedback-record, .feedback-summary) {
+  background: var(--secondary);
+  border: 0;
+  border-radius: 12px;
+  padding: 12px;
+}
+.editor-feedback.editor-feedback .feedback-actions {
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.editor-feedback.editor-feedback .feedback-screenshot {
+  border-radius: 12px;
+  border-color: var(--border);
+}
+.editor-feedback.editor-feedback .feedback-hint {
+  font-size: 11px;
+  line-height: 1.5;
+}
+/* The tutorial hub offers direct routes into real editor controls. */
+.welcome-dialog.editor-tutorial,
+.onboarding-dialog.editor-first-import {
+  width: min(620px, calc(100vw - 28px));
+  max-height: calc(100dvh - 28px);
+  max-width: none;
+  overflow-y: auto;
+  padding: 24px;
+  gap: 18px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: var(--card);
+  box-shadow: 0 18px 60px rgb(20 32 50 / 16%);
+}
+.welcome-dialog.editor-tutorial [data-slot="dialog-header"],
+.onboarding-dialog.editor-first-import [data-slot="dialog-header"] {
+  gap: 7px;
+  padding-right: 28px;
+  text-align: left;
+}
+.welcome-dialog.editor-tutorial [data-slot="dialog-title"],
+.onboarding-dialog.editor-first-import [data-slot="dialog-title"] {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 550;
+  letter-spacing: -0.7px;
+}
+.welcome-dialog.editor-tutorial .onboarding-eyebrow,
+.onboarding-dialog.editor-first-import .onboarding-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted-foreground);
+}
+.welcome-dialog.editor-tutorial .welcome-start {
+  padding: 14px 16px;
+  gap: 12px;
+  border: 0;
+  border-radius: 15px;
+  background: color-mix(in srgb, var(--primary) 7%, var(--card));
+}
+.welcome-dialog.editor-tutorial .welcome-start h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 550;
+}
+.welcome-dialog.editor-tutorial .welcome-start p {
+  font-size: 11px;
+  margin: 3px 0 0;
+}
+.welcome-dialog.editor-tutorial .welcome-features {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px 10px;
+}
+.welcome-dialog.editor-tutorial :is(.welcome-feature, .welcome-path) {
+  align-items: center;
+  min-height: 46px;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+}
+.welcome-dialog.editor-tutorial :is(.welcome-feature, .welcome-path):hover {
+  background: var(--secondary);
+}
+.welcome-dialog.editor-tutorial .welcome-feature[aria-current="step"] {
+  background: color-mix(in srgb, var(--primary) 8%, var(--card));
+}
+.welcome-dialog.editor-tutorial .welcome-feature-icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--primary) 7%, var(--card));
+  color: var(--accent-text);
+}
+.welcome-dialog.editor-tutorial :is(.welcome-feature, .welcome-path) > svg {
+  margin: 0;
+}
+.welcome-dialog.editor-tutorial .welcome-paths {
+  grid-template-columns: 1fr;
+  gap: 10px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+.welcome-dialog.editor-tutorial .welcome-example {
+  padding: 8px 10px;
+  border: 0;
+  gap: 12px;
+  align-items: flex-start;
+}
+.welcome-dialog.editor-tutorial .welcome-example > div {
+  flex: 1;
+}
+.welcome-dialog.editor-tutorial .welcome-example-actions {
+  margin-top: 9px;
+  gap: 7px;
+}
+.welcome-dialog.editor-tutorial .welcome-example small {
+  font-size: 11px;
+  margin-top: 7px;
+}
+.welcome-dialog.editor-tutorial .welcome-footer {
+  justify-content: flex-end;
+  margin-top: -3px;
+  padding-top: 10px;
+  border: 0;
+}
+.onboarding-bar.editor-guide-bar {
+  padding: 8px 14px;
+  min-height: 42px;
+  gap: 10px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+.onboarding-bar.editor-guide-bar .onboarding-bar-marker {
+  width: 26px;
+  height: 26px;
+  border-radius: 9px;
+}
+.onboarding-bar.editor-guide-bar .onboarding-bar-copy strong {
+  font-size: 12px;
+  font-weight: 500;
+}
+.onboarding-dialog.editor-first-import .onboarding-steps {
+  gap: 6px;
+  margin: 0;
+}
+.onboarding-dialog.editor-first-import .onboarding-steps li {
+  gap: 7px;
+  padding: 8px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--secondary);
+  font-size: 11px;
+}
+.onboarding-dialog.editor-first-import
+  .onboarding-steps
+  li[aria-current="step"] {
+  background: color-mix(in srgb, var(--primary) 8%, var(--card));
+  color: var(--accent-text);
+}
+.onboarding-dialog.editor-first-import .onboarding-detail {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  gap: 10px;
+}
+.onboarding-dialog.editor-first-import .onboarding-detail > svg {
+  color: var(--accent-text);
+  margin-top: 2px;
+}
+.onboarding-dialog.editor-first-import .onboarding-detail h3 {
+  font-size: 14px;
+  font-weight: 550;
+  margin: 0 0 6px;
+}
+.onboarding-dialog.editor-first-import .onboarding-detail :is(p, ol) {
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 6px 0;
+}
+.onboarding-dialog.editor-first-import .onboarding-route {
+  gap: 8px;
+  font-size: 11px;
+}
+.onboarding-dialog.editor-first-import .onboarding-actions {
+  gap: 7px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.editor-guided-tour .tour-card {
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: 0 12px 40px rgb(20 32 50 / 18%);
+  width: min(330px, calc(100vw - 24px));
+}
+.editor-guided-tour .tour-spotlight {
+  border-radius: 12px;
+  border-width: 1px;
+  box-shadow: 0 0 0 9999px rgb(15 24 40 / 15%);
+}
+.editor-guided-tour .tour-topline {
+  color: var(--muted-foreground);
+  font-size: 10px;
+}
+.editor-guided-tour .tour-progress {
+  margin: 10px 0;
+  gap: 5px;
+}
+.editor-guided-tour .tour-progress > span {
+  height: 3px;
+  border-radius: 99px;
+}
+.editor-guided-tour .tour-lesson-picker {
+  margin-bottom: 12px;
+  gap: 8px;
+}
+.editor-guided-tour .tour-card h2 {
+  font-size: 18px;
+  letter-spacing: -0.45px;
+  font-weight: 550;
+  margin: 0 0 8px;
+}
+.editor-guided-tour .tour-details > p {
+  font-size: 12px;
+  line-height: 1.55;
+  margin: 0 0 10px;
+}
+.editor-guided-tour .tour-try {
+  margin: 12px 0;
+  padding: 11px;
+  border-radius: 12px;
+  border: 0;
+  background: color-mix(in srgb, var(--primary) 7%, var(--card));
+}
+.editor-guided-tour .tour-try p {
+  font-size: 12px;
+  line-height: 1.55;
+  margin-top: 4px;
+}
+.editor-guided-tour .tour-navigation {
+  margin-top: 12px;
+  padding-top: 12px;
+  gap: 8px;
+}
+.editor-guided-tour .tour-footnote {
+  font-size: 10px;
+  margin-top: 8px;
+  text-align: right;
+}
+@media (max-width: 520px) {
+  .welcome-dialog.editor-tutorial,
+  .onboarding-dialog.editor-first-import {
+    padding: 20px;
+    gap: 14px;
+    border-radius: 18px;
+  }
+  .welcome-dialog.editor-tutorial .welcome-features {
+    gap: 3px;
+  }
+  .welcome-dialog.editor-tutorial :is(.welcome-feature, .welcome-path) {
+    padding: 7px 5px;
+    gap: 7px;
+  }
+  .welcome-dialog.editor-tutorial .welcome-feature-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+  }
+  .welcome-dialog.editor-tutorial .welcome-start {
+    flex-wrap: wrap;
+    padding: 12px;
+  }
+  .onboarding-dialog.editor-first-import .onboarding-steps {
+    grid-template-columns: 1fr;
+  }
+  .onboarding-dialog.editor-first-import .onboarding-steps li {
+    padding: 6px 8px;
+  }
+  .editor-review.editor-review {
+    padding: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .editor-guided-tour .tour-card,
+  .welcome-dialog.editor-tutorial,
+  .onboarding-dialog.editor-first-import {
+    animation: none !important;
+  }
+}

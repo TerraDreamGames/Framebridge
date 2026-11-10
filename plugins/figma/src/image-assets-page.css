@@ -1,0 +1,231 @@
+.focused-app .images-inspector.image-assets-page {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  min-width: 0;
+}
+.image-assets-page .image-assets-navigation {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+.image-assets-navigation > [data-slot="button"] {
+  flex: none;
+  gap: 7px;
+  padding: 7px 12px;
+  height: 34px;
+  border-radius: 9px;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+.image-assets-navigation > [aria-pressed="true"] {
+  background: var(--fb-selected);
+  color: var(--selection-foreground);
+}
+.image-assets-navigation [data-slot="badge"] {
+  min-width: 20px;
+  padding: 1px 5px;
+  font-size: 10px;
+  border: 0;
+}
+.image-assets-content {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 16px 20px 20px;
+}
+.image-assets-view {
+  min-width: 0;
+}
+.image-assets-view[hidden] {
+  display: none;
+}
+.image-assets-view:not([hidden]) {
+  animation: fb-content-in var(--fb-motion-open) ease-out;
+}
+.image-assets-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 34px;
+  margin-bottom: 12px;
+}
+.image-assets-count {
+  color: var(--muted-foreground);
+  font-size: 12px;
+}
+.image-assets-page input[aria-label="Search analyzed images"] {
+  width: 100%;
+  margin-bottom: 14px;
+  background: var(--secondary);
+  border-color: transparent;
+}
+.focused-app .image-assets-page .asset-list {
+  display: grid;
+  margin: 0;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  align-items: start;
+  gap: 12px;
+}
+.focused-app .image-assets-page .asset-row {
+  margin: 0;
+  padding: 0;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--card);
+}
+.focused-app .image-assets-page .asset-trigger {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding: 12px;
+  text-decoration: none;
+  border-radius: 11px;
+}
+.image-assets-page .asset-trigger > .accordion-chevron {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  z-index: 1;
+}
+.focused-app .image-assets-page .asset-trigger .asset-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100px;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--secondary);
+}
+.image-assets-page .asset-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.focused-app .image-assets-page .asset-name {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  text-align: left;
+}
+.focused-app .image-assets-page .asset-name strong {
+  display: block;
+  min-width: 0;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 550;
+}
+.image-assets-page .asset-name small {
+  display: none;
+}
+.focused-app .image-assets-page .asset-meta {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin: 0;
+  font-size: 10px;
+  color: var(--muted-foreground);
+}
+.image-assets-page .asset-meta .asset-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: var(--secondary);
+  font-size: 10px;
+  white-space: nowrap;
+}
+.focused-app .image-assets-page .asset-detail {
+  padding: 0 12px 12px;
+  border-top: 1px solid var(--border);
+}
+.image-assets-page .asset-detail p {
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 8px 0;
+}
+.image-assets-page .asset-detail label {
+  display: grid;
+  gap: 6px;
+  font-size: 11px;
+}
+.image-assets-page .asset-detail [data-slot="input"] {
+  min-width: 0;
+  width: 100%;
+  height: 30px;
+  font-size: 11px;
+}
+.image-assets-page .asset-filename {
+  display: block;
+  margin-top: 8px;
+  font-size: 10px;
+  color: var(--muted-foreground);
+  overflow-wrap: anywhere;
+}
+.image-assets-page .asset-list > [data-slot="empty"] {
+  grid-column: 1 / -1;
+}
+.focused-app .image-assets-page .cloud-settings,
+.focused-app .image-assets-page .artwork-resource,
+.focused-app .image-assets-page .artwork-account {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.focused-app .image-assets-page .cloud-settings {
+  max-width: 600px;
+}
+.focused-app .image-assets-page .cloud-settings > h2,
+.focused-app .image-assets-page .artwork-resource > .fb-disclosure-trigger {
+  display: none;
+}
+.image-assets-page .image-assets-view > .asset-owner-action {
+  margin-top: 14px;
+}
+.focused-app .image-assets-page .artwork-resource > .fb-disclosure-body {
+  padding: 0;
+}
+.image-assets-page .roblox-account-heading {
+  margin-top: 14px;
+}
+@media (max-width: 600px) {
+  .image-assets-content {
+    padding: 12px;
+  }
+  .image-assets-page .image-assets-navigation {
+    padding: 10px 12px;
+  }
+  .image-assets-navigation > [data-slot="button"] {
+    padding: 6px 10px;
+    height: 32px;
+    font-size: 12px;
+  }
+  .focused-app .image-assets-page .asset-list {
+    grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+    gap: 8px;
+  }
+}

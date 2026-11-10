@@ -1,0 +1,2163 @@
+{
+  "format": "framebridge",
+  "version": 1,
+  "sourceId": "framebridge-example:horizontal-carousel",
+  "name": "Reward carousel",
+  "createdAt": "2026-10-01T00:00:00Z",
+  "options": {
+    "layout": "responsive",
+    "appearance": "editable",
+    "preserveText": true,
+    "imageScale": 2
+  },
+  "roots": [
+    {
+      "id": "screen:horizontal-carousel:root",
+      "name": "Reward carousel",
+      "className": "ScreenGui",
+      "referenceSize": [
+        640,
+        480
+      ],
+      "properties": {
+        "ResetOnSpawn": false,
+        "IgnoreGuiInset": true,
+        "ZIndexBehavior": {
+          "type": "Enum",
+          "value": [
+            "ZIndexBehavior",
+            "Sibling"
+          ]
+        },
+        "DisplayOrder": 0,
+        "Enabled": true
+      },
+      "children": [
+        {
+          "id": "horizontal-carousel:root",
+          "name": "Reward carousel",
+          "className": "Frame",
+          "sourceType": "FRAME",
+          "properties": {
+            "Position": {
+              "type": "UDim2",
+              "value": [
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "Size": {
+              "type": "UDim2",
+              "value": [
+                1,
+                0,
+                1,
+                0
+              ]
+            },
+            "AnchorPoint": {
+              "type": "Vector2",
+              "value": [
+                0,
+                0
+              ]
+            },
+            "Rotation": 0,
+            "Visible": true,
+            "BorderSizePixel": 0,
+            "BackgroundTransparency": 0,
+            "LayoutOrder": 0,
+            "ZIndex": 1,
+            "ClipsDescendants": false,
+            "BackgroundColor3": {
+              "type": "Color3",
+              "value": [
+                0.04706,
+                0.07843,
+                0.13333
+              ]
+            }
+          },
+          "children": [
+            {
+              "id": "horizontal-carousel:title",
+              "name": "title",
+              "className": "TextLabel",
+              "sourceType": "TEXT",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    24,
+                    0,
+                    20
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    592,
+                    0,
+                    36
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 1,
+                "LayoutOrder": 0,
+                "ZIndex": 1,
+                "ClipsDescendants": false,
+                "Text": "Reward carousel",
+                "FontFace": {
+                  "type": "Font",
+                  "family": "rbxasset://fonts/families/Roboto.json",
+                  "weight": "Regular",
+                  "style": "Normal"
+                },
+                "TextSize": 26,
+                "TextColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.90196,
+                    0.93333,
+                    0.98824
+                  ]
+                },
+                "TextTransparency": 0,
+                "TextXAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextXAlignment",
+                    "Left"
+                  ]
+                },
+                "TextYAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextYAlignment",
+                    "Center"
+                  ]
+                },
+                "TextWrapped": true,
+                "TextScaled": false,
+                "RichText": false,
+                "AutoLocalize": false
+              },
+              "children": []
+            },
+            {
+              "id": "horizontal-carousel:hint",
+              "name": "hint",
+              "className": "TextLabel",
+              "sourceType": "TEXT",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    24,
+                    0,
+                    60
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    592,
+                    0,
+                    36
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 1,
+                "LayoutOrder": 1,
+                "ZIndex": 2,
+                "ClipsDescendants": false,
+                "Text": "Horizontal scrolling with X canvas growth, fixed card widths and a horizontal list.",
+                "FontFace": {
+                  "type": "Font",
+                  "family": "rbxasset://fonts/families/Roboto.json",
+                  "weight": "Regular",
+                  "style": "Normal"
+                },
+                "TextSize": 13,
+                "TextColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.90196,
+                    0.93333,
+                    0.98824
+                  ]
+                },
+                "TextTransparency": 0,
+                "TextXAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextXAlignment",
+                    "Left"
+                  ]
+                },
+                "TextYAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextYAlignment",
+                    "Center"
+                  ]
+                },
+                "TextWrapped": true,
+                "TextScaled": false,
+                "RichText": false,
+                "AutoLocalize": false
+              },
+              "children": []
+            },
+            {
+              "id": "horizontal-carousel:scroll",
+              "name": "Rewards",
+              "className": "ScrollingFrame",
+              "sourceType": "FRAME",
+              "properties": {
+                "CanvasSize": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "AutomaticCanvasSize": {
+                  "type": "Enum",
+                  "value": [
+                    "AutomaticSize",
+                    "X"
+                  ]
+                },
+                "ScrollingDirection": {
+                  "type": "Enum",
+                  "value": [
+                    "ScrollingDirection",
+                    "X"
+                  ]
+                },
+                "ScrollingEnabled": true,
+                "ScrollBarThickness": 6,
+                "Active": true,
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    24,
+                    0,
+                    104
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    1,
+                    -48,
+                    1,
+                    -128
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 0,
+                "LayoutOrder": 2,
+                "ZIndex": 3,
+                "ClipsDescendants": true,
+                "BackgroundColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.0902,
+                    0.13333,
+                    0.20784
+                  ]
+                },
+                "ScrollBarImageColor3": {
+                  "type": "Color3",
+                  "value": [
+                    0.36,
+                    0.64,
+                    1
+                  ]
+                }
+              },
+              "children": [
+                {
+                  "id": "horizontal-carousel:scroll/corner",
+                  "name": "UICorner",
+                  "className": "UICorner",
+                  "properties": {
+                    "CornerRadius": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        8
+                      ]
+                    }
+                  },
+                  "children": []
+                },
+                {
+                  "id": "horizontal-carousel:card-1",
+                  "name": "Reward 01",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        156,
+                        1,
+                        -16
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 0,
+                    "ZIndex": 1,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "horizontal-carousel:card-1/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:reward-1",
+                      "name": "reward-1",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            44
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "REWARD 1",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 18,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:quantity-1",
+                      "name": "quantity-1",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            92
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            140
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 1,
+                        "ZIndex": 2,
+                        "ClipsDescendants": false,
+                        "Text": "100\ncoins",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 24,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "horizontal-carousel:card-2",
+                  "name": "Reward 02",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        156,
+                        1,
+                        -16
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 1,
+                    "ZIndex": 2,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "horizontal-carousel:card-2/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:reward-2",
+                      "name": "reward-2",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            44
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "REWARD 2",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 18,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:quantity-2",
+                      "name": "quantity-2",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            92
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            140
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 1,
+                        "ZIndex": 2,
+                        "ClipsDescendants": false,
+                        "Text": "200\ncoins",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 24,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "horizontal-carousel:card-3",
+                  "name": "Reward 03",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        156,
+                        1,
+                        -16
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 2,
+                    "ZIndex": 3,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "horizontal-carousel:card-3/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:reward-3",
+                      "name": "reward-3",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            44
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "REWARD 3",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 18,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:quantity-3",
+                      "name": "quantity-3",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            92
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            140
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 1,
+                        "ZIndex": 2,
+                        "ClipsDescendants": false,
+                        "Text": "300\ncoins",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 24,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "horizontal-carousel:card-4",
+                  "name": "Reward 04",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        156,
+                        1,
+                        -16
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 3,
+                    "ZIndex": 4,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "horizontal-carousel:card-4/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:reward-4",
+                      "name": "reward-4",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            44
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "REWARD 4",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 18,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:quantity-4",
+                      "name": "quantity-4",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            92
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            140
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 1,
+                        "ZIndex": 2,
+                        "ClipsDescendants": false,
+                        "Text": "400\ncoins",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 24,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "horizontal-carousel:card-5",
+                  "name": "Reward 05",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        156,
+                        1,
+                        -16
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 4,
+                    "ZIndex": 5,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "horizontal-carousel:card-5/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:reward-5",
+                      "name": "reward-5",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            44
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "REWARD 5",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 18,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:quantity-5",
+                      "name": "quantity-5",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            92
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            140
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 1,
+                        "ZIndex": 2,
+                        "ClipsDescendants": false,
+                        "Text": "500\ncoins",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 24,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "horizontal-carousel:card-6",
+                  "name": "Reward 06",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        156,
+                        1,
+                        -16
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 5,
+                    "ZIndex": 6,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "horizontal-carousel:card-6/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:reward-6",
+                      "name": "reward-6",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            44
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "REWARD 6",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 18,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:quantity-6",
+                      "name": "quantity-6",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            92
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            140
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 1,
+                        "ZIndex": 2,
+                        "ClipsDescendants": false,
+                        "Text": "600\ncoins",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 24,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "horizontal-carousel:card-7",
+                  "name": "Reward 07",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        156,
+                        1,
+                        -16
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 6,
+                    "ZIndex": 7,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "horizontal-carousel:card-7/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:reward-7",
+                      "name": "reward-7",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            44
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "REWARD 7",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 18,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:quantity-7",
+                      "name": "quantity-7",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            92
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            140
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 1,
+                        "ZIndex": 2,
+                        "ClipsDescendants": false,
+                        "Text": "700\ncoins",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 24,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "horizontal-carousel:card-8",
+                  "name": "Reward 08",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        0,
+                        156,
+                        1,
+                        -16
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0,
+                        0
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 7,
+                    "ZIndex": 8,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.13333,
+                        0.2,
+                        0.29412
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "horizontal-carousel:card-8/corner",
+                      "name": "UICorner",
+                      "className": "UICorner",
+                      "properties": {
+                        "CornerRadius": {
+                          "type": "UDim",
+                          "value": [
+                            0,
+                            8
+                          ]
+                        }
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:reward-8",
+                      "name": "reward-8",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            16
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            44
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "REWARD 8",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 18,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "horizontal-carousel:quantity-8",
+                      "name": "quantity-8",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            16,
+                            0,
+                            92
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            124,
+                            0,
+                            140
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 1,
+                        "ZIndex": 2,
+                        "ClipsDescendants": false,
+                        "Text": "800\ncoins",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 24,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            0.90196,
+                            0.93333,
+                            0.98824
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "id": "horizontal-carousel:scroll/layout",
+                  "name": "UIListLayout",
+                  "className": "UIListLayout",
+                  "properties": {
+                    "FillDirection": {
+                      "type": "Enum",
+                      "value": [
+                        "FillDirection",
+                        "Horizontal"
+                      ]
+                    },
+                    "SortOrder": {
+                      "type": "Enum",
+                      "value": [
+                        "SortOrder",
+                        "LayoutOrder"
+                      ]
+                    },
+                    "Padding": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        12
+                      ]
+                    },
+                    "HorizontalAlignment": {
+                      "type": "Enum",
+                      "value": [
+                        "HorizontalAlignment",
+                        "Left"
+                      ]
+                    },
+                    "VerticalAlignment": {
+                      "type": "Enum",
+                      "value": [
+                        "VerticalAlignment",
+                        "Top"
+                      ]
+                    }
+                  },
+                  "children": []
+                },
+                {
+                  "id": "horizontal-carousel:scroll/padding",
+                  "name": "UIPadding",
+                  "className": "UIPadding",
+                  "properties": {
+                    "PaddingTop": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        12
+                      ]
+                    },
+                    "PaddingRight": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        12
+                      ]
+                    },
+                    "PaddingBottom": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        12
+                      ]
+                    },
+                    "PaddingLeft": {
+                      "type": "UDim",
+                      "value": [
+                        0,
+                        12
+                      ]
+                    }
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "assets": [],
+  "issues": [],
+  "stats": {
+    "layers": 28,
+    "native": 28,
+    "raster": 0,
+    "instances": 40
+  }
+}

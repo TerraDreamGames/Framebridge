@@ -1,0 +1,464 @@
+/* Review tools share the conversion-notes spacing, controls and flat rows. */
+.focused-app .review-panel.editor-review {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+  font-size: 12px;
+}
+.review-intro {
+  flex: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px 20px;
+}
+.focused-app .review-panel .review-intro > p {
+  flex: 1 1 310px;
+  max-width: 66ch;
+  margin: 0 auto 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.review-intro-actions,
+.review-row-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.focused-app .review-panel [data-slot="button"] {
+  height: 30px;
+  min-height: 30px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.focused-app .review-panel .review-primary {
+  background: var(--fb-action);
+  color: var(--fb-action-ink);
+}
+.focused-app .review-panel .review-primary:hover {
+  background: color-mix(in srgb, var(--fb-action) 87%, var(--muted-foreground));
+}
+.review-panel-body {
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 0 20px 16px;
+}
+.focused-app .review-panel .fb-disclosure.fb-disclosure {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.focused-app .review-panel .fb-disclosure > .fb-disclosure-trigger {
+  min-height: 38px;
+  padding: 9px 8px;
+  margin: 0;
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.focused-app .review-panel .fb-disclosure > .fb-disclosure-body {
+  padding: 6px 8px 14px;
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.review-meta {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+}
+.review-check-choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px 24px;
+}
+.focused-app .review-check-choices label {
+  display: flex;
+  align-items: flex-start;
+  min-width: 0;
+  gap: 9px;
+}
+.review-check-choices [data-slot="checkbox"] {
+  margin-top: 2px;
+}
+.review-check-choices label > span {
+  min-width: 0;
+}
+.review-check-choices strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.review-check-choices small {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+.review-target-reference {
+  display: grid;
+  grid-template-columns: minmax(120px, 170px) minmax(0, 280px);
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+}
+.focused-app .review-panel .review-status {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 0;
+  margin: 0;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.focused-app .review-panel .review-status[role="alert"] {
+  color: var(--danger-text);
+}
+.review-status > span {
+  flex: 1;
+}
+.review-result-meta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 12px 0;
+  color: var(--muted-foreground);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.review-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 0 0 12px;
+}
+.review-toolbar .review-filters {
+  flex: none;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--secondary);
+}
+.review-toolbar .review-filters [data-slot="toggle-group-item"] {
+  height: 29px;
+  min-height: 29px;
+  padding: 4px 11px;
+  gap: 6px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted-foreground);
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.review-toolbar .review-filters [data-state="on"] {
+  background: var(--card);
+  color: var(--foreground);
+  box-shadow: 0 1px 3px #0001;
+}
+.review-filters [data-slot="toggle-group-item"] > span {
+  font-size: 10px;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+.review-toolbar .review-search {
+  flex: 1 1 180px;
+  max-width: 300px;
+  height: 33px;
+  margin-left: auto;
+  border-radius: 9px;
+  background: var(--card);
+  box-shadow: none;
+}
+.review-search [data-slot="input-group-control"] {
+  min-width: 0;
+  height: 31px;
+  font-size: 12px;
+}
+.focused-app .review-search [data-slot="button"] {
+  width: 23px;
+  height: 23px;
+  min-height: 23px;
+  padding: 4px;
+  border-radius: 6px;
+}
+.review-toolbar .review-category-filter {
+  min-width: 140px;
+  max-width: 180px;
+}
+.focused-app .review-panel .review-finding > summary,
+.focused-app .review-panel .structure-review-card > summary {
+  gap: 10px;
+  min-height: 54px;
+  padding: 10px 8px;
+}
+.review-row-symbol {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent-text) 9%, transparent);
+  color: var(--accent-text);
+}
+.review-finding[data-severity="warning"] .review-row-symbol {
+  background: color-mix(in srgb, var(--warning) 9%, transparent);
+  color: var(--warning);
+}
+.focused-app .review-panel .review-row-copy {
+  flex: 1;
+  min-width: 0;
+  overflow: auto;
+  white-space: nowrap;
+}
+.review-row-copy > strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 550;
+}
+.review-row-copy > small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted-foreground);
+  font-size: 11px;
+  font-weight: 400;
+}
+.review-row-tag,
+.review-current-class {
+  flex: none;
+  color: var(--muted-foreground);
+  font-size: 11px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.focused-app .review-panel .review-finding-detail {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+  padding-left: 23px;
+}
+.review-finding-kind {
+  color: var(--accent-text);
+  font-size: 11px;
+}
+.review-finding[data-severity="warning"] .review-finding-kind {
+  color: var(--warning);
+}
+.focused-app .review-panel .review-finding-detail p {
+  margin: 0;
+  max-width: 90ch;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.review-recommendation {
+  border-left: 2px solid var(--border);
+  padding-left: 12px;
+}
+.review-recommendation > strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 550;
+}
+.review-related {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--muted-foreground);
+}
+.focused-app .review-panel .review-layer-name {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  font-weight: 550;
+}
+.focused-app .review-panel .structure-review-count {
+  color: var(--accent-text);
+  background: color-mix(in srgb, var(--accent-text) 9%, transparent);
+  border-radius: 999px;
+  padding: 2px 7px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.focused-app .review-panel .structure-review-body {
+  min-width: 0;
+  padding: 0 0 0 23px;
+  border: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+.review-source-mapping {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+.focused-app .review-panel .structure-review-body > ul {
+  margin: 0;
+  padding-left: 14px;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+}
+.focused-app .review-panel .structure-review-body > button {
+  justify-self: start;
+}
+.focused-app .review-panel .structure-suggestion {
+  margin: 0;
+  padding: 0 0 0 12px;
+  border: 0;
+  border-left: 2px solid color-mix(in srgb, var(--accent-text) 35%, transparent);
+  display: grid;
+  justify-items: start;
+  gap: 7px;
+}
+.focused-app .review-panel .structure-suggestion :is(p, ul) {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.focused-app .review-panel .structure-review-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.focused-app .review-panel .structure-review-fields > label {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  margin: 0;
+}
+.structure-review-fields > button {
+  align-self: end;
+  justify-self: start;
+}
+.focused-app
+  .review-panel
+  .structure-memory
+  label:has(> [data-slot="checkbox"]) {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.focused-app .review-panel .review-zero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 12px;
+  text-align: center;
+  color: var(--muted-foreground);
+}
+.review-zero > strong {
+  color: var(--foreground);
+  font-size: 13px;
+  font-weight: 550;
+}
+.focused-app .review-panel .review-zero > p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.review-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 0;
+}
+.review-pagination > span {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+}
+.review-coverage-list > div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 5px 0;
+}
+.review-coverage-list dd {
+  color: var(--muted-foreground);
+}
+.review-footnote {
+  display: flex;
+  flex: none;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.review-footnote > svg {
+  margin-top: 2px;
+}
+@media (max-width: 720px) {
+  .review-intro {
+    padding: 14px 16px;
+  }
+  .review-panel-body {
+    padding-inline: 16px;
+  }
+  .review-toolbar .review-search {
+    flex-basis: 100%;
+    max-width: none;
+    margin: 0;
+  }
+  .review-toolbar .review-category-filter {
+    max-width: none;
+    flex: 1;
+  }
+  .review-row-tag {
+    display: none;
+  }
+  .focused-app .review-panel .structure-review-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .review-footnote {
+    padding: 10px 16px;
+  }
+}
+@media (max-width: 450px) {
+  .focused-app .review-panel .fb-disclosure-trigger > .review-meta {
+    font-size: 10px;
+  }
+  .review-toolbar .review-filters [data-slot="toggle-group-item"] {
+    padding-inline: 8px;
+    font-size: 11px;
+  }
+  .review-target-reference {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .focused-app .review-panel .structure-review-count {
+    font-size: 9px;
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Framebridge — Figma to Roblox",
+  "id": "1690625281889312721",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma", "dev"],
+  "capabilities": ["codegen"],
+  "codegenLanguages": [
+    { "label": "React Lua", "value": "react" },
+    { "label": "Fusion 0.3", "value": "fusion" },
+    { "label": "roblox-ts JSX", "value": "tsx" },
+    { "label": "Vanilla Luau", "value": "luau" }
+  ],
+  "codegenPreferences": [
+    {
+      "itemType": "select",
+      "propertyName": "layout",
+      "label": "Layout",
+      "options": [
+        { "label": "Responsive", "value": "responsive", "isDefault": true },
+        { "label": "Measured pixels", "value": "exact" }
+      ]
+    }
+  ],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": ["none"],
+    "reason": "Connect Figma to Roblox Studio, authorize Roblox image uploads, and send reports when you choose."
+  }
+}

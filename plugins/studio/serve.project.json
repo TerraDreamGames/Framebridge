@@ -1,0 +1,16 @@
+{
+  "name": "Framebridge development",
+  "serveAddress": "127.0.0.1",
+  "servePort": 34873,
+  "tree": {
+    "$className": "DataModel",
+    "$ignoreUnknownInstances": true,
+    "ServerStorage": {
+      "$className": "ServerStorage",
+      "$ignoreUnknownInstances": true,
+      "Framebridge": {
+        "$path": "default.project.json"
+      }
+    }
+  }
+}

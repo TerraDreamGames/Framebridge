@@ -1,0 +1,206 @@
+/** Separate IDs keep the Figma controller's preference reader free of UI copy. */
+export const TOUR_STEP_IDS = [
+  "analyze",
+  "layers",
+  "properties",
+  "preview",
+  "layouts",
+  "interactions",
+  "images",
+  "review",
+  "studio",
+] as const;
+/** Stable IDs let a paused tour survive changes to the lesson copy. */
+export const TOUR_STEPS = [
+  {
+    id: "analyze",
+    label: "Start with a frame",
+    icon: "scan",
+    chapter: "Meet your workspace",
+    target: '[data-tour="preview"]',
+    title: "Turn your design into editable UI",
+    description:
+      "Select a single UI frame in Figma, then Analyze. Framebridge builds a source preview and a Roblox hierarchy without changing your design.",
+    features: [
+      "Text and supported frames stay editable.",
+      "Vectors and complex artwork become images automatically.",
+    ],
+    try: "Select the UI frame itself, rather than the whole canvas. Its distance from the Figma canvas origin doesn’t matter.",
+  },
+  {
+    id: "layers",
+    label: "Explore your layers",
+    icon: "layers",
+    chapter: "Meet your workspace",
+    target: "#framebridge-layers-pane",
+    title: "See exactly what Studio will receive",
+    description:
+      "The Layers tree uses Roblox instance names and icons. Select a row to inspect it, or use the arrows to explore its children.",
+    features: [
+      "Search, hierarchy lines and descendant highlights keep large designs readable.",
+      "Select several layers to change their properties together.",
+    ],
+    try: "Select a layer. Its properties appear on the right. Drag either sidebar’s inner edge to give it more room.",
+  },
+  {
+    id: "properties",
+    label: "Edit Roblox properties",
+    icon: "sliders",
+    chapter: "Make it fit your game",
+    target: "#framebridge-properties-pane",
+    title: "Fine-tune it before importing",
+    description:
+      "Use the familiar Studio-style inspector to edit the export. Expand Size, Position or AnchorPoint only when you need their individual values.",
+    features: [
+      "Scale follows the parent; offset adds pixels.",
+      "Property edits have Undo and Redo. Your Figma source stays intact.",
+    ],
+    try: "Expand Size to inspect scale and offset. A panel is sized relative to its design screen, not stretched to fill it.",
+  },
+  {
+    id: "preview",
+    label: "Test different screens",
+    icon: "monitor",
+    chapter: "Make it fit your game",
+    target: '[data-tour="preview"]',
+    title: "Catch layout problems early",
+    description:
+      "Compare Source with Roblox, then use the device picker to check different viewport sizes. Test UI lets you try supported interactions.",
+    features: [
+      "Desktop, phone and tablet presets, plus custom dimensions.",
+      "Selection outlines connect the preview to the Layers tree.",
+    ],
+    try: "Choose a phone preset in Roblox preview. Check spacing and clipping, then verify fonts and safe areas in Studio.",
+  },
+  {
+    id: "layouts",
+    label: "Scrolling & layouts",
+    icon: "grid",
+    chapter: "Make it fit your game",
+    target: '[data-tour="layout-tools"]',
+    title: "Build UI that grows with its content",
+    description:
+      "ScrollingFrame, UIListLayout and UIGridLayout keep menus and inventories organized. Figma auto layout and scrolling can convert into native layouts.",
+    features: [
+      "Add padding, aspect ratios and size constraints in the inspector.",
+      "Export setup lets you choose a layer’s Roblox instance type.",
+    ],
+    try: "Select a Frame, open Framebridge tools to inspect its export type, then explore Constraints & modifiers below it.",
+  },
+  {
+    id: "interactions",
+    label: "Interactions & polish",
+    icon: "pointer",
+    chapter: "Make it fit your game",
+    target: '[data-tour="interaction-tools"]',
+    title: "Give your interface something to do",
+    description:
+      "Open Interactions for buttons, tabs and advanced controls. Motion, sound, theme tokens and conditional rules are nearby when you want more.",
+    features: [
+      "Configure panel actions, sliders, toggles and other supported controls.",
+      "Generated behavior runs in Play; game rewards still belong in server scripts.",
+    ],
+    try: "Explore the Interactions section on a layer. Use control examples to see complete setups before making your own.",
+  },
+  {
+    id: "images",
+    label: "Prepare your images",
+    icon: "image",
+    chapter: "Bring it into Studio",
+    target: '[data-tour="inspector"]',
+    title: "Keep artwork sharp and ready to use",
+    description:
+      "Images brings uploads, asset IDs and saved artwork into one place. Sign in to Roblox when you’re ready to upload and choose the correct personal or group owner.",
+    features: [
+      "Transparent-edge cleanup is on by default and can be disabled.",
+      "Reuse uploaded assets or paste existing Roblox image IDs.",
+    ],
+    try: "Review the images generated by Analyze. You can explore and download first; sign-in is needed for automatic uploads.",
+  },
+  {
+    id: "review",
+    label: "Review before sending",
+    icon: "check",
+    chapter: "Bring it into Studio",
+    target: '[data-tour="inspector"]',
+    title: "Know what needs your attention",
+    description:
+      "Review notes explain conversion limits. Structure review and usability checks help you inspect the hierarchy and potential issues before export.",
+    features: [
+      "Jump from an issue to the affected layer.",
+      "Use settings for your design screen, layout strategy and font mapping.",
+    ],
+    try: "Read any review notes. Confirm the design screen matches your intended game resolution, such as 1920 × 1080.",
+  },
+  {
+    id: "studio",
+    label: "Connect & keep building",
+    icon: "link",
+    chapter: "Bring it into Studio",
+    target: '[data-tour="inspector"]',
+    title: "Your first import is only the beginning",
+    description:
+      "Open Framebridge in Studio, choose Connect to Figma, and paste its code here. Send delivers your UI; the guide waits for Studio’s import confirmation.",
+    features: [
+      "A remembered connection supports repeated sends until its visible expiry.",
+      "Optional auto-sync sends later edits. A downloaded package works without pairing.",
+    ],
+    try: "Use the first-import checklist for pairing, image uploads and delivery. Keep refining the imported UI with Studio’s own tools.",
+  },
+] as const;
+
+export type TourStepId = (typeof TOUR_STEP_IDS)[number];
+export type TourLesson = (typeof TOUR_STEPS)[number];
+export function isTourStep(value: unknown): value is TourStepId {
+  return TOUR_STEP_IDS.some((id) => id === value);
+}
+export function tourLesson(id: TourStepId | undefined) {
+  return TOUR_STEPS.find((step) => step.id === id) ?? TOUR_STEPS[0];
+}
+
+export type TourRect = {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+};
+/** Position the coach beside the highlighted control when there is room. */
+export function placeTourCard(
+  target: TourRect | undefined,
+  viewport: { width: number; height: number },
+  card: { width: number; height: number },
+) {
+  const gap = 16,
+    edge = 12;
+  const maxX = Math.max(edge, viewport.width - card.width - edge);
+  const maxY = Math.max(edge, viewport.height - card.height - edge);
+  const clampX = (x: number) => Math.max(edge, Math.min(maxX, x));
+  const clampY = (y: number) => Math.max(edge, Math.min(maxY, y));
+  if (target) {
+    if (target.left + target.width + gap + card.width <= viewport.width - edge)
+      return {
+        left: clampX(target.left + target.width + gap),
+        top: clampY(target.top + 16),
+      };
+    if (target.left - gap - card.width >= edge)
+      return {
+        left: clampX(target.left - gap - card.width),
+        top: clampY(target.top + 16),
+      };
+    if (
+      target.top + target.height + gap + card.height <=
+      viewport.height - edge
+    )
+      return {
+        left: clampX(target.left),
+        top: clampY(target.top + target.height + gap),
+      };
+    if (target.top - gap - card.height >= edge)
+      return {
+        left: clampX(target.left),
+        top: clampY(target.top - gap - card.height),
+      };
+  }
+  // Small windows get a compact, scrollable card instead of an off-screen popover.
+  return { left: maxX, top: maxY };
+}

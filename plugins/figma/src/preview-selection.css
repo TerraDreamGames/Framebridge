@@ -1,0 +1,74 @@
+.preview-selection-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+.preview-selection-lines {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+.preview-selection-shape {
+  fill: none;
+  stroke: var(--primary);
+  stroke-linejoin: round;
+}
+.preview-selection-shape.is-hover {
+  stroke-width: 1;
+  opacity: 0.55;
+}
+.preview-selection-shape.is-selected {
+  stroke-width: 1;
+}
+.preview-selection-shape.is-selected path {
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+.preview-selection-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 23px;
+  padding: 0 7px;
+  border-radius: 5px;
+  background: var(--primary);
+  color: #fff;
+  box-shadow:
+    0 0 0 1px #ffffff42,
+    0 2px 5px #00000012;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 16px;
+  white-space: nowrap;
+  animation: preview-selection-reveal 100ms ease-out;
+}
+.preview-selection-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+}
+.preview-selection-dimensions {
+  flex: none;
+  padding-left: 8px;
+  border-left: 1px solid #ffffff50;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+}
+@keyframes preview-selection-reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preview-selection-label {
+    animation: none;
+  }
+}

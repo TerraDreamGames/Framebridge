@@ -1,0 +1,34 @@
+# Optional UI particles
+
+In Layers, expand Custom settings → Particles. Choose Confetti or 2D emitter with the built-in engine for immediate native client visuals. Both are trusted product code shipped inside the generated runtime; no package installation, remote code or image upload is needed. Choose None to remove the configuration. Settings are stored with the layer's existing document plugin data. Analyze after edits and resolve blocking validation errors before transfer.
+
+Choose a one-time burst after the layer becomes visible, Button Activated, or an application attribute. Activated uses the layer's button or nearest button ancestor. A plain layer without an ancestor becomes an inferred button only when its class has not been explicitly assigned. Hidden/disabled buttons and advanced-control cooldown/confirmation guards block Activated bursts. Continuous rate works independently of the burst trigger while the emitter is enabled and visible.
+
+Counts, capacity, lifetime, speed, size, spin, direction, spread, acceleration, drag, colors, texture, point/rectangle emission and clipping are configurable. Direction is degrees clockwise from up; acceleration is pixel X/Y per second squared. Built-in colors are sampled per particle. Empty texture gives native colored rectangles; a canonical `rbxassetid://` texture uses an ImageLabel and requires game access. This is an intentionally small engine, without lighting, collisions or a 3D ParticleEmitter simulator. Generated visuals do not capture input or acquire source identities. Theme, motion and keyframe opacity collectors exclude these owned helpers.
+
+## Bounds and application control
+
+Each root allows 16 emitters, 128 live particles per emitter and 512 total. Rate is at most 32 per second; lifetime is 0.05–5 seconds. A burst cannot queue beyond capacity. Frame steps clamp to 0.1 seconds, so a stalled frame does not generate an unbounded catch-up burst. Hidden ancestors, disabled collectors, an effect's Enabled setting or `FramebridgeParticlesEnabled=false` clear live effects on the next frame. Reduced motion clears/suppresses effects unless that emitter explicitly opts out. Reimport, removal, repeated mounting and root destruction disconnect listeners and destroy owned visuals. Authored properties and application scripts retain the normal importer's override/protection behavior.
+
+Use a separate application LocalScript under PlayerGui. Increment an attribute to request a new command:
+
+```luau
+local node = script.Parent:WaitForChild("Celebrate")
+node:SetAttribute("FramebridgeParticleBurst", (node:GetAttribute("FramebridgeParticleBurst") or 0) + 1)
+node:SetAttribute("FramebridgeParticlesClear", (node:GetAttribute("FramebridgeParticlesClear") or 0) + 1)
+node:SetAttribute("FramebridgeParticlesEnabled", false)
+```
+
+Each emitter reports `FramebridgeParticlesStatus` and `FramebridgeParticleCount`. A controller obtained by mounting the trusted Runtime module directly also exposes `emitParticles(id, count?)`, `clearParticles(id)`, `retryParticles(id)`, `stepParticles(dt)` and `particleCount()`. The attribute interface works with every source format and model. The count reflects bounded reservations for the installed engine, not a readback of its private visual state. It remains reserved for the configured maximum lifetime so requests cannot exceed capacity early.
+
+Vanilla Luau, React Lua, Fusion 0.3 and roblox-ts JSX include the same configuration and runtime. Keep TSX's accompanying `FramebridgeInteractions.luau` module. Model output includes one trusted client script per root. Extracted widgets and native repeats remap activation owners. Built-in effects support ScreenGui and world UI; the installed engine contract supports ScreenGui only. The package contains data rather than executable snippets.
+
+## Optional dogwarrior24 Emitter2D installation contract
+
+The external selection is a separate adapter for [dogwarrior24's Emitter2D plugin](https://create.roblox.com/store/asset/9544897050), using its [official installation and configuration guide](https://devforum.roblox.com/t/emitter2d-convert-any-particleemitter-to-2d-with-the-click-of-a-button/3742009). Install/review its client through the plugin's Install Client action in your own game. Framebridge does not redistribute, download, install or execute that package. No redistribution license or immutable public source release was available during this implementation, so an author-reviewed exact client/template pairing is required. An actual installed-client integration is a remaining acceptance gate.
+
+The supported adapter contract is **dogwarrior24-template-v1**, contract revision **1**, with the documented Emitter2D attribute schema and `Emit`/`Clear` BindableEvents. Create a script-free configured Emitter2D GuiObject named `Emitter` inside `ReplicatedStorage.FramebridgeParticleTemplates/<template name>`. Its `ClassName` attribute must equal `Emitter2D`; preserve the plugin's actual `Version` attribute. Give the wrapper Folder `FramebridgeEmitter2DContract=1` and `FramebridgeEmitter2DClientRevision` equal to your immutable reviewed-client label. In Figma enter that wrapper name, the exact string form of `Emitter.Version`, and the same reviewed-client label. Treat the label as your version assertion, not an automatically verified engine hash. Record the installed client hash/release in your game repository and revalidate after replacing it.
+
+The adapter rejects script-bearing templates or more than 128 descendants. It clones the template, sets documented data attributes, disables autonomous emission, and requests bounded bursts through the installed client's events. It sets maximum lifetime, speed, size, rotation speed, texture, color sequence, direction/spread, point/rectangle shape and opacity/scale fade. External colors form a lifetime ColorSequence rather than built-in per-particle sampling. It uses pixel sizing and locked-to-Gui positioning. Acceleration and drag must be zero for this contract; built-in deterministic seed does not control the external engine's random generator. No unsupported acceleration/seed API is assumed.
+
+Missing/mismatched templates report a status and suppress emission without blocking the UI. Cloned command events are removed because Roblox does not clone event listeners; a valid clone waits for fresh Emit/Clear events from the installed client, then reports Ready. After three seconds it reports client unavailable. Install/fix the reviewed dependency, then increment `FramebridgeParticlesRetry` to recreate the clone. Failed/hidden/disabled effects do not accumulate deferred bursts. Clear uses the installed client's Clear event. The adapter cannot enforce an altered third-party client's internal behavior or independently measure its particle count; native verification of your exact installation remains necessary. Never add executable module IDs, URLs or script text to the transfer package.

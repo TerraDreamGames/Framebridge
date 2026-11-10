@@ -1,0 +1,111 @@
+/* Keep the hit target larger than the mark, without increasing row density.
+   Specificity protects the shared control from legacy property/label rules. */
+.fb-checkbox.property-checkbox[data-slot="checkbox"] {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 20px;
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  height: 20px;
+  min-height: 20px;
+  max-height: 20px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--primary-foreground, #fff);
+  box-shadow: none;
+  outline: none;
+  vertical-align: middle;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.fb-checkbox > [data-slot="checkbox-box"] {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  flex: none;
+  border: 1px solid var(--input);
+  border-radius: 5px;
+  background: var(--card);
+  box-shadow: 0 1px 1px #17233d06;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    transform 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.fb-checkbox[data-state="unchecked"]:hover:not(:disabled)
+  > [data-slot="checkbox-box"] {
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 6%, var(--card));
+}
+.fb-checkbox:is([data-state="checked"], [data-state="indeterminate"])
+  > [data-slot="checkbox-box"] {
+  border-color: var(--primary);
+  background: var(--primary);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--primary) 18%, transparent);
+}
+.fb-checkbox:is([data-state="checked"], [data-state="indeterminate"]):hover:not(
+    :disabled
+  )
+  > [data-slot="checkbox-box"] {
+  border-color: color-mix(in srgb, var(--primary) 88%, var(--foreground));
+  background: color-mix(in srgb, var(--primary) 88%, var(--foreground));
+}
+.fb-checkbox:active:not(:disabled) > [data-slot="checkbox-box"] {
+  transform: scale(0.94);
+}
+.fb-checkbox.property-checkbox[data-slot="checkbox"]:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.fb-checkbox[aria-invalid="true"] > [data-slot="checkbox-box"] {
+  border-color: var(--destructive);
+}
+.fb-checkbox.property-checkbox[data-slot="checkbox"]:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.fb-checkbox [data-slot="checkbox-indicator"] {
+  display: grid;
+  place-items: center;
+  width: 12px;
+  height: 12px;
+  color: var(--primary-foreground, #fff);
+  animation: fb-checkbox-mark-in 120ms ease-out;
+}
+.fb-checkbox [data-slot="checkbox-indicator"] > svg {
+  width: 12px;
+  height: 12px;
+  grid-area: 1 / 1;
+  pointer-events: none;
+}
+.fb-checkbox[data-state="checked"] .fb-checkbox-minus,
+.fb-checkbox[data-state="indeterminate"] .fb-checkbox-check {
+  display: none;
+}
+@keyframes fb-checkbox-mark-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fb-checkbox.property-checkbox[data-slot="checkbox"]
+    > [data-slot="checkbox-box"] {
+    transition: none;
+  }
+  .fb-checkbox [data-slot="checkbox-indicator"] {
+    animation: none;
+  }
+}

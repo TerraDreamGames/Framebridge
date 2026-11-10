@@ -1,0 +1,14 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.gz binary
+
+# Do not ship local development state in source archives.
+.artifacts export-ignore
+.wrangler export-ignore
+prototypes export-ignore

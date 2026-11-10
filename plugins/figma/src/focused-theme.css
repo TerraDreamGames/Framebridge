@@ -1,0 +1,1351 @@
+/* Focused workspace: one set of surfaces and controls for every plugin page. */
+@font-face {
+  font-family: "Google Sans";
+  src: url("../../../assets/fonts/GoogleSans.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+:root {
+  --font-sans:
+    "Google Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --background: #17191e;
+  --foreground: #f0f2f6;
+  --card: #20232a;
+  --card-foreground: var(--foreground);
+  --popover: #252932;
+  --popover-foreground: var(--foreground);
+  --primary: #0169cc;
+  --primary-foreground: #fff;
+  --secondary: #2c3039;
+  --secondary-foreground: #dce1eb;
+  --muted: var(--secondary);
+  --muted-foreground: #a1a9b8;
+  --accent: #333a47;
+  --accent-foreground: var(--foreground);
+  --border: #343a45;
+  --input: #414958;
+  --fb-canvas: #11151d;
+  --fb-action: #f0f2f6;
+  --fb-action-ink: #20242b;
+  --fb-selected: #233d60;
+  --fb-shadow: 0 8px 30px #0003, 0 1px 4px #0002;
+  --hierarchy-guide: #414957;
+  --scrollbar-thumb: #485363;
+  --panel-gutter: 14px;
+  --panel-gap: 10px;
+  --inspector-width: 340px;
+  --selection-background: #175d9e;
+  --selection-foreground: #fff;
+  --selection-descendants: #203047;
+  --selection-guide: #578dca;
+  --floating-surface: var(--popover);
+  --radius: 0.75rem;
+  --rail-width: 64px;
+  color-scheme: dark;
+}
+:root[data-plugin-theme="light"] {
+  --background: #fff;
+  --foreground: #252a34;
+  --card: #fff;
+  --popover: #fff;
+  --secondary: #f0f3f7;
+  --secondary-foreground: #414a59;
+  --muted: #f0f3f7;
+  --muted-foreground: #6f7888;
+  --accent: #e8edf4;
+  --border: #e1e6ee;
+  --input: #dce2eb;
+  --fb-canvas: #edf0f5;
+  --fb-action: #25282e;
+  --fb-action-ink: #fff;
+  --fb-selected: #e4efff;
+  --fb-shadow: 0 8px 26px #33425b0a, 0 1px 4px #33425b08;
+  --selection-background: #dceaff;
+  --selection-foreground: #1e4e85;
+  --selection-descendants: #eff5ff;
+  --selection-guide: #96b6e1;
+  --hierarchy-guide: #d7dee9;
+  --scrollbar-thumb: #bec8d6;
+  color-scheme: light;
+}
+:root {
+  --fb-surface: var(--card);
+  --fb-ink: var(--foreground);
+  --fb-muted: var(--muted-foreground);
+  --fb-line: var(--border);
+  --fb-blue: var(--primary);
+}
+body {
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+.focused-app {
+  padding-left: var(--rail-width);
+  background: var(--fb-canvas);
+}
+.workspace-rail {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--rail-width);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 8px;
+  background: var(--card);
+  border-right: 1px solid var(--border);
+}
+.workspace-rail .rail-brand {
+  padding: 0;
+  width: 42px;
+  height: 34px;
+  border-radius: 10px;
+}
+.rail-brand .framebridge-mark {
+  --brand-size: 34px;
+}
+.rail-pages,
+.rail-utilities {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.rail-utilities {
+  margin-top: auto;
+}
+.workspace-rail .rail-action {
+  position: relative;
+  width: 42px;
+  height: 40px;
+  border-radius: 13px;
+  color: var(--muted-foreground);
+}
+.workspace-rail .rail-action svg {
+  width: 20px;
+  height: 20px;
+}
+.workspace-rail .rail-action:hover {
+  background: var(--secondary);
+  color: var(--foreground);
+}
+.workspace-rail .rail-action[aria-current="page"] {
+  background: var(--fb-selected);
+  color: var(--accent-text);
+}
+.rail-connection {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  right: 7px;
+  top: 7px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 2px var(--card);
+}
+.focused-app > .header {
+  min-height: 56px;
+  height: 56px;
+  gap: 14px;
+  padding: 9px 20px;
+  background: var(--card);
+  border: 0;
+  border-bottom: 1px solid var(--border);
+}
+.workspace-title {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+}
+.header .selection-picker {
+  margin: 0;
+  width: 200px;
+  max-width: 32vw;
+  flex: 0 1 200px;
+}
+.header .header-right {
+  margin-left: auto;
+  gap: 8px;
+}
+.header .studio-connect {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0 11px;
+  gap: 7px;
+}
+.page-settings .header .selection-picker,
+.page-studio .header .selection-picker,
+.page-assets .header .selection-picker {
+  display: none;
+}
+.focused-app .sync-bar {
+  min-height: 32px;
+  padding: 4px 20px;
+  background: var(--card);
+  border-color: var(--border);
+  gap: 12px;
+}
+.sync-bar .sync-status {
+  font-size: 11px;
+}
+.focused-app .workspace {
+  background: var(--fb-canvas);
+}
+.focused-app .layer-workbench {
+  position: relative;
+  grid-template-columns: var(--layers-width, 220px) 4px minmax(0, 1fr);
+  isolation: isolate;
+}
+.focused-app .explorer-pane {
+  grid-column: 1;
+  grid-row: 1;
+  padding-top: 6px;
+  background: var(--card);
+  border: 0;
+}
+.focused-app .explorer-pane > .workbench-heading {
+  min-height: 44px;
+  padding: 8px 15px;
+}
+.focused-app .explorer-search-control {
+  margin: 2px 12px 12px;
+}
+.focused-app .explorer-search-control input {
+  height: 32px;
+  min-height: 32px;
+  border-radius: 10px;
+  background: var(--secondary);
+  border-color: transparent;
+  padding-inline: 10px 28px;
+}
+.focused-app .explorer-tree {
+  padding: 0 7px 8px;
+}
+.focused-app .explorer-row {
+  min-height: 30px;
+  height: 30px;
+  border-radius: 7px;
+  padding-right: 8px;
+  gap: 5px;
+}
+.focused-app .explorer-row .tree-name {
+  font-size: 12px;
+}
+.focused-app .explorer-row .roblox-class-icon {
+  width: 16px;
+  height: 16px;
+}
+.focused-app .explorer-row.selected .roblox-class-icon {
+  filter: none;
+}
+.focused-app .explorer-group {
+  padding-left: 16px;
+}
+.focused-app .explorer-group::before {
+  left: 8px;
+}
+.focused-app .explorer-item[aria-selected="true"] > .explorer-group {
+  border-radius: 0 0 7px 7px;
+}
+.focused-app .explorer-selection-help {
+  padding: 8px 12px;
+  border-color: var(--border);
+  font-size: 10px;
+}
+.explorer-selection-help > span:not(.property-error) {
+  display: none;
+}
+.focused-app .layer-workbench > .sidebar-resize-handle {
+  grid-column: 2;
+  grid-row: 1;
+  background: var(--card);
+  z-index: 6;
+}
+.focused-app .sidebar-resize-handle::after {
+  background: var(--border);
+  width: 2px;
+}
+.focused-app .sidebar-resize-handle:hover,
+.focused-app .sidebar-resize-handle:focus-visible {
+  background: var(--primary);
+}
+.focused-app
+  .layer-workbench
+  > .sidebar-resize-handle[aria-controls="framebridge-properties-pane"] {
+  position: absolute;
+  grid-column: auto;
+  grid-row: auto;
+  top: 18px;
+  bottom: 18px;
+  right: calc(var(--properties-width, 340px) + 16px);
+  width: 4px;
+  background: transparent;
+  z-index: 12;
+}
+.focused-app .layer-workbench > .preview-pane {
+  grid-column: 3;
+  grid-row: 1;
+  min-width: 0;
+}
+.focused-app .properties-pane {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  bottom: 18px;
+  width: var(--properties-width, 340px);
+  max-width: calc(100% - 36px);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 19px;
+  box-shadow: var(--fb-shadow);
+  z-index: 10;
+  overflow: hidden;
+}
+.focused-app .properties-pane > .workbench-heading {
+  min-height: 44px;
+  padding: 9px 12px 5px 16px;
+  background: transparent;
+  border: 0;
+  gap: 6px;
+}
+.focused-app .properties-pane > .workbench-heading > strong {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+}
+.focused-app .properties-pane > .workbench-heading > div > button {
+  width: 24px;
+  height: 26px;
+  border-radius: 8px;
+}
+.inspector-selection {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 16px 12px;
+  min-width: 0;
+}
+.inspector-selection strong {
+  font-size: 13px;
+  font-weight: 550;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.inspector-selection > span:last-child {
+  font-size: 10px;
+  color: var(--muted-foreground);
+  margin-left: auto;
+}
+.focused-app .properties-pane .property-toolbar {
+  margin: 0 12px 8px;
+  padding: 0;
+}
+.focused-app .property-search-control {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--secondary);
+  overflow: hidden;
+}
+.focused-app .property-search-control input {
+  background: transparent;
+  border: 0;
+  height: 30px;
+  min-height: 30px;
+  padding: 5px 10px;
+  font-size: 11px;
+}
+.focused-app .properties-scroll {
+  padding-bottom: 12px;
+  scrollbar-width: thin;
+}
+.focused-app .property-fields {
+  padding-top: 0;
+}
+.focused-app .studio-properties {
+  --property-row-background: var(--card);
+  --property-category-background: var(--secondary);
+  --property-grid-border: transparent;
+  --property-column: 45%;
+}
+.focused-app .studio-property-table .property-row,
+.focused-app .studio-property-table .compound-toggle {
+  min-height: 36px;
+  border: 0;
+  padding: 4px 14px;
+  background: transparent;
+  align-items: center;
+  gap: 8px;
+}
+.focused-app .studio-property-table .property-row:hover,
+.focused-app .studio-property-table .compound-toggle:hover {
+  background: color-mix(in srgb, var(--secondary) 55%, transparent);
+}
+.focused-app .studio-property-table .property-label,
+.focused-app .studio-property-table .compound-name {
+  border: 0;
+  font-size: 11px;
+  padding: 0;
+  min-width: 0;
+}
+.focused-app .studio-property-table .property-label label {
+  font-size: 11px;
+  line-height: 1.4;
+}
+.focused-app .studio-property-table .property-control {
+  padding: 0;
+  min-width: 0;
+}
+.focused-app .studio-property-table .property-control > input,
+.focused-app
+  .studio-property-table
+  .property-control
+  [data-slot="select-trigger"],
+.focused-app .studio-property-table .property-control textarea,
+.focused-app .studio-property-table .property-number > input {
+  min-height: 28px;
+  padding: 4px 7px;
+  border: 1px solid var(--input);
+  border-radius: 8px;
+  background: var(--card);
+  font-size: 11px;
+  box-shadow: none;
+}
+.focused-app .studio-property-table .compound-summary {
+  min-height: 28px;
+  padding: 5px 7px;
+  border: 1px solid var(--input);
+  border-radius: 8px;
+  font-size: 10px;
+  background: var(--card);
+  color: var(--foreground);
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+.focused-app .studio-property-table .property-section-trigger {
+  min-height: 32px;
+  padding: 6px 14px;
+  background: transparent;
+  border-top: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 11px;
+  font-weight: 550;
+}
+.focused-app .studio-property-table .property-section-trigger > svg {
+  margin-right: 6px;
+}
+.focused-app .studio-property-table .compound-details {
+  background: var(--secondary);
+  margin: 2px 12px 6px;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px;
+}
+.focused-app .studio-property-table .vector-property > label,
+.focused-app .studio-property-table .font-property > .compound-component {
+  border: 0;
+}
+.focused-app .studio-property-table .vector-property input {
+  border: 1px solid var(--input);
+  border-radius: 7px;
+  background: var(--card);
+  padding: 4px 6px;
+}
+.focused-app .property-readonly .property-control {
+  color: var(--muted-foreground);
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+.focused-app .property-empty {
+  padding: 24px;
+  gap: 12px;
+}
+.focused-app .properties-scroll > details,
+.focused-app .property-fields > details {
+  margin: 6px 12px;
+  border-color: var(--border);
+  border-radius: 10px;
+  background: transparent;
+}
+.focused-app .property-fields > details > summary {
+  min-height: 32px;
+  padding: 8px 10px;
+  font-size: 11px;
+}
+.workbench-panels {
+  position: absolute;
+  z-index: 15;
+  top: 16px;
+  left: calc(var(--layers-width, 220px) + 18px);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.workbench-panels > button {
+  height: 29px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  padding: 0 9px;
+  font-size: 11px;
+  box-shadow: 0 2px 5px #00000004;
+}
+.workbench-panels > button:first-child {
+  display: none;
+}
+.workbench-panels > button[aria-expanded="true"] {
+  color: var(--accent-text);
+  background: var(--fb-selected);
+  border-color: transparent;
+}
+.layer-workbench[data-properties-open="false"] .properties-pane,
+.layer-workbench[data-properties-open="false"]
+  > .sidebar-resize-handle[aria-controls="framebridge-properties-pane"] {
+  display: none;
+}
+.focused-app .preview-pane {
+  background: var(--fb-canvas);
+  overflow: hidden;
+}
+.focused-app .canvas {
+  height: 100%;
+  padding: 16px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+.focused-app .canvas-top {
+  display: none;
+}
+.focused-app .preview-switch {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+.focused-app .preview-switch [data-slot="toggle-group-item"] {
+  min-height: 26px;
+  height: 26px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 13px;
+  font-size: 11px;
+  background: transparent;
+}
+.focused-app .preview-switch [data-state="on"] {
+  background: var(--fb-action);
+  color: var(--fb-action-ink);
+}
+.focused-app .preview-content {
+  padding: 12px;
+  overflow: auto;
+  min-height: 0;
+}
+.focused-app .zoom-controls {
+  bottom: 16px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px;
+  background: var(--card);
+  box-shadow: var(--fb-shadow);
+}
+.focused-app .zoom-controls button {
+  height: 28px;
+  min-width: 28px;
+  border-radius: 999px;
+  font-size: 11px;
+}
+.focused-app .canvas-empty {
+  color: var(--muted-foreground);
+}
+.focused-app .canvas-empty h2 {
+  font-size: 16px;
+  color: var(--foreground);
+}
+.focused-app .canvas-empty p {
+  font-size: 12px;
+  margin: 4px 0 12px;
+}
+.focused-app .preview-notice {
+  border-radius: 999px;
+  margin: 5px auto;
+  width: fit-content;
+  padding: 3px 10px;
+  font-size: 11px;
+}
+.focused-app .roblox-preview-toolbar {
+  background: transparent;
+  padding: 0;
+  gap: 7px;
+}
+.focused-app .device-preview-controls {
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.focused-app .roblox-preview-toolbar .preview-device-select {
+  border-radius: 999px;
+  background: var(--card);
+  width: auto;
+  min-width: 130px;
+}
+.focused-app .roblox-preview-toolbar [data-slot="button"] {
+  background: var(--card);
+  border-color: var(--border);
+}
+.focused-app > .footer {
+  min-height: 56px;
+  padding: 9px 20px;
+  gap: 12px;
+  border-top: 1px solid var(--border);
+  background: var(--card);
+}
+.focused-app .footer-note {
+  min-width: 0;
+  font-size: 11px;
+}
+.focused-app .footer-note strong {
+  font-size: 11px;
+  font-weight: 400;
+}
+.focused-app .footer-note > svg {
+  width: 15px;
+  height: 15px;
+}
+.focused-app .footer-actions {
+  gap: 7px;
+}
+.focused-app .footer-actions button {
+  height: 34px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+/* Shared Radix controls, including content rendered in portals. */
+[data-slot="button"] {
+  font-size: 12px;
+  transition:
+    background-color 0.14s,
+    color 0.14s,
+    border-color 0.14s;
+}
+[data-slot="button"][data-variant="default"],
+.primary {
+  background: var(--fb-action);
+  color: var(--fb-action-ink);
+}
+[data-slot="button"][data-variant="default"]:hover,
+.primary:hover {
+  background: color-mix(in srgb, var(--fb-action) 85%, var(--muted-foreground));
+}
+[data-slot="button"][data-variant="outline"] {
+  background: var(--card);
+  border-color: var(--border);
+  box-shadow: none;
+}
+[data-slot="button"][data-variant="outline"]:hover {
+  background: var(--secondary);
+}
+[data-slot="input"],
+[data-slot="textarea"],
+[data-slot="select-trigger"] {
+  min-height: 32px;
+  border-radius: 9px;
+  border-color: var(--input);
+  background: var(--card);
+  box-shadow: none;
+  font-size: 12px;
+}
+[data-slot="select-trigger"] {
+  padding: 5px 10px;
+  line-height: 1.4;
+  min-width: 0;
+  height: auto;
+}
+[data-slot="select-value"] {
+  overflow-wrap: normal;
+  white-space: nowrap;
+  min-width: 0;
+}
+[data-slot="select-content"],
+[data-slot="dropdown-menu-content"],
+[data-slot="dropdown-menu-sub-content"],
+.preview-controls-popover,
+.property-help-tooltip {
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 5px;
+  box-shadow: 0 10px 34px #0002;
+  background: var(--popover);
+}
+[data-slot="select-item"],
+[data-slot="dropdown-menu-item"],
+[data-slot="dropdown-menu-sub-trigger"] {
+  min-height: 30px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+[data-slot="dialog-content"] {
+  border-radius: 21px;
+  border-color: var(--border);
+  padding: 22px;
+  background: var(--card);
+  box-shadow: 0 20px 90px #0003;
+}
+[data-slot="dialog-overlay"] {
+  background: #0e162958;
+  backdrop-filter: blur(4px);
+}
+[data-slot="dialog-title"] {
+  font-size: 18px;
+  letter-spacing: -0.4px;
+}
+[data-slot="badge"] {
+  border: 0;
+  font-size: 10px;
+  border-radius: 999px;
+  background: var(--secondary);
+  padding: 2px 7px;
+}
+[data-slot="switch"] {
+  background: var(--input);
+}
+[data-slot="switch"][data-state="checked"] {
+  background: var(--primary);
+}
+[data-slot="toggle-group"] {
+  padding: 3px;
+  border: 1px solid var(--border);
+  background: var(--secondary);
+  border-radius: 999px;
+  gap: 2px;
+}
+[data-slot="toggle-group-item"] {
+  border: 0;
+  box-shadow: none;
+  border-radius: 999px;
+  background: transparent;
+  min-height: 27px;
+  font-size: 11px;
+}
+[data-slot="toggle-group-item"][data-state="on"] {
+  background: var(--card);
+  color: var(--foreground);
+  box-shadow: 0 1px 3px #00000009;
+}
+/* Dedicated pages use the available window instead of a narrow inspector. */
+.focused-app:not(.page-convert) .workspace,
+.focused-app.reviewing .workspace {
+  display: flex;
+  min-height: 0;
+  padding: 18px;
+  overflow: hidden;
+}
+.focused-app:not(.page-convert) .workspace > .preview-pane,
+.focused-app.reviewing .workspace > .preview-pane {
+  display: none;
+}
+.focused-app:not(.page-convert) .workspace > .inspector,
+.focused-app.reviewing .workspace > .inspector {
+  width: 100%;
+  max-width: 1040px;
+  min-width: 0;
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  border-radius: 19px;
+  box-shadow: var(--fb-shadow);
+  background: var(--card);
+  overflow: hidden;
+}
+.focused-app .inspector-heading {
+  min-height: 47px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border);
+  gap: 8px;
+  background: transparent;
+}
+.focused-app .inspector-heading > strong {
+  margin-right: auto;
+  font-size: 15px;
+}
+.focused-app .inspector-heading button {
+  width: 28px;
+  height: 28px;
+}
+.focused-app .page,
+.focused-app .detail-body {
+  padding: 6px 22px 22px;
+}
+.focused-app .page-heading {
+  margin-bottom: 10px;
+}
+.focused-app .settings-group {
+  margin: 0;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.focused-app .settings-group:last-child {
+  border-bottom: 0;
+}
+.focused-app .settings-group h3 {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+.focused-app .settings-group > p {
+  margin: 5px 0 10px;
+  font-size: 11px;
+}
+.focused-app .setting {
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 43%);
+  align-items: center;
+  gap: 7px 24px;
+  min-height: 49px;
+  padding: 8px 0;
+  border: 0;
+}
+.focused-app .setting strong {
+  font-size: 12px;
+  font-weight: 500;
+}
+.focused-app .setting p {
+  font-size: 11px;
+  margin-top: 3px;
+  line-height: 1.5;
+  max-width: 48ch;
+}
+.focused-app .setting > [data-slot="select-trigger"],
+.focused-app .setting > input,
+.focused-app .setting > [data-slot="toggle-group"] {
+  grid-column: 2;
+  width: 100%;
+}
+.focused-app .setting > [role="switch"] {
+  justify-self: end;
+}
+.focused-app .font-form {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.focused-app .font-form > input {
+  flex: 1 1 150px;
+}
+.focused-app .font-mapping {
+  padding: 7px 0;
+  font-size: 12px;
+}
+.focused-app .naming-help {
+  margin: 14px 0;
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.focused-app .naming-help summary {
+  cursor: pointer;
+}
+.focused-app .naming-help p {
+  padding-top: 8px;
+  line-height: 1.6;
+}
+.focused-app:not(.page-convert):not([data-busy="true"]) > .footer,
+.focused-app:not(.page-convert) > .sync-bar {
+  display: none;
+}
+.focused-app .studio-page {
+  max-width: 850px;
+  width: 100%;
+  margin: 0 auto;
+}
+.focused-app .studio-page .settings-group {
+  padding: 20px 0;
+}
+.focused-app .studio-page .font-form input[aria-label="Studio pairing code"] {
+  flex: 1 1 180px;
+  min-height: 36px;
+  letter-spacing: 2px;
+  font-family: var(--font-mono);
+}
+.focused-app .images-inspector {
+  padding: 12px 22px 22px;
+}
+.focused-app .cloud-settings {
+  padding: 0 0 16px;
+  margin: 0 0 16px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+}
+.focused-app .asset-section-heading {
+  margin: 0 0 12px;
+}
+.focused-app .asset-heading-row {
+  gap: 9px;
+}
+.focused-app .asset-heading-row h2 {
+  font-size: 13px;
+}
+.focused-app .asset-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  align-items: start;
+  gap: 8px;
+}
+.focused-app .asset-row {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  padding: 0 8px;
+}
+.focused-app .asset-trigger {
+  padding: 9px 0;
+  gap: 9px;
+}
+.focused-app .asset-thumb {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+.focused-app .asset-name {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  font-size: 12px;
+}
+.focused-app .asset-meta {
+  font-size: 10px;
+}
+.focused-app .asset-status {
+  font-size: 10px;
+}
+.focused-app .cloud-settings > .upload-auth-mode {
+  max-width: 450px;
+}
+.focused-app .info-box {
+  background: var(--secondary);
+  border: 0;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 11px;
+}
+.focused-app .info-box p {
+  font-size: 11px;
+  line-height: 1.6;
+}
+/* Keep authored artwork independent of the editor's visual theme. */
+.focused-app .source-preview,
+.focused-app .roblox-viewport {
+  color-scheme: normal;
+}
+@media (min-width: 721px) {
+  .focused-app
+    .layer-workbench[data-properties-open="true"]
+    .canvas
+    > .preview-content {
+    margin-right: calc(var(--properties-width, 340px) + 22px);
+  }
+
+  .focused-app .layer-workbench[data-properties-open="true"] .zoom-controls {
+    margin-left: calc((var(--properties-width, 340px) + 22px) / -2);
+  }
+}
+@media (max-width: 1100px) {
+  .focused-app .layer-workbench {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .focused-app .layer-workbench > .preview-pane {
+    grid-column: 1;
+  }
+  .focused-app .layer-workbench > .explorer-pane {
+    display: none;
+    position: absolute;
+    inset: 52px auto 16px 16px;
+    width: min(300px, calc(100% - 32px));
+    z-index: 18;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--fb-shadow);
+  }
+  .focused-app .layer-workbench[data-layers-open="true"] > .explorer-pane {
+    display: flex;
+  }
+  .focused-app
+    .layer-workbench
+    > .sidebar-resize-handle[aria-controls="framebridge-layers-pane"] {
+    display: none;
+  }
+  .focused-app .properties-pane {
+    top: 56px;
+    width: max(280px, var(--properties-width));
+    max-width: min(380px, calc(100% - 32px));
+    right: 16px;
+    bottom: 16px;
+  }
+  .focused-app
+    .layer-workbench
+    > .sidebar-resize-handle[aria-controls="framebridge-properties-pane"] {
+    top: 56px;
+    right: calc(max(280px, var(--properties-width)) + 14px);
+  }
+  .workbench-panels {
+    left: 16px;
+    top: 13px;
+  }
+  .workbench-panels > button:first-child {
+    display: inline-flex;
+  }
+  .focused-app .properties-pane > .workbench-heading {
+    min-height: 40px;
+  }
+}
+@media (max-width: 720px) {
+  .focused-app {
+    --rail-width: 54px;
+  }
+  .workspace-rail {
+    padding-inline: 6px;
+    gap: 16px;
+  }
+  .workspace-rail .rail-action {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+  .focused-app > .header {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  .header .selection-picker {
+    max-width: none;
+    width: auto;
+    flex: 1;
+  }
+  .header .selection-picker [data-slot="select-trigger"] {
+    font-size: 11px;
+    min-height: 30px;
+    padding: 4px 7px;
+  }
+  .header .header-right {
+    gap: 4px;
+  }
+  .header .studio-connect {
+    padding: 0 7px;
+    gap: 4px;
+  }
+  .header .studio-connect .connection-expiry,
+  .header .connection-label {
+    display: none;
+  }
+  .header .workspace-title {
+    font-size: 12px;
+  }
+  .focused-app .canvas {
+    padding: 12px;
+  }
+  .workbench-panels {
+    left: 12px;
+    gap: 3px;
+  }
+  .workbench-panels > button {
+    padding: 0 7px;
+  }
+  .workbench-panels > button span {
+    display: none;
+  }
+  .focused-app .preview-switch [data-slot="toggle-group-item"] {
+    padding: 0 9px;
+    font-size: 10px;
+  }
+  .focused-app > .footer {
+    padding: 8px 12px;
+    min-height: 54px;
+  }
+  .focused-app .footer-note {
+    display: none;
+  }
+  .focused-app .footer-actions {
+    margin-left: auto;
+    flex-wrap: wrap;
+  }
+  .focused-app .footer-actions button {
+    font-size: 11px;
+    height: 32px;
+    padding-inline: 10px;
+  }
+  .focused-app:not(.page-convert) .workspace,
+  .focused-app.reviewing .workspace {
+    padding: 12px;
+  }
+  .focused-app .inspector-heading {
+    padding: 9px 14px;
+  }
+  .focused-app .page,
+  .focused-app .detail-body,
+  .focused-app .images-inspector {
+    padding-inline: 14px;
+  }
+  .focused-app .setting {
+    gap: 8px 14px;
+    grid-template-columns: minmax(0, 1fr) minmax(120px, 45%);
+  }
+  .focused-app .setting > div:first-child p {
+    font-size: 10px;
+  }
+  .focused-app .sync-bar {
+    padding-inline: 12px;
+  }
+}
+@media (max-width: 450px) {
+  .header .workspace-title {
+    display: none;
+  }
+  .focused-app .setting {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    padding: 10px 0;
+  }
+  .focused-app .setting > [data-slot="select-trigger"],
+  .focused-app .setting > input,
+  .focused-app .setting > [data-slot="toggle-group"] {
+    grid-column: 1;
+  }
+  .focused-app .setting:has(> [role="switch"]) {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .focused-app .preview-notice {
+    border-radius: 10px;
+    flex-wrap: wrap;
+  }
+  .focused-app .sync-status small {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .focused-app *,
+  [data-slot="select-content"],
+  [data-slot="dialog-content"] {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.focused-app .canvas > .preview-content {
+  width: auto;
+  align-self: stretch;
+}
+/* Tree indentation is calculated once per row, including its connector. */
+.focused-app .explorer-group {
+  padding-left: 0;
+}
+.focused-app .explorer-group::before {
+  left: calc(var(--tree-indent) + 8px);
+}
+@media (max-width: 1100px) {
+  .focused-app .properties-pane {
+    width: var(--properties-width);
+    max-width: calc(100% - 32px);
+  }
+  .focused-app
+    .layer-workbench
+    > .sidebar-resize-handle[aria-controls="framebridge-properties-pane"] {
+    right: calc(var(--properties-width) + 14px);
+  }
+}
+@media (max-width: 720px) {
+  .focused-app .properties-pane {
+    width: min(340px, calc(100% - 24px));
+    right: 12px;
+  }
+  .focused-app
+    .layer-workbench
+    > .sidebar-resize-handle[aria-controls="framebridge-properties-pane"] {
+    display: none;
+  }
+}
+.studio-connection-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.focused-app .review-tabs {
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.focused-app .review-tabs [data-slot="tabs-list"] {
+  border-radius: 999px;
+  padding: 3px;
+  background: var(--secondary);
+}
+.focused-app .review-tabs [data-slot="tabs-trigger"] {
+  border-radius: 999px;
+  font-size: 12px;
+  padding: 5px 12px;
+}
+.focused-app .review-tabs [data-slot="tabs-trigger"][data-state="active"] {
+  background: var(--card);
+  box-shadow: 0 1px 3px #0001;
+}
+.focused-app .properties-pane .export-setup {
+  border-radius: 10px;
+  background: transparent;
+  border-color: var(--border);
+}
+.focused-app .properties-pane .export-setup > summary {
+  min-height: 34px;
+  padding-block: 8px;
+  font-size: 11px;
+}
+.focused-app .layer-rule-matcher {
+  border-radius: 0;
+  padding: 8px 12px;
+  border-color: var(--border);
+}
+.focused-app .layer-rule-matcher summary {
+  font-size: 10px;
+}
+.focused-app .layer-rule-matcher .property-row {
+  padding: 6px 0;
+  gap: 6px;
+}
+.focused-app .bulk-properties .property-view-controls {
+  flex-wrap: wrap;
+}
+.focused-app .property-view-controls > button {
+  font-size: 11px;
+  height: 28px;
+}
+/* Short views stay content-sized instead of filling a mostly empty card. */
+.focused-app:not(.page-convert) .workspace > .inspector,
+.focused-app.reviewing .workspace > .inspector {
+  align-self: flex-start;
+  height: fit-content;
+  max-height: 100%;
+}
+.focused-app .properties-pane {
+  bottom: auto;
+  height: fit-content;
+  max-height: calc(100% - 36px);
+}
+.focused-app .artwork-account.artwork-account {
+  gap: 6px;
+  padding: 12px 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.focused-app .artwork-account.artwork-account p {
+  margin: 3px 0;
+}
+.focused-app .artwork-account .roblox-account-actions {
+  margin-block: 5px;
+}
+.focused-app .image-library.artwork-resource {
+  box-shadow: none;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  padding: 10px 13px;
+}
+@media (max-width: 1100px) {
+  .focused-app .properties-pane {
+    max-height: calc(100% - 72px);
+  }
+}
+/* The window owns scrolling only inside its panes, including narrow layouts. */
+.focused-app {
+  overflow: clip;
+}
+.focused-app > .header {
+  flex-wrap: nowrap;
+}
+.focused-app .workspace {
+  flex: 1 1 0;
+  min-height: 0;
+}
+.focused-app .inspector {
+  min-height: 0;
+}
+.focused-app .layer-workbench > .preview-pane {
+  height: 100%;
+  min-height: 0;
+}
+.focused-app .header .selection-picker,
+.focused-app .header .header-right {
+  order: 0;
+}
+.focused-app
+  .roblox-preview-toolbar
+  .preview-test-toggle[data-variant="default"] {
+  background: var(--fb-action);
+  color: var(--fb-action-ink);
+}
+.focused-app
+  .roblox-preview-toolbar
+  .preview-test-toggle[data-variant="secondary"] {
+  background: var(--card);
+  color: var(--foreground);
+}
+.focused-app .inspector-sections {
+  margin: 0 12px 10px;
+  flex-shrink: 0;
+  padding: 3px;
+  background: var(--secondary);
+  border: 0;
+}
+.focused-app .inspector-sections [data-slot="toggle-group-item"] {
+  flex: 1;
+  min-width: 0;
+  font-size: 11px;
+  padding: 3px 8px;
+}
+.focused-app .section-property-table > .property-group:only-child > h3 {
+  display: none;
+}
+.focused-app .section-property-table > .property-group {
+  border: 0;
+}
+.focused-app .inspector-tools {
+  padding: 0 12px;
+}
+.focused-app .inspector-tools > .layout-presets {
+  padding: 6px 0 10px;
+  gap: 6px;
+}
+.focused-app .inspector-tools > .layout-presets button {
+  height: 28px;
+  font-size: 10px;
+}
+.focused-app .inspector-tools > .export-setup {
+  padding-inline: 0;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+}
+.focused-app .inspector-tools > .export-setup > summary {
+  padding-inline: 0;
+}
+.focused-app .inspector-sections {
+  width: calc(100% - 24px);
+  height: 32px;
+}
+.focused-app .inspector-sections [data-slot="toggle-group-item"] {
+  min-height: 26px;
+  height: 26px;
+}
+.focused-app .modifier-tools > summary {
+  background: transparent;
+  border-radius: 10px;
+}
+.focused-app > .footer {
+  padding-right: 26px;
+}

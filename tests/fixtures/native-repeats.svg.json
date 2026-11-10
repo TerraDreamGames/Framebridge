@@ -1,0 +1,27 @@
+[
+  {
+    "id": "116:10",
+    "name": "Native structure QA · Repeat Pixels",
+    "svg": "<svg width=\"180\" height=\"100\" viewBox=\"0 0 180 100\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n<g id=\"Repeat Pixels group_inner\" data-figma-trr=\"l3p30-30f\">\n<rect x=\"30\" y=\"20\" width=\"20\" height=\"10\" fill=\"#FF0000\"/>\n</g>\n<use xlink:href=\"#Repeat%20Pixels%20group_inner\" transform=\"translate(30)\"/>\n<use xlink:href=\"#Repeat%20Pixels%20group_inner\" transform=\"translate(60)\"/>\n</svg>\n"
+  },
+  {
+    "id": "116:13",
+    "name": "Native structure QA · Repeat Relative",
+    "svg": "<svg width=\"180\" height=\"100\" viewBox=\"0 0 180 100\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n<g id=\"Repeat Relative group_inner\" data-figma-trr=\"l3u1.5-1.5f\">\n<rect x=\"30\" y=\"20\" width=\"20\" height=\"10\" fill=\"#FF0000\"/>\n</g>\n<use xlink:href=\"#Repeat%20Relative%20group_inner\" transform=\"translate(30)\"/>\n<use xlink:href=\"#Repeat%20Relative%20group_inner\" transform=\"translate(60)\"/>\n</svg>\n"
+  },
+  {
+    "id": "116:16",
+    "name": "Native structure QA · Repeat Pair",
+    "svg": "<svg width=\"180\" height=\"100\" viewBox=\"0 0 180 100\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n<g id=\"Repeat Pair group_inner\" data-figma-trr=\"l2p30-30f\">\n<rect x=\"30\" y=\"20\" width=\"20\" height=\"10\" fill=\"#FF0000\"/>\n</g>\n<use xlink:href=\"#Repeat%20Pair%20group_inner\" transform=\"translate(30)\"/>\n</svg>\n"
+  },
+  {
+    "id": "118:2",
+    "name": "Native structure QA · Multi-child repeat",
+    "svg": "<svg width=\"240\" height=\"150\" viewBox=\"0 0 240 150\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n<g id=\"Multi-child repeat_inner\" data-figma-trr=\"l3u1.5-1.5f\">\n<rect x=\"30\" y=\"20\" width=\"20\" height=\"10\" fill=\"#FF0000\"/>\n<rect x=\"70\" y=\"40\" width=\"10\" height=\"20\" fill=\"#0000FF\"/>\n</g>\n<use xlink:href=\"#Multi-child%20repeat_inner\" transform=\"translate(75)\"/>\n<use xlink:href=\"#Multi-child%20repeat_inner\" transform=\"translate(150)\"/>\n</svg>\n"
+  },
+  {
+    "id": "118:6",
+    "name": "Native structure QA · Stacked repeat",
+    "svg": "<svg width=\"240\" height=\"150\" viewBox=\"0 0 240 150\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n<g id=\"Stacked repeat_inner\" data-figma-trr=\"l3p30-30f_l2p25-25f\">\n<rect x=\"30\" y=\"20\" width=\"20\" height=\"10\" fill=\"#FF0000\"/>\n</g>\n<use xlink:href=\"#Stacked%20repeat_inner\" transform=\"translate(30)\"/>\n<use xlink:href=\"#Stacked%20repeat_inner\" transform=\"translate(60)\"/>\n<use xlink:href=\"#Stacked%20repeat_inner\" transform=\"translate(0 25)\"/>\n<use xlink:href=\"#Stacked%20repeat_inner\" transform=\"translate(30 25)\"/>\n<use xlink:href=\"#Stacked%20repeat_inner\" transform=\"translate(60 25)\"/>\n</svg>\n"
+  }
+]

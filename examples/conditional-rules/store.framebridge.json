@@ -1,0 +1,751 @@
+{
+  "format": "framebridge",
+  "version": 1,
+  "sourceId": "conditional-rules-example",
+  "name": "Conditional store",
+  "createdAt": "2026-10-03T00:00:00Z",
+  "options": {
+    "layout": "responsive",
+    "appearance": "faithful",
+    "preserveText": true,
+    "imageScale": 2
+  },
+  "roots": [
+    {
+      "id": "screen:rules-screen",
+      "name": "Conditional store",
+      "className": "ScreenGui",
+      "referenceSize": [
+        720,
+        400
+      ],
+      "properties": {
+        "ResetOnSpawn": false,
+        "IgnoreGuiInset": true,
+        "ZIndexBehavior": {
+          "type": "Enum",
+          "value": [
+            "ZIndexBehavior",
+            "Sibling"
+          ]
+        },
+        "DisplayOrder": 0,
+        "Enabled": true
+      },
+      "children": [
+        {
+          "id": "rules-screen",
+          "name": "Conditional store",
+          "className": "Frame",
+          "sourceType": "FRAME",
+          "properties": {
+            "Position": {
+              "type": "UDim2",
+              "value": [
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "Size": {
+              "type": "UDim2",
+              "value": [
+                1,
+                0,
+                1,
+                0
+              ]
+            },
+            "AnchorPoint": {
+              "type": "Vector2",
+              "value": [
+                0,
+                0
+              ]
+            },
+            "Rotation": 0,
+            "Visible": true,
+            "BorderSizePixel": 0,
+            "BackgroundTransparency": 0,
+            "LayoutOrder": 0,
+            "ZIndex": 1,
+            "ClipsDescendants": false,
+            "BackgroundColor3": {
+              "type": "Color3",
+              "value": [
+                0.04,
+                0.08,
+                0.16
+              ]
+            }
+          },
+          "children": [
+            {
+              "id": "status",
+              "name": "Purchase status",
+              "className": "TextLabel",
+              "sourceType": "TEXT",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    40,
+                    0,
+                    35
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    250,
+                    0,
+                    32
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 0.6,
+                "LayoutOrder": 0,
+                "ZIndex": 1,
+                "ClipsDescendants": false,
+                "Text": "Design status",
+                "FontFace": {
+                  "type": "Font",
+                  "family": "rbxasset://fonts/families/Roboto.json",
+                  "weight": "Regular",
+                  "style": "Normal"
+                },
+                "TextSize": 18,
+                "TextColor3": {
+                  "type": "Color3",
+                  "value": [
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                "TextTransparency": 0,
+                "TextXAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextXAlignment",
+                    "Left"
+                  ]
+                },
+                "TextYAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextYAlignment",
+                    "Center"
+                  ]
+                },
+                "TextWrapped": true,
+                "TextScaled": false,
+                "RichText": true,
+                "AutoLocalize": false
+              },
+              "children": [],
+              "referenceSize": [
+                250,
+                32
+              ],
+              "behavior": {
+                "ruleDesign": "5c6116c70748a0ef"
+              }
+            },
+            {
+              "id": "buy",
+              "name": "Buy",
+              "className": "TextButton",
+              "sourceType": "TEXT",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    40,
+                    0,
+                    95
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    250,
+                    0,
+                    32
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 1,
+                "LayoutOrder": 1,
+                "ZIndex": 2,
+                "ClipsDescendants": false,
+                "AutoButtonColor": false,
+                "Active": true,
+                "Selectable": true,
+                "Text": "Buy",
+                "FontFace": {
+                  "type": "Font",
+                  "family": "rbxasset://fonts/families/Roboto.json",
+                  "weight": "Regular",
+                  "style": "Normal"
+                },
+                "TextSize": 18,
+                "TextColor3": {
+                  "type": "Color3",
+                  "value": [
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                "TextTransparency": 0,
+                "TextXAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextXAlignment",
+                    "Left"
+                  ]
+                },
+                "TextYAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextYAlignment",
+                    "Center"
+                  ]
+                },
+                "TextWrapped": true,
+                "TextScaled": false,
+                "RichText": false,
+                "AutoLocalize": false
+              },
+              "children": [],
+              "referenceSize": [
+                250,
+                32
+              ],
+              "behavior": {
+                "ruleDesign": "26b92d98169e578a"
+              }
+            },
+            {
+              "id": "premium/motion-slot",
+              "name": "Premium panel Motion slot",
+              "className": "Frame",
+              "sourceType": "MOTION_SLOT",
+              "referenceSize": [
+                260,
+                80
+              ],
+              "properties": {
+                "BackgroundTransparency": 1,
+                "BorderSizePixel": 0,
+                "ClipsDescendants": false,
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    40,
+                    0,
+                    160
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    260,
+                    0,
+                    80
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "LayoutOrder": 2,
+                "ZIndex": 3,
+                "Visible": true
+              },
+              "children": [
+                {
+                  "id": "premium",
+                  "name": "Premium panel",
+                  "className": "Frame",
+                  "sourceType": "FRAME",
+                  "properties": {
+                    "Position": {
+                      "type": "UDim2",
+                      "value": [
+                        0.5,
+                        0,
+                        0.5,
+                        0
+                      ]
+                    },
+                    "Size": {
+                      "type": "UDim2",
+                      "value": [
+                        1,
+                        0,
+                        1,
+                        0
+                      ]
+                    },
+                    "AnchorPoint": {
+                      "type": "Vector2",
+                      "value": [
+                        0.5,
+                        0.5
+                      ]
+                    },
+                    "Rotation": 0,
+                    "Visible": true,
+                    "BorderSizePixel": 0,
+                    "BackgroundTransparency": 0,
+                    "LayoutOrder": 2,
+                    "ZIndex": 3,
+                    "ClipsDescendants": false,
+                    "BackgroundColor3": {
+                      "type": "Color3",
+                      "value": [
+                        0.18,
+                        0.3,
+                        0.5
+                      ]
+                    }
+                  },
+                  "children": [
+                    {
+                      "id": "premium-label",
+                      "name": "Premium message",
+                      "className": "TextLabel",
+                      "sourceType": "TEXT",
+                      "properties": {
+                        "Position": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            12,
+                            0,
+                            12
+                          ]
+                        },
+                        "Size": {
+                          "type": "UDim2",
+                          "value": [
+                            0,
+                            250,
+                            0,
+                            32
+                          ]
+                        },
+                        "AnchorPoint": {
+                          "type": "Vector2",
+                          "value": [
+                            0,
+                            0
+                          ]
+                        },
+                        "Rotation": 0,
+                        "Visible": true,
+                        "BorderSizePixel": 0,
+                        "BackgroundTransparency": 1,
+                        "LayoutOrder": 0,
+                        "ZIndex": 1,
+                        "ClipsDescendants": false,
+                        "Text": "VIP offer",
+                        "FontFace": {
+                          "type": "Font",
+                          "family": "rbxasset://fonts/families/Roboto.json",
+                          "weight": "Regular",
+                          "style": "Normal"
+                        },
+                        "TextSize": 18,
+                        "TextColor3": {
+                          "type": "Color3",
+                          "value": [
+                            1,
+                            1,
+                            1
+                          ]
+                        },
+                        "TextTransparency": 0,
+                        "TextXAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextXAlignment",
+                            "Left"
+                          ]
+                        },
+                        "TextYAlignment": {
+                          "type": "Enum",
+                          "value": [
+                            "TextYAlignment",
+                            "Center"
+                          ]
+                        },
+                        "TextWrapped": true,
+                        "TextScaled": false,
+                        "RichText": false,
+                        "AutoLocalize": false
+                      },
+                      "children": [],
+                      "referenceSize": [
+                        250,
+                        32
+                      ]
+                    }
+                  ],
+                  "referenceSize": [
+                    260,
+                    80
+                  ],
+                  "behavior": {
+                    "role": "panel",
+                    "motion": {
+                      "float": {
+                        "distance": 4,
+                        "period": 3,
+                        "direction": 0
+                      },
+                      "slot": "premium/motion-slot"
+                    },
+                    "ruleDesign": "3e22689b2029cb91"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "compact",
+              "name": "Compact message",
+              "className": "TextLabel",
+              "sourceType": "TEXT",
+              "properties": {
+                "Position": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    40,
+                    0,
+                    270
+                  ]
+                },
+                "Size": {
+                  "type": "UDim2",
+                  "value": [
+                    0,
+                    250,
+                    0,
+                    32
+                  ]
+                },
+                "AnchorPoint": {
+                  "type": "Vector2",
+                  "value": [
+                    0,
+                    0
+                  ]
+                },
+                "Rotation": 0,
+                "Visible": true,
+                "BorderSizePixel": 0,
+                "BackgroundTransparency": 1,
+                "LayoutOrder": 3,
+                "ZIndex": 4,
+                "ClipsDescendants": false,
+                "Text": "Compact viewport",
+                "FontFace": {
+                  "type": "Font",
+                  "family": "rbxasset://fonts/families/Roboto.json",
+                  "weight": "Regular",
+                  "style": "Normal"
+                },
+                "TextSize": 18,
+                "TextColor3": {
+                  "type": "Color3",
+                  "value": [
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                "TextTransparency": 0,
+                "TextXAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextXAlignment",
+                    "Left"
+                  ]
+                },
+                "TextYAlignment": {
+                  "type": "Enum",
+                  "value": [
+                    "TextYAlignment",
+                    "Center"
+                  ]
+                },
+                "TextWrapped": true,
+                "TextScaled": false,
+                "RichText": false,
+                "AutoLocalize": false
+              },
+              "children": [],
+              "referenceSize": [
+                250,
+                32
+              ],
+              "behavior": {
+                "ruleDesign": "3e22689b2029cb91"
+              }
+            }
+          ],
+          "referenceSize": [
+            720,
+            400
+          ],
+          "behavior": {
+            "rules": [
+              {
+                "id": "purchase",
+                "branches": [
+                  {
+                    "when": {
+                      "mode": "all",
+                      "predicates": [
+                        {
+                          "source": "leaderstats",
+                          "key": "Coins",
+                          "operator": "gte",
+                          "value": 100
+                        },
+                        {
+                          "source": "attribute",
+                          "key": "Ready",
+                          "operator": "eq",
+                          "value": true
+                        }
+                      ]
+                    },
+                    "then": [
+                      {
+                        "target": "buy",
+                        "property": "Interactable",
+                        "value": true
+                      },
+                      {
+                        "target": "status",
+                        "property": "Text",
+                        "value": "Buy <b>now</b>"
+                      },
+                      {
+                        "target": "status",
+                        "property": "TextColor3",
+                        "value": {
+                          "type": "Color3",
+                          "value": [
+                            0.2,
+                            1,
+                            0.4
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "when": {
+                      "mode": "all",
+                      "predicates": [
+                        {
+                          "source": "leaderstats",
+                          "key": "Coins",
+                          "operator": "exists"
+                        }
+                      ]
+                    },
+                    "then": [
+                      {
+                        "target": "buy",
+                        "property": "Interactable",
+                        "value": false
+                      },
+                      {
+                        "target": "status",
+                        "property": "Text",
+                        "value": "Earn more coins"
+                      },
+                      {
+                        "target": "status",
+                        "property": "TextColor3",
+                        "value": {
+                          "type": "Color3",
+                          "value": [
+                            1,
+                            0.8,
+                            0.2
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "else": [
+                  {
+                    "target": "buy",
+                    "property": "Interactable",
+                    "value": false
+                  },
+                  {
+                    "target": "status",
+                    "property": "Text",
+                    "value": "Awaiting player data"
+                  },
+                  {
+                    "target": "status",
+                    "property": "TextColor3",
+                    "value": {
+                      "type": "Color3",
+                      "value": [
+                        0.7,
+                        0.7,
+                        0.7
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "premium",
+                "branches": [
+                  {
+                    "when": {
+                      "mode": "all",
+                      "predicates": [
+                        {
+                          "source": "attribute",
+                          "key": "VIP",
+                          "operator": "eq",
+                          "value": true
+                        }
+                      ]
+                    },
+                    "then": [
+                      {
+                        "target": "premium",
+                        "property": "Visible",
+                        "value": true
+                      }
+                    ]
+                  }
+                ],
+                "else": [
+                  {
+                    "target": "premium",
+                    "property": "Visible",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "id": "compact",
+                "branches": [
+                  {
+                    "when": {
+                      "mode": "all",
+                      "predicates": [
+                        {
+                          "source": "viewport",
+                          "key": "width",
+                          "operator": "lt",
+                          "value": 600
+                        }
+                      ]
+                    },
+                    "then": [
+                      {
+                        "target": "compact",
+                        "property": "Visible",
+                        "value": true
+                      }
+                    ]
+                  }
+                ],
+                "else": [
+                  {
+                    "target": "compact",
+                    "property": "Visible",
+                    "value": false
+                  }
+                ]
+              },
+              {
+                "id": "reward",
+                "branches": [
+                  {
+                    "when": {
+                      "mode": "any",
+                      "predicates": [
+                        {
+                          "source": "attribute",
+                          "key": "Ready",
+                          "operator": "eq",
+                          "value": true
+                        },
+                        {
+                          "source": "leaderstats",
+                          "key": "Coins",
+                          "operator": "gte",
+                          "value": 200
+                        }
+                      ]
+                    },
+                    "then": [
+                      {
+                        "target": "status",
+                        "property": "BackgroundTransparency",
+                        "value": 0.25
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "assets": [],
+  "issues": [],
+  "stats": {
+    "layers": 6,
+    "native": 6,
+    "raster": 0,
+    "instances": 8
+  }
+}

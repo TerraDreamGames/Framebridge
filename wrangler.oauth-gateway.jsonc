@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "framebridge-oauth-callback",
+  "account_id": "565c30419d463aba723dca148503569d",
+  "main": "packages/relay/cloudflare/oauth-gateway.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    {
+      "pattern": "https://framebridge.terradream.games/oauth/roblox/*",
+      "zone_name": "terradream.games",
+    },
+  ],
+  "vars": {
+    "FRAMEBRIDGE_RELAY_ORIGIN": "https://framebridge-private-beta.figma-to-rblx.workers.dev",
+    "ROBLOX_OAUTH_REDIRECT_URI": "https://framebridge.terradream.games/oauth/roblox/callback",
+  },
+  "observability": { "enabled": false },
+}

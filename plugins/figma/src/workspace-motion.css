@@ -1,0 +1,127 @@
+/* Motion belongs to editor chrome, never to the authored UI preview. */
+:root {
+  --fb-motion-fast: 120ms;
+  --fb-motion-open: 180ms;
+  --fb-motion-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.focused-app :is(.explorer-row, .fb-disclosure-trigger, .rail-action),
+.focused-app [data-slot="toggle-group-item"],
+.focused-app [data-slot="tabs-trigger"],
+.focused-app .geometry-anchor-grid button {
+  transition:
+    background-color var(--fb-motion-fast) ease,
+    border-color var(--fb-motion-fast) ease,
+    color var(--fb-motion-fast) ease,
+    box-shadow var(--fb-motion-fast) ease;
+}
+.focused-app :is(.rail-action, .geometry-anchor-grid button) {
+  transition:
+    background-color var(--fb-motion-fast) ease,
+    border-color var(--fb-motion-fast) ease,
+    color var(--fb-motion-fast) ease,
+    box-shadow var(--fb-motion-fast) ease,
+    transform var(--fb-motion-fast) var(--fb-motion-ease);
+}
+.focused-app
+  :is(.rail-action, .geometry-anchor-grid button):active:not(:disabled) {
+  transform: scale(0.94);
+}
+.focused-app :is([data-slot="input"], [data-slot="select-trigger"]) {
+  transition:
+    border-color var(--fb-motion-fast) ease,
+    box-shadow var(--fb-motion-fast) ease,
+    background-color var(--fb-motion-fast) ease;
+}
+
+/* Individual translate leaves any positioning transforms intact. */
+@keyframes fb-panel-in {
+  from {
+    opacity: 0;
+    translate: 0 4px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes fb-menu-in {
+  from {
+    opacity: 0;
+    translate: 0 3px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes fb-menu-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fb-content-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fb-drawer-in {
+  from {
+    opacity: 0;
+    translate: -4px 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+.focused-app .properties-pane {
+  animation: fb-panel-in var(--fb-motion-open) var(--fb-motion-ease);
+}
+.focused-app .inspector > :is(.page, .images-inspector),
+.focused-app .fb-disclosure[open] > .fb-disclosure-body {
+  animation: fb-content-in var(--fb-motion-open) ease-out;
+}
+:is(
+  [data-slot="select-content"],
+  [data-slot="dropdown-menu-content"],
+  [data-slot="dropdown-menu-sub-content"],
+  .preview-controls-popover,
+  .inspector-actions-popover,
+  .geometry-anchor-popover
+)[data-state="open"] {
+  animation: fb-menu-in var(--fb-motion-open) var(--fb-motion-ease);
+}
+:is(
+  [data-slot="select-content"],
+  [data-slot="dropdown-menu-content"],
+  [data-slot="dropdown-menu-sub-content"],
+  .preview-controls-popover,
+  .inspector-actions-popover,
+  .geometry-anchor-popover
+)[data-state="closed"] {
+  animation: fb-menu-out var(--fb-motion-fast) ease-out;
+}
+[data-slot="dialog-content"],
+[data-slot="dialog-overlay"],
+[data-slot="accordion-content"] {
+  animation-duration: var(--fb-motion-open);
+  animation-timing-function: var(--fb-motion-ease);
+}
+@media (max-width: 1100px) {
+  .focused-app .layer-workbench[data-layers-open="true"] > .explorer-pane {
+    animation: fb-drawer-in var(--fb-motion-open) var(--fb-motion-ease);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --fb-motion-fast: 0ms;
+    --fb-motion-open: 0ms;
+  }
+}

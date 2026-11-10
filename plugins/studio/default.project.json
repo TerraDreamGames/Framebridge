@@ -1,0 +1,144 @@
+{
+  "name": "Framebridge",
+  "tree": {
+    "$path": "generated/Plugin.server.luau",
+    "Importer": {
+      "$path": "src/Importer.luau"
+    },
+    "Cleanup": {
+      "$path": "src/Cleanup.luau"
+    },
+    "Relay": {
+      "$path": "src/Relay.luau"
+    },
+    "ConnectionStorage": {
+      "$path": "src/ConnectionStorage.luau"
+    },
+    "Handoff": {
+      "$path": "src/Handoff.luau"
+    },
+    "ConnectionLifetime": {
+      "$path": "src/ConnectionLifetime.luau"
+    },
+    "EditMode": {
+      "$path": "src/EditMode.luau"
+    },
+    "PlayConnection": {
+      "$path": "src/PlayConnection.luau"
+    },
+    "PlayConnectionView": {
+      "$path": "src/PlayConnectionView.luau"
+    },
+    "Receiver": {
+      "$path": "src/Receiver.luau"
+    },
+    "Editor": {
+      "$path": "src/Editor.luau"
+    },
+    "View": {
+      "$path": "src/View.luau"
+    },
+    "Components": {
+      "$path": "src/Components.luau"
+    },
+    "Clipboard": {
+      "$path": "src/Clipboard.luau"
+    },
+    "Brand": {
+      "$path": "src/Brand.luau"
+    },
+    "SelectionTools": {
+      "$path": "src/SelectionTools.luau"
+    },
+    "ClassTools": {
+      "$path": "src/ClassTools.luau"
+    },
+    "WorldTools": {
+      "$path": "src/WorldTools.luau"
+    },
+    "CommandTools": {
+      "$path": "src/CommandTools.luau"
+    },
+    "CommandPalette": {
+      "$path": "src/CommandPalette.luau"
+    },
+    "ImportHistory": {
+      "$path": "src/ImportHistory.luau"
+    },
+    "AssetGallery": {
+      "$path": "src/AssetGallery.luau"
+    },
+    "MaskLayout": {
+      "$path": "generated/MaskLayout.luau"
+    },
+    "TextDecoration": {
+      "$path": "generated/TextDecoration.luau"
+    },
+    "BehaviorSource": {
+      "$path": "generated/BehaviorSource.luau"
+    },
+    "BehaviorSources": {
+      "$className": "Folder",
+      "Base": {
+        "$path": "generated/BehaviorSources/Base.luau",
+        "Part01": {
+          "$path": "generated/BehaviorSources/Base/Part01.luau"
+        },
+        "Part02": {
+          "$path": "generated/BehaviorSources/Base/Part02.luau"
+        },
+        "Part03": {
+          "$path": "generated/BehaviorSources/Base/Part03.luau"
+        }
+      },
+      "Themed": {
+        "$path": "generated/BehaviorSources/Themed.luau",
+        "Part01": {
+          "$path": "generated/BehaviorSources/Themed/Part01.luau"
+        },
+        "Part02": {
+          "$path": "generated/BehaviorSources/Themed/Part02.luau"
+        },
+        "Part03": {
+          "$path": "generated/BehaviorSources/Themed/Part03.luau"
+        },
+        "Part04": {
+          "$path": "generated/BehaviorSources/Themed/Part04.luau"
+        }
+      },
+      "Particle": {
+        "$path": "generated/BehaviorSources/Particle.luau",
+        "Part01": {
+          "$path": "generated/BehaviorSources/Particle/Part01.luau"
+        },
+        "Part02": {
+          "$path": "generated/BehaviorSources/Particle/Part02.luau"
+        },
+        "Part03": {
+          "$path": "generated/BehaviorSources/Particle/Part03.luau"
+        },
+        "Part04": {
+          "$path": "generated/BehaviorSources/Particle/Part04.luau"
+        }
+      },
+      "ThemedParticle": {
+        "$path": "generated/BehaviorSources/ThemedParticle.luau",
+        "Part01": {
+          "$path": "generated/BehaviorSources/ThemedParticle/Part01.luau"
+        },
+        "Part02": {
+          "$path": "generated/BehaviorSources/ThemedParticle/Part02.luau"
+        },
+        "Part03": {
+          "$path": "generated/BehaviorSources/ThemedParticle/Part03.luau"
+        },
+        "Part04": {
+          "$path": "generated/BehaviorSources/ThemedParticle/Part04.luau"
+        }
+      }
+    },
+    "ReactLua": {
+      "$path": "generated/ReactLua/default.project.json"
+    }
+  }
+}
