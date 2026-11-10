@@ -2,6 +2,90 @@ import { describe, expect, it, vi } from "vitest";
 import { oauthConfig, oauthFixture } from "./roblox-oauth-fixture";
 
 describe("Roblox OAuth provider throttling", () => {
+  const networkBlock = (retryAfter = "0") =>
+    new Response("error code: 1015\n", {
+      status: 429,
+      headers: {
+        Server: "cloudflare",
+        "Content-Type": "text/plain; charset=UTF-8",
+        "Retry-After": retryAfter,
+      },
+    });
+
+  it("identifies an edge 1015 block and stops rapid retries across sign-in attempts", async () => {
+    const f = oauthFixture();
+    f.deps.sleep = vi.fn(async () => {});
+    f.remote.run = async () => networkBlock();
+    for (let i = 0; i < 2; i++) {
+      const login = await f.service.begin("invite");
+      expect(await f.service.callback(f.callback(login))).toBe(false);
+      expect(f.service.poll(login.loginToken)).toMatchObject({
+        status: "failed",
+        error: expect.stringContaining(
+          "hosting network (Cloudflare error 1015)",
+        ),
+      });
+    }
+    expect(f.calls).toHaveLength(1);
+    expect(f.deps.sleep).not.toHaveBeenCalled();
+    f.advance(15 * 60_000);
+    f.remote.run = f.provider;
+    expect(await f.connect()).toHaveProperty("accountToken");
+  });
+
+  it("honors an edge cooldown longer than the minimum pause", async () => {
+    const f = oauthFixture();
+    f.remote.run = async () => networkBlock("3600");
+    let login = await f.service.begin("invite");
+    await f.service.callback(f.callback(login));
+    f.advance(15 * 60_000);
+    f.remote.run = f.provider;
+    login = await f.service.begin("invite");
+    expect(await f.service.callback(f.callback(login))).toBe(false);
+    expect(f.calls).toHaveLength(1);
+    f.advance(45 * 60_000);
+    expect(await f.connect()).toHaveProperty("accountToken");
+  });
+
+  it("does not discard a refresh credential rejected by the edge network", async () => {
+    const f = oauthFixture();
+    const ready = await f.connect();
+    f.advance(850_000);
+    f.remote.run = async () => networkBlock();
+    await expect(
+      f.service.credential(ready.accountToken, "invite"),
+    ).rejects.toMatchObject({ status: 503, providerStatus: 429 });
+    expect(f.service.status(ready.accountToken).needsAuthorization).toBe(false);
+    f.advance(15 * 60_000);
+    f.remote.run = f.provider;
+    expect(
+      await f.service.credential(ready.accountToken, "invite"),
+    ).toMatchObject({ token: "local-access-token-2" });
+  });
+
+  it.each([
+    ["error code: 1015\nprivate-provider-data", "cloudflare"],
+    ["x".repeat(129), "cloudflare"],
+    ["error code: 1015", "public-gateway"],
+  ])(
+    "does not turn arbitrary provider text into a network-block diagnosis",
+    async (body, server) => {
+      const f = oauthFixture();
+      f.remote.run = async () =>
+        new Response(body, {
+          status: 429,
+          headers: { Server: server, "Content-Type": "text/plain" },
+        });
+      const login = await f.service.begin("invite");
+      expect(await f.service.callback(f.callback(login))).toBe(false);
+      const result = f.service.poll(login.loginToken);
+      expect(result).toMatchObject({ status: "failed" });
+      expect(JSON.stringify(result)).not.toContain("Cloudflare error 1015");
+      expect(JSON.stringify(result)).not.toContain("private-provider-data");
+      expect(f.calls).toHaveLength(4);
+    },
+  );
+
   it.each(["token", "userinfo", "token/resources"])(
     "completes the approved login after a temporary %s throttle",
     async (endpoint) => {

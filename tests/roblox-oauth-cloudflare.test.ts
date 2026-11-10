@@ -74,7 +74,12 @@ type Remote = {
   holdAsset?: Promise<void>;
   pollStatus?: number;
   pollError?: unknown;
-  oauthThrottle?: { endpoint: string; remaining: number; retryAfter: string };
+  oauthThrottle?: {
+    endpoint: string;
+    remaining: number;
+    retryAfter: string;
+    edgeBlock?: boolean;
+  };
   holdOAuth?: { endpoint: string; wait: Promise<void> };
 };
 async function start(
@@ -124,10 +129,20 @@ async function start(
             remote.oauthThrottle?.endpoint === endpoint &&
             remote.oauthThrottle.remaining-- > 0
           )
-            return new Response("private-provider-throttle-details", {
-              status: 429,
-              headers: { "Retry-After": remote.oauthThrottle.retryAfter },
-            });
+            return new Response(
+              remote.oauthThrottle.edgeBlock
+                ? "error code: 1015\n"
+                : "private-provider-throttle-details",
+              {
+                status: 429,
+                headers: {
+                  "Retry-After": remote.oauthThrottle.retryAfter,
+                  ...(remote.oauthThrottle.edgeBlock
+                    ? { Server: "cloudflare", "Content-Type": "text/plain" }
+                    : {}),
+                },
+              },
+            );
           if (remote.holdOAuth?.endpoint === endpoint)
             await remote.holdOAuth.wait;
           if (endpoint === "token")
@@ -262,6 +277,30 @@ async function start(
 }
 
 describe("Roblox OAuth in real workerd with durable SQLite", () => {
+  it("surfaces the Cloudflare edge block without repeatedly calling Roblox", async () => {
+    const host = await start("public-oauth-edge-network-block", {
+      ACCESS_MODE: "public",
+    });
+    host.remote.oauthThrottle = {
+      endpoint: "token",
+      remaining: 10,
+      retryAfter: "0",
+      edgeBlock: true,
+    };
+    for (let i = 0; i < 2; i++) {
+      const login = (await host.begin()).body;
+      await host.authorize(login);
+      const result = (await host.call("/v1/roblox/login", login.loginToken))
+        .body;
+      expect(result).toMatchObject({
+        status: "failed",
+        error: expect.stringContaining(
+          "hosting network (Cloudflare error 1015)",
+        ),
+      });
+    }
+    expect(host.remote.calls.filter((c) => c.path === "token")).toHaveLength(1);
+  });
   it("keeps the approved public login pending while retrying throttled creator permissions", async () => {
     const host = await start("public-oauth-provider-retry", {
       ACCESS_MODE: "public",

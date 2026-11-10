@@ -14,6 +14,48 @@ export { ROBLOX_OAUTH_SCOPES } from "./oauth-protocol";
 const DAY = 86_400_000;
 const PROVIDER_TIMEOUT = 15_000;
 const PROVIDER_RETRIES = 3;
+class OAuthHostingBlocked extends PublicError {
+  constructor() {
+    super(
+      "Roblox is currently blocking requests from Framebridge's hosting network (Cloudflare error 1015). Sign-in cannot finish until that block clears. Please try again later.",
+      503,
+      false,
+      429,
+    );
+  }
+}
+async function hostingBlocked(response: Response) {
+  if (
+    response.headers.get("Server")?.toLowerCase() !== "cloudflare" ||
+    !response.headers
+      .get("Content-Type")
+      ?.toLowerCase()
+      .startsWith("text/plain")
+  )
+    return false;
+  const reader = response.body?.getReader();
+  if (!reader) return false;
+  try {
+    let text = "";
+    let bytes = 0;
+    const decoder = new TextDecoder();
+    while (true) {
+      const next = await reader.read();
+      if (next.done) {
+        text += decoder.decode();
+        return text.trim() === "error code: 1015";
+      }
+      bytes += next.value.byteLength;
+      if (bytes > 128) return false;
+      text += decoder.decode(next.value, { stream: true });
+    }
+  } catch {
+    return false;
+  } finally {
+    await reader.cancel().catch(() => {});
+    reader.releaseLock();
+  }
+}
 function retryAfter(headers: Headers, now: number) {
   const value = headers.get("Retry-After")?.trim();
   if (value) {
@@ -158,6 +200,7 @@ export function grantedCreators(
 
 export class RobloxOAuth {
   private refreshing = new Map<string, Promise<OAuthAccount>>();
+  private providerBlockedUntil = 0;
   private request: typeof fetch;
   private now: () => number;
   private groupNames: RobloxGroupNames;
@@ -267,6 +310,7 @@ export class RobloxOAuth {
     access?: string,
     clientId = this.config.clientId,
   ) {
+    if (this.now() < this.providerBlockedUntil) throw new OAuthHostingBlocked();
     // Bind provider requests to the issuing app. Never try another client's
     // secret after an OAuth failure: rotating refresh tokens are single use.
     const client = parameters ? this.client(clientId) : undefined;
@@ -303,6 +347,14 @@ export class RobloxOAuth {
       }
       if (response.status !== 429 || path === "token/revoke") break;
       const cooldown = retryAfter(response.headers, this.now());
+      if (await hostingBlocked(response)) {
+        // This is an edge-network block, not the Roblox API's ordinary quota.
+        // A zero/one-second Retry-After on these responses is misleading. Pause
+        // this service instance, without trying another address or credential.
+        this.providerBlockedUntil =
+          this.now() + Math.max(15 * 60_000, cooldown ?? 0);
+        throw new OAuthHostingBlocked();
+      }
       const delay = cooldown ?? 1000 * 2 ** attempt;
       await response.body?.cancel();
       const stage =
@@ -315,7 +367,7 @@ export class RobloxOAuth {
         new PublicError(
           `Roblox is temporarily limiting sign-in requests (${stage}). ${
             cooldown !== undefined && delay <= DAY
-              ? `Wait ${Math.ceil(delay / 1000)} seconds, then sign in again.`
+              ? `Wait ${Math.ceil(delay / 1000)} ${delay <= 1000 ? "second" : "seconds"}, then sign in again.`
               : "Wait a minute, then sign in again."
           }`,
           429,
@@ -984,7 +1036,7 @@ export class RobloxOAuth {
         const rejectedRefresh =
           !tokens &&
           error instanceof PublicError &&
-          error.status === 429 &&
+          (error.status === 429 || error instanceof OAuthHostingBlocked) &&
           current.state === "refreshing" &&
           current.sealed === account.sealed;
         this.store.saveAccount({
