@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import { build } from "esbuild";
 import { Miniflare, convertV4MiniflareOptions } from "miniflare";
 import { mkdtemp, rm } from "node:fs/promises";
@@ -74,6 +74,8 @@ type Remote = {
   holdAsset?: Promise<void>;
   pollStatus?: number;
   pollError?: unknown;
+  oauthThrottle?: { endpoint: string; remaining: number; retryAfter: string };
+  holdOAuth?: { endpoint: string; wait: Promise<void> };
 };
 async function start(
   name: string,
@@ -118,6 +120,16 @@ async function start(
               request.method === "POST" ? await request.text() : "",
             );
           remote.calls.push({ path: endpoint, headers, body });
+          if (
+            remote.oauthThrottle?.endpoint === endpoint &&
+            remote.oauthThrottle.remaining-- > 0
+          )
+            return new Response("private-provider-throttle-details", {
+              status: 429,
+              headers: { "Retry-After": remote.oauthThrottle.retryAfter },
+            });
+          if (remote.holdOAuth?.endpoint === endpoint)
+            await remote.holdOAuth.wait;
           if (endpoint === "token")
             return Response.json(tokenResponse(++remote.number));
           if (endpoint === "userinfo") return Response.json(oauthProfile);
@@ -250,6 +262,88 @@ async function start(
 }
 
 describe("Roblox OAuth in real workerd with durable SQLite", () => {
+  it("keeps the approved public login pending while retrying throttled creator permissions", async () => {
+    const host = await start("public-oauth-provider-retry", {
+      ACCESS_MODE: "public",
+    });
+    host.remote.oauthThrottle = {
+      endpoint: "token/resources",
+      remaining: 1,
+      retryAfter: "0",
+    };
+    let finishRetry!: () => void;
+    host.remote.holdOAuth = {
+      endpoint: "token/resources",
+      wait: new Promise<void>((resolve) => {
+        finishRetry = resolve;
+      }),
+    };
+    const login = (await host.begin()).body;
+    const callback = host.authorize(login);
+    try {
+      await vi.waitFor(() =>
+        expect(
+          host.remote.calls.filter((c) => c.path === "token/resources"),
+        ).toHaveLength(2),
+      );
+      expect(
+        (await host.call("/v1/roblox/login", login.loginToken)).body.status,
+      ).toBe("pending");
+    } finally {
+      finishRetry();
+    }
+    expect((await callback).status).toBe(200);
+    const ready = (await host.call("/v1/roblox/login", login.loginToken)).body;
+    expect(ready).toMatchObject({
+      status: "ready",
+      account: { userId: "123" },
+    });
+    expect(host.remote.calls.filter((c) => c.path === "token")).toHaveLength(1);
+    expect(
+      host.remote.calls.filter((c) => c.path === "token/resources"),
+    ).toHaveLength(2);
+    expect(host.remote.calls.some((c) => c.path === "token/revoke")).toBe(
+      false,
+    );
+    expect(
+      (await host.call("/v1/roblox/login/complete", login.loginToken, {}))
+        .status,
+    ).toBe(200);
+  });
+
+  it("reports a long provider cooldown without replaying the exchange or leaking private response data", async () => {
+    const host = await start("public-oauth-provider-cooldown", {
+      ACCESS_MODE: "public",
+    });
+    host.remote.oauthThrottle = {
+      endpoint: "userinfo",
+      remaining: 1,
+      retryAfter: "120",
+    };
+    const login = (await host.begin()).body;
+    await host.authorize(login);
+    const result = (await host.call("/v1/roblox/login", login.loginToken)).body;
+    expect(result).toMatchObject({
+      status: "failed",
+      error: expect.stringContaining("Wait 120 seconds"),
+    });
+    expect(JSON.stringify(result)).not.toContain(
+      "private-provider-throttle-details",
+    );
+    expect(host.remote.calls.filter((c) => c.path === "token")).toHaveLength(1);
+    expect(host.remote.calls.filter((c) => c.path === "userinfo")).toHaveLength(
+      1,
+    );
+    expect(host.remote.calls.at(-1)?.path).toBe("token/revoke");
+    expect(
+      (
+        await (
+          await host.sql()
+        ).exec("SELECT COUNT(*) AS n FROM oauth_accounts")
+      )[0].n,
+    ).toBe(0);
+  });
+
   it("preserves SQLite accounts, pending logins and upload jobs while changing the OAuth app", async () => {
     let host = await start("app-migration");
     const ready = await host.connect();

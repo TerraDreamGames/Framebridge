@@ -12,6 +12,38 @@ const API = "https://apis.roblox.com/oauth/v1/";
 import { ROBLOX_OAUTH_SCOPES } from "./oauth-protocol";
 export { ROBLOX_OAUTH_SCOPES } from "./oauth-protocol";
 const DAY = 86_400_000;
+const PROVIDER_TIMEOUT = 15_000;
+const PROVIDER_RETRIES = 3;
+function retryAfter(headers: Headers, now: number) {
+  const value = headers.get("Retry-After")?.trim();
+  if (value) {
+    const seconds = /^\d+(?:\.\d+)?$/.test(value) ? Number(value) : NaN;
+    const milliseconds = Number.isFinite(seconds)
+      ? seconds * 1000
+      : /^[A-Za-z]{3}, \d{2} [A-Za-z]{3} \d{4} \d{2}:\d{2}:\d{2} GMT$/.test(
+            value,
+          )
+        ? Date.parse(value) - now
+        : NaN;
+    if (Number.isFinite(milliseconds) && milliseconds >= 0)
+      return Math.max(250, Math.ceil(milliseconds));
+  }
+  return undefined;
+}
+function waitForProvider(ms: number, signal: AbortSignal) {
+  return new Promise<void>((resolve, reject) => {
+    const abort = () => {
+      clearTimeout(timer);
+      reject(signal.reason);
+    };
+    const timer = setTimeout(() => {
+      signal.removeEventListener("abort", abort);
+      resolve();
+    }, ms);
+    signal.addEventListener("abort", abort, { once: true });
+    if (signal.aborted) abort();
+  });
+}
 const hash = (value: string) =>
   createHash("sha256").update(value).digest("hex");
 const secret = () => randomBytes(32).toString("hex");
@@ -137,6 +169,7 @@ export class RobloxOAuth {
       count: (scope: string, maximum: number, window: number) => void;
       request?: typeof fetch;
       now?: () => number;
+      sleep?: (ms: number, signal: AbortSignal) => Promise<void>;
       maxAccounts?: number;
       maxLogins?: number;
       maxAccountsPerIdentity?: number;
@@ -237,30 +270,73 @@ export class RobloxOAuth {
     // Bind provider requests to the issuing app. Never try another client's
     // secret after an OAuth failure: rotating refresh tokens are single use.
     const client = parameters ? this.client(clientId) : undefined;
+    // A 429 explicitly rejects the request. Retry only that response, never a
+    // timeout, redirect or 5xx: an ambiguous token exchange may have consumed
+    // its one-use authorization code/refresh token already.
+    const signal = AbortSignal.timeout(PROVIDER_TIMEOUT);
+    const deadline = this.now() + PROVIDER_TIMEOUT;
     let response: Response;
-    try {
-      response = await this.request(API + path, {
-        method: parameters ? "POST" : "GET",
-        headers: parameters
-          ? { "Content-Type": "application/x-www-form-urlencoded" }
-          : { Authorization: "Bearer " + access },
-        ...(parameters
-          ? {
-              body: new URLSearchParams({
-                ...parameters,
-                client_id: client!.id,
-                client_secret: client!.secret,
-              }),
-            }
-          : {}),
-        redirect: "manual",
-        signal: AbortSignal.timeout(15000),
-      });
-    } catch {
-      throw new PublicError(
-        "Roblox did not finish the sign-in request. Try signing in again.",
-        502,
-      );
+    for (let attempt = 0; ; attempt++) {
+      try {
+        response = await this.request(API + path, {
+          method: parameters ? "POST" : "GET",
+          headers: parameters
+            ? { "Content-Type": "application/x-www-form-urlencoded" }
+            : { Authorization: "Bearer " + access },
+          ...(parameters
+            ? {
+                body: new URLSearchParams({
+                  ...parameters,
+                  client_id: client!.id,
+                  client_secret: client!.secret,
+                }),
+              }
+            : {}),
+          redirect: "manual",
+          signal,
+        });
+      } catch {
+        throw new PublicError(
+          "Roblox did not finish the sign-in request. Try signing in again.",
+          502,
+        );
+      }
+      if (response.status !== 429 || path === "token/revoke") break;
+      const cooldown = retryAfter(response.headers, this.now());
+      const delay = cooldown ?? 1000 * 2 ** attempt;
+      await response.body?.cancel();
+      const stage =
+        path === "userinfo"
+          ? "profile lookup"
+          : path === "token/resources"
+            ? "creator permissions"
+            : "token exchange";
+      const limited = () =>
+        new PublicError(
+          `Roblox is temporarily limiting sign-in requests (${stage}). ${
+            cooldown !== undefined && delay <= DAY
+              ? `Wait ${Math.ceil(delay / 1000)} seconds, then sign in again.`
+              : "Wait a minute, then sign in again."
+          }`,
+          429,
+          false,
+          429,
+        );
+      // Do not retry sooner than Roblox asks, or hold the callback beyond its
+      // bounded request budget. The same signal covers all attempts and waits.
+      if (
+        attempt >= PROVIDER_RETRIES ||
+        delay > 10_000 ||
+        this.now() + delay >= deadline ||
+        signal.aborted
+      )
+        throw limited();
+      try {
+        await (this.deps.sleep ?? waitForProvider)(delay, signal);
+      } catch {
+        throw limited();
+      }
+      if (signal.aborted || this.now() >= deadline) throw limited();
     }
     if (!response.ok) {
       await response.body?.cancel();
@@ -901,7 +977,21 @@ export class RobloxOAuth {
     } catch (error) {
       if (tokens) await this.revoke(tokens.refresh, tokens.clientId);
       const current = this.store.account(account.id);
-      if (current) this.store.saveAccount({ ...current, state: "reauthorize" });
+      if (current) {
+        // A rejected refresh has not rotated the credential. Keep it usable
+        // after the cooldown; a successful rotation or an ambiguous failure
+        // still requires the existing conservative reauthorization path.
+        const rejectedRefresh =
+          !tokens &&
+          error instanceof PublicError &&
+          error.status === 429 &&
+          current.state === "refreshing" &&
+          current.sealed === account.sealed;
+        this.store.saveAccount({
+          ...current,
+          state: rejectedRefresh ? "active" : "reauthorize",
+        });
+      }
       throw error instanceof PublicError
         ? error
         : new PublicError(
