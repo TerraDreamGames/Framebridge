@@ -177,6 +177,8 @@ async function smoke(url) {
   ).trim();
   async function call(path, token, body, method, headers = {}) {
     const response = await fetch(url + path, {
+      redirect: "error",
+      signal: AbortSignal.timeout(35_000),
       method: method ?? (body ? "POST" : "GET"),
       headers: {
         "Content-Type": "application/json",

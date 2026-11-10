@@ -34,7 +34,9 @@ const record = (v: unknown): v is Record<string, unknown> =>
 const fields = (v: Record<string, unknown>, allowed: string[]) =>
   Object.keys(v).every((k) => allowed.includes(k));
 const name = (v: unknown): v is string =>
-  typeof v === "string" && /^[A-Za-z][A-Za-z0-9_.-]{0,63}$/.test(v);
+  typeof v === "string" &&
+  /^[A-Za-z][A-Za-z0-9_.-]{0,63}$/.test(v) &&
+  !["__proto__", "constructor", "prototype"].includes(v);
 function fail(ok: unknown, message: string): asserts ok {
   if (!ok) throw new Error(message);
 }
@@ -127,7 +129,7 @@ export function resolveThemes(value: unknown): {
   const resolved: Record<
     string,
     Record<string, Exclude<ThemeToken, { ref: string }>>
-  > = {};
+  > = Object.create(null);
   let canonical: string[] | undefined;
   for (const mode of modeNames) {
     const entries = settings.modes[mode];
@@ -142,7 +144,10 @@ export function resolveThemes(value: unknown): {
       "Every theme must define the same token names.",
     );
     canonical = ids;
-    const out: Record<string, Exclude<ThemeToken, { ref: string }>> = {};
+    const out: Record<
+      string,
+      Exclude<ThemeToken, { ref: string }>
+    > = Object.create(null);
     const visiting = new Set<string>();
     function resolve(id: string): Exclude<ThemeToken, { ref: string }> {
       if (Object.prototype.hasOwnProperty.call(out, id)) return out[id];

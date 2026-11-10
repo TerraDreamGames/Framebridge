@@ -245,8 +245,9 @@ const server = http.createServer(async (req, res) => {
     });
     res.end(await readFile(directory + "/" + page));
   } catch (error) {
+    console.error(error);
     res.writeHead(500);
-    res.end(String(error));
+    res.end("Local QA request failed.");
   }
 });
 await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));

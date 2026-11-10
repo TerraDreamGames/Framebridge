@@ -60,6 +60,28 @@ describe("untrusted transfer structure", () => {
       expect(() => validatePackage(pkg)).toThrow("Invalid Framebridge package");
     }
   });
+  it.each(["options", "properties", "diagnostics"])(
+    "bounds nested %s before feature traversal or storage",
+    (target) => {
+      const pkg = demoResult().package;
+      let nested: unknown = "leaf";
+      for (let i = 0; i < 5_000; i++) nested = { next: nested };
+      if (target === "options") pkg.options = nested as never;
+      else if (target === "properties")
+        pkg.roots[0].properties.Extra = nested as never;
+      else pkg.issues.push({ metadata: nested } as never);
+      expect(() => validatePackage(pkg)).toThrow(
+        "metadata is nested too deeply",
+      );
+    },
+  );
+  it("reports cyclic metadata as a validation error instead of a serializer exception", () => {
+    const pkg = demoResult().package;
+    const metadata: Record<string, unknown> = {};
+    metadata.self = metadata;
+    pkg.options = metadata as never;
+    expect(() => validatePackage(pkg)).toThrow("serializable JSON data");
+  });
   it("covers every data-only class supported by the native importer", () => {
     const source = readFileSync(
       new URL("../plugins/studio/src/Importer.luau", import.meta.url),

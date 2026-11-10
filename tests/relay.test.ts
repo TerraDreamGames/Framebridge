@@ -81,6 +81,19 @@ async function start(options: Parameters<typeof createRelay>[0] = {}) {
   return { call, session, pair };
 }
 describe("private paired transfer", () => {
+  it("rejects deeply nested metadata without advancing the inbox", async () => {
+    const host = await start();
+    const pkg = demoResult().package;
+    let metadata: unknown = "leaf";
+    for (let i = 0; i < 350; i++) metadata = { next: metadata };
+    pkg.options = metadata as never;
+    expect(
+      (await host.call("/v1/package", host.pair.senderToken, pkg)).status,
+    ).toBe(400);
+    const inbox = await host.call("/v1/inbox", host.session.receiverToken);
+    expect(inbox.body.revision).toBe(0);
+    expect(inbox.body.package).toBeUndefined();
+  });
   it("rejects unsafe tree structure without storing a transfer", async () => {
     const host = await start();
     const pkg = demoResult().package;

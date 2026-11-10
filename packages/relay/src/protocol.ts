@@ -52,6 +52,28 @@ function validateStructure(pkg: TransferPackage) {
       pending.push({ node: child, depth: depth + 1 });
   }
 }
+// Child-node limits alone do not bound arbitrary metadata/property values.
+// Reject those before recursive feature validators and the storage serializer.
+function boundedJson(pkg: TransferPackage): string {
+  const depths = new WeakMap<object, number>();
+  let values = 0;
+  try {
+    return JSON.stringify(pkg, function (_key, value) {
+      if (++values > 1_000_000)
+        throw new PublicError("Package contains too many JSON values.");
+      if (value && typeof value === "object") {
+        const depth = (depths.get(this) ?? -1) + 1;
+        if (depth > 300)
+          throw new PublicError("Package metadata is nested too deeply.");
+        depths.set(value, depth);
+      }
+      return value;
+    });
+  } catch (error) {
+    if (error instanceof PublicError) throw error;
+    throw new PublicError("Package must contain serializable JSON data.");
+  }
+}
 export function validatePackage(pkg: TransferPackage) {
   const allowed = new Set([
     "format",
@@ -89,6 +111,7 @@ export function validatePackage(pkg: TransferPackage) {
   )
     throw new PublicError("Invalid Framebridge package.");
   validateStructure(pkg);
+  const raw = boundedJson(pkg);
   if (pkg.issues.some((i) => i.severity === "error"))
     throw new PublicError("Resolve conversion errors before sending.");
   try {
@@ -121,7 +144,6 @@ export function validatePackage(pkg: TransferPackage) {
     throw new PublicError(
       "A design can contain at most 1,000 unique Roblox images.",
     );
-  const raw = JSON.stringify(pkg);
   if (
     /"(?:apiKey|api_key|png|senderToken|receiverToken|ownerToken|receiptToken|loginToken|accountToken|oauthToken|access_token|refresh_token|client_secret|sealingKey)"\s*:/i.test(
       raw,

@@ -1,5 +1,6 @@
 import { randomBytes } from "node:crypto";
-import { chmod, readFile, stat, writeFile } from "node:fs/promises";
+import { chmod, readFile, writeFile } from "node:fs/promises";
+import { readRegularFile } from "./regular-file.mjs";
 import { resolve } from "node:path";
 import ts from "typescript";
 import { visionSettings } from "../packages/relay/src/vision-provider";
@@ -76,16 +77,11 @@ export async function prepareOptionalPlan(args: string[]) {
     const tokenPath = resolve(optionalDirectory, "feedback-admin-token.txt");
     let token: string;
     try {
-      const info = await stat(tokenPath);
-      if (
-        info.mode & 0o077 ||
-        info.uid !== process.getuid?.() ||
-        !info.isFile()
+      token = (
+        await readRegularFile(tokenPath, { private: true, maxBytes: 66 })
       )
-        throw new Error(
-          "The prepared maintainer capability needs owner-only mode 600.",
-        );
-      token = (await readFile(tokenPath, "utf8")).trim();
+        .toString("utf8")
+        .trim();
       if (!/^[a-f0-9]{64}$/.test(token))
         throw new Error("Invalid prepared maintainer capability.");
     } catch (error) {

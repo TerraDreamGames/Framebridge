@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
-import { chmod, mkdir, readFile, stat, writeFile } from "node:fs/promises";
+import { chmod, mkdir, writeFile } from "node:fs/promises";
+import { readRegularFile } from "./regular-file.mjs";
 import { resolve } from "node:path";
 
 export const optionalDirectory = resolve(
@@ -12,11 +13,12 @@ export async function privateDirectory(path = optionalDirectory) {
   await chmod(path, 0o700);
 }
 export async function privateJson(path: string) {
-  const info = await stat(path);
-  if (!info.isFile() || info.mode & 0o077 || info.uid !== process.getuid?.())
-    throw new Error("Use an owner-only regular JSON file with mode 600.");
+  const bytes = await readRegularFile(path, {
+    private: true,
+    maxBytes: 1_000_000,
+  });
   try {
-    return JSON.parse(await readFile(path, "utf8")) as unknown;
+    return JSON.parse(bytes.toString("utf8")) as unknown;
   } catch {
     // A JSON parse error can contain the private input; never forward it.
     throw new Error("The owner-only file is not valid JSON.");

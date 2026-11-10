@@ -135,7 +135,10 @@ export function prepareScrollbars(
     return { designs, settings, accepted };
   const index = designIndex(designs);
   const consumed = new Set<string>(),
-    overrides = { ...settings.layerOverrides };
+    overrides: Record<string, LayerOverride> = Object.assign(
+      Object.create(null),
+      settings.layerOverrides,
+    );
   for (const [id, override] of Object.entries(settings.layerOverrides)) {
     if (!override.scrollbar) continue;
     const viewport = index.nodes.get(id);

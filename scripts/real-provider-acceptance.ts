@@ -17,6 +17,7 @@ import type { RobloxAccount } from "../plugins/figma/src/roblox-login-api";
 import type { UploadSession } from "../plugins/figma/src/transfer";
 import { providerRefreshObservation } from "./provider-refresh-evidence";
 import { readProviderRefreshDiagnostics } from "../packages/core/src/provider-refresh";
+import { readRegularFile } from "./regular-file.mjs";
 
 type Credentials = {
   relayUrl: string;
@@ -42,18 +43,17 @@ async function save(name: string, value: unknown) {
   await chmod(path, 0o600);
 }
 async function secretFile(path: string) {
-  const info = await stat(path);
-  if (
-    !info.isFile() ||
-    (info.mode & 0o077) !== 0 ||
-    info.uid !== process.getuid?.()
-  )
+  let bytes: Buffer;
+  try {
+    bytes = await readRegularFile(path, { private: true, maxBytes: 16_384 });
+  } catch {
     throw new Error(
-      "The credentials file must be owned by this user with mode 600.",
+      "The credentials file must be owned by this user with mode 600 and contain bounded regular-file data.",
     );
+  }
   let value: Credentials;
   try {
-    value = JSON.parse(await readFile(path, "utf8"));
+    value = JSON.parse(bytes.toString("utf8"));
   } catch {
     throw new Error("The owner-only credentials file is not valid JSON.");
   }

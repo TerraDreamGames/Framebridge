@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { previewCamera } from "./preview-viewport";
+import { previewImageSource } from "./preview-image-source";
 
 /** Source and native previews share one fit/zoom convention and the same viewport. */
 export function SourcePreview({
@@ -39,7 +40,7 @@ export function SourcePreview({
           transform: camera.transform,
           transformOrigin: "0 0",
         }}
-        src={src}
+        src={previewImageSource(src)}
         alt={`Figma source: ${name}`}
       />
     </div>
