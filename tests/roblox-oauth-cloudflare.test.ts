@@ -75,6 +75,7 @@ type Remote = {
   pollStatus?: number;
   pollError?: unknown;
   oauthThrottle?: { endpoint: string; remaining: number; retryAfter: string };
+  holdOAuth?: { endpoint: string; wait: Promise<void> };
 };
 async function start(
   name: string,
@@ -127,6 +128,8 @@ async function start(
               status: 429,
               headers: { "Retry-After": remote.oauthThrottle.retryAfter },
             });
+          if (remote.holdOAuth?.endpoint === endpoint)
+            await remote.holdOAuth.wait;
           if (endpoint === "token")
             return Response.json(tokenResponse(++remote.number));
           if (endpoint === "userinfo") return Response.json(oauthProfile);
@@ -268,16 +271,27 @@ describe("Roblox OAuth in real workerd with durable SQLite", () => {
       remaining: 1,
       retryAfter: "0",
     };
+    let finishRetry!: () => void;
+    host.remote.holdOAuth = {
+      endpoint: "token/resources",
+      wait: new Promise<void>((resolve) => {
+        finishRetry = resolve;
+      }),
+    };
     const login = (await host.begin()).body;
     const callback = host.authorize(login);
-    await vi.waitFor(() =>
-      expect(host.remote.calls.some((c) => c.path === "token/resources")).toBe(
-        true,
-      ),
-    );
-    expect(
-      (await host.call("/v1/roblox/login", login.loginToken)).body.status,
-    ).toBe("pending");
+    try {
+      await vi.waitFor(() =>
+        expect(
+          host.remote.calls.filter((c) => c.path === "token/resources"),
+        ).toHaveLength(2),
+      );
+      expect(
+        (await host.call("/v1/roblox/login", login.loginToken)).body.status,
+      ).toBe("pending");
+    } finally {
+      finishRetry();
+    }
     expect((await callback).status).toBe(200);
     const ready = (await host.call("/v1/roblox/login", login.loginToken)).body;
     expect(ready).toMatchObject({
