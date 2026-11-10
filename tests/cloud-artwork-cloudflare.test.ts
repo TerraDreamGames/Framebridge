@@ -1162,10 +1162,13 @@ describe("private artwork through actual HTTP/workerd/SQLite/R2", () => {
     r = await start("retention", provider, true, [otherArtworkInvite]);
     const other = await r.account("123", otherArtworkInvite),
       b = await r.connect(other);
-    expect((await r.call("/__qa/state")).body.objects).toEqual([]);
     expect(
       (await r.call("/v1/artwork", token, undefined, a.grantToken)).status,
     ).toBe(401);
+    // Access revocation is immediate; physical R2 deletion is a bounded alarm
+    // job. Drive that job explicitly instead of racing workerd's alarm timer.
+    expect((await r.call("/__qa/alarm")).status).toBe(200);
+    expect((await r.call("/__qa/state")).body.objects).toEqual([]);
     await r.upload(other, b.grantToken, 41);
     const storage = await r.sql();
     await storage.exec("UPDATE artwork_libraries SET expires=0");
