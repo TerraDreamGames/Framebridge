@@ -14,13 +14,13 @@ This review prepares the initial public source snapshot. It is an engineering re
 ## Remediation
 
 1. Updated Vite to 6.4.6, Vitest to 4.1.12, Wrangler to 4.160.0 and Miniflare to 5.20261110.0-beta, including Undici 7.30.1. Refreshed the lockfile and shipped dependency notices. The private design prototype was also updated and checked, but is not part of this public plugin repository.
-2. Added an iterative transfer structure check before recursive feature validation. The relay rejects more than 15,000 nodes, nesting beyond 128 levels, malformed/cyclic child collections, unsupported/executable classes and script/control properties before storing the package. Studio's independent data-only importer remains the final import boundary. Added 18 regression tests, including real HTTP and workerd/SQLite checks that rejected content is not retained.
+2. Added an iterative transfer structure check before recursive feature validation. The relay rejects more than 15,000 nodes, nesting beyond 128 levels, malformed/cyclic child collections, unsupported/executable classes and script/control properties before storing the package. A separate JSON depth/value budget also bounds metadata and properties before recursive validation or serialization. Studio's independent data-only importer remains the final import boundary. Added 18 regression tests, including real HTTP and workerd/SQLite checks that rejected content is not retained.
 3. Made the CI dependency gate fail on advisories at every severity. Retained read-only CI repository permissions, SHA-pinned Actions and checksum-verified build/secret-scan tooling. No production credentials are needed by CI.
 4. Published only a clean source snapshot with MIT and third-party notices. Runtime state, credentials, generated builds, design experiments, screenshots/evidence and the prior private development history are excluded. Maintainer commits use a GitHub noreply address.
 
 ## Local verification
 
-- 129 TypeScript test files: 1,956 tests passed.
+- 129 TypeScript test files: 1,962 tests passed.
 - Production Figma/Studio build, type checking, dependency notices and release-bundle validation passed: 465 bundled files, 29 examples, 50 local documentation links.
 - Independent Rojo model readback: 381 script sources matched, all compiled; largest source 143,217 bytes. Pure Studio configuration/controller checks passed.
 - Model export checks passed for 60 models and 1,314 instances, including independent XML/property validation.
@@ -29,6 +29,8 @@ This review prepares the initial public source snapshot. It is an engineering re
 - Gitleaks 8.30.1 checks cover the source, complete publishable Git history and built plugin ZIP. No broad exclusions or public-history exemptions are used.
 
 The GitHub Security tab records ongoing CodeQL, dependency and secret-scanning results. An unfinished or failed scan must not be interpreted as a clean result. Report new issues privately using [SECURITY.md](../SECURITY.md).
+
+The public `main` branch requires the plugin CI check and all three CodeQL language jobs. An active code-scanning ruleset blocks merges with unreviewed CodeQL alerts at any severity. Secret scanning, push protection, Dependabot security updates and private vulnerability reporting are enabled. This is repository-level protection; no organization-wide settings were changed.
 
 ## Limits and operating assumptions
 
@@ -77,5 +79,8 @@ The following findings describe intended flows or constructs that do not have th
 | #56            | savePrivate intentionally saves JSON evidence returned by the explicit optional-service acceptance run under the fixed owner-only .artifacts directory. The resolved filename must remain below that directory, the output is not evaluated as code, and it is excluded from Git.                                                                          |
 | #57            | save intentionally records JSON evidence for the explicit real-provider acceptance command in its fixed owner-only .artifacts directory with mode 0600. The output is not executable and is excluded from Git; remote data does not select the destination path.                                                                                           |
 | #58            | This entrypoint is bundled only as a dedicated image-preparation Web Worker. Its message channel is owned by the Worker creator, not a cross-window postMessage listener; a window origin check would not authenticate this channel. The actual UI window handler independently checks event.source against Figma parent/top.                              |
+
+| #59, #60, #61, #62 | The preview source now explicitly accepts only local image data MIME types or blob object URLs. Remote, HTML, javascript and relative URLs are rejected, and React escapes the img attribute. The value is only rendered as an image, never as an HTML document, anchor, redirect or executable markup. Tests cover rejected schemes. |
+| #63, #64 | Theme edits build new objects using computed object-literal properties and spread. These create own data properties without invoking a prototype setter. Selected themes require an own entry; resolveThemes rejects reserved prototype identities and validates the complete result before applying it. |
 
 Descriptor-bound reads protect local tooling from pathname swaps; they do not protect an operator from a compromised OS, a malicious process with the same user identity, or untrusted checkout-directory ownership. On Windows, filesystem ACLs remain the operator’s responsibility. The fallback file-identity check is used where O_NOFOLLOW is unavailable.

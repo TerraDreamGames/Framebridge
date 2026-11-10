@@ -103,6 +103,20 @@ async function paired(host: Awaited<ReturnType<typeof start>>) {
   return { session, pair };
 }
 describe("public Cloudflare relay in real workerd + SQLite storage", () => {
+  it("rejects nested metadata without retaining design chunks", async () => {
+    const host = await start("nested-metadata-boundary");
+    const { session, pair } = await paired(host);
+    const pkg = demoResult().package;
+    let metadata: unknown = "leaf";
+    for (let i = 0; i < 350; i++) metadata = { next: metadata };
+    pkg.options = metadata as never;
+    expect((await host.call("/v1/package", pair.senderToken, pkg)).status).toBe(
+      400,
+    );
+    const inbox = await host.call("/v1/inbox", session.receiverToken);
+    expect(inbox.body.revision).toBe(0);
+    expect(inbox.body.package).toBeUndefined();
+  });
   it("rejects unsafe instances before persisting any design chunks", async () => {
     const host = await start("unsafe-package-boundary");
     const { session, pair } = await paired(host);
