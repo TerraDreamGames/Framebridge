@@ -67,7 +67,7 @@
     "@figma/plugin-typings": "^1.117.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@tailwindcss/vite": "^4.3.3",
-    "@types/node": "^22.0.0",
+    "@types/node": "^26.6.6",
     "@types/prismjs": "1.26.6",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
