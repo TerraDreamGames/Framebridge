@@ -121,6 +121,7 @@ export function oauthFixture() {
     count,
     request,
     now: () => time,
+    sleep: async (_ms: number, _signal: AbortSignal) => {},
   };
   const service = new RobloxOAuth(data.store, oauthConfig, deps);
   const callback = (
