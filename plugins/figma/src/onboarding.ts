@@ -1,15 +1,17 @@
 import { isTourStep, type TourStepId } from "./onboarding-tour";
 
+// Keep the original key so upgrades can read prior guide preferences.
 export const ONBOARDING_KEY = "framebridge-onboarding-v1";
 export type OnboardingPreferences = {
-  version: 1;
+  version: 2;
   status: "new" | "active" | "dismissed" | "complete";
   route: "connect" | "download";
+  skippedSignIn?: boolean;
   tourStep?: TourStepId;
   tourDone?: boolean;
 };
 export const DEFAULT_ONBOARDING: OnboardingPreferences = {
-  version: 1,
+  version: 2,
   status: "new",
   route: "connect",
 };
@@ -18,22 +20,44 @@ export function readOnboarding(
   value: unknown,
 ): OnboardingPreferences | undefined {
   if (!value || typeof value !== "object") return;
-  const saved = value as Partial<OnboardingPreferences>;
+  const saved = value as Partial<Omit<OnboardingPreferences, "version">> & {
+    version?: unknown;
+  };
   if (
-    saved.version !== 1 ||
+    (saved.version !== 1 && saved.version !== 2) ||
     !["new", "active", "dismissed", "complete"].includes(saved.status ?? "") ||
     (saved.route !== "connect" && saved.route !== "download")
   )
     return;
+  // The previous welcome recorded dismissals even when the user only closed it.
+  // Offer the new flow once to users who did not finish the previous guide.
+  const completed = saved.status === "complete" || saved.tourDone === true;
   return {
-    version: 1,
-    status: saved.status!,
+    version: 2,
+    status:
+      saved.version === 1 ? (completed ? "complete" : "new") : saved.status!,
     route: saved.route,
+    ...(saved.version === 2 && saved.skippedSignIn === true
+      ? { skippedSignIn: true }
+      : {}),
     ...(isTourStep(saved.tourStep) ? { tourStep: saved.tourStep } : {}),
     ...(typeof saved.tourDone === "boolean"
       ? { tourDone: saved.tourDone }
       : {}),
   };
+}
+
+export function firstLaunchStage(
+  preferences: OnboardingPreferences,
+  {
+    accountEnabled,
+    connected,
+  }: { accountEnabled: boolean; connected: boolean },
+): "sign-in" | "tutorial" | undefined {
+  if (preferences.status !== "new" || preferences.tourDone) return;
+  return accountEnabled && !connected && !preferences.skippedSignIn
+    ? "sign-in"
+    : "tutorial";
 }
 
 export function createOnboardingStorage(storage: {

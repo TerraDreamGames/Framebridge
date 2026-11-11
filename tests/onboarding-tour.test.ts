@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   DEFAULT_ONBOARDING,
+  firstLaunchStage,
   readOnboarding,
   createOnboardingStorage,
   onboardingStep,
@@ -13,10 +14,79 @@ import {
 } from "../plugins/figma/src/onboarding-tour";
 
 describe("guided feature tour", () => {
-  it("restores previous onboarding choices without making returning users start again", () => {
+  it("offers sign-in before the tutorial and remembers either skip", () => {
+    const disconnected = { accountEnabled: true, connected: false };
+    expect(firstLaunchStage(DEFAULT_ONBOARDING, disconnected)).toBe("sign-in");
     expect(
-      readOnboarding({ version: 1, status: "dismissed", route: "download" }),
-    ).toEqual({ version: 1, status: "dismissed", route: "download" });
+      firstLaunchStage(DEFAULT_ONBOARDING, {
+        ...disconnected,
+        connected: true,
+      }),
+    ).toBe("tutorial");
+    expect(
+      firstLaunchStage(DEFAULT_ONBOARDING, {
+        ...disconnected,
+        accountEnabled: false,
+      }),
+    ).toBe("tutorial");
+    const skipped = readOnboarding({
+      ...DEFAULT_ONBOARDING,
+      skippedSignIn: true,
+    })!;
+    expect(firstLaunchStage(skipped, disconnected)).toBe("tutorial");
+    for (const status of ["active", "dismissed", "complete"] as const) {
+      expect(
+        firstLaunchStage({ ...skipped, status }, disconnected),
+      ).toBeUndefined();
+    }
+    expect(
+      firstLaunchStage({ ...DEFAULT_ONBOARDING, tourDone: true }, disconnected),
+    ).toBeUndefined();
+  });
+
+  it("offers the new onboarding once after an old dismissal", async () => {
+    let saved: unknown = { version: 1, status: "dismissed", route: "download" };
+    const storage = createOnboardingStorage({
+      getAsync: async () => saved,
+      setAsync: async (_, value) => {
+        saved = value;
+      },
+    });
+    const connected = { accountEnabled: true, connected: true };
+    const upgraded = await storage.load();
+    expect(upgraded).toEqual({ ...DEFAULT_ONBOARDING, route: "download" });
+    expect(firstLaunchStage(upgraded, connected)).toBe("tutorial");
+    expect(firstLaunchStage(upgraded, { ...connected, connected: false })).toBe(
+      "sign-in",
+    );
+    await storage.save({
+      ...upgraded,
+      status: "dismissed",
+      skippedSignIn: true,
+    });
+    expect(firstLaunchStage(await storage.load(), connected)).toBeUndefined();
+  });
+
+  it("preserves completed legacy guides and paused lessons", () => {
+    expect(
+      readOnboarding({ version: 1, status: "complete", route: "download" }),
+    ).toEqual({ version: 2, status: "complete", route: "download" });
+    expect(
+      readOnboarding({
+        version: 1,
+        status: "active",
+        route: "connect",
+        tourDone: true,
+      })?.status,
+    ).toBe("complete");
+    expect(
+      readOnboarding({
+        version: 1,
+        status: "active",
+        route: "connect",
+        tourStep: "properties",
+      }),
+    ).toEqual({ ...DEFAULT_ONBOARDING, tourStep: "properties" });
     expect(
       readOnboarding({
         ...DEFAULT_ONBOARDING,

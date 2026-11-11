@@ -23,7 +23,7 @@ that website's normal development server. Use its printed URL plus:
 
 Choose **Download both themes**. The page captures every view, waits for fonts
 and images, settles for at least 1.2 seconds per view, and downloads one ZIP.
-A complete set contains 90 images across 45 views. For shorter capture runs, add
+A complete set contains 92 images across 46 views. For shorter capture runs, add
 `&batch=0` through `&batch=7`: each batch contains at most six views in both themes.
 A batch takes roughly 15–30 seconds on the test Mac. Import all batches for a complete refresh.
 The screenshots contain neither a pointer nor Figma's window header. The tool
@@ -46,8 +46,8 @@ Keep source PNGs in the downloaded ZIP when higher-resolution masters are needed
 
 The website's `PluginDemo` component accepts a view such as `properties`, `layers`,
 `images`, `settings`, `layout`, `studio`, `export`, `notes`, `usability`, `structure`,
-`tutorial`, or the full `workspace`. `src/docs/live-demos.ts` maps guides to views.
-A screenshot loads first; **Try it** loads the interactive example. Reset restores
+`welcome`, `tutorial`, or the full `workspace`. `src/docs/live-demos.ts` maps guides to views.
+The welcome example uses a simulated account. A screenshot loads first; **Try it** loads the interactive example. Reset restores
 the sample. Switching the website theme updates an active frame without discarding
 its edits. Properties and Layers omit the surrounding plugin shell.
 
