@@ -5,13 +5,10 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
-  Lightbulb,
   X,
 } from "./components/Glyph";
 import { Button } from "./components/ui/button";
-import { SelectControl } from "./components/SelectControl";
 import {
-  TOUR_STEPS,
   placeTourCard,
   type TourLesson,
   type TourRect,
@@ -20,7 +17,7 @@ import {
 
 type Props = {
   lesson: TourLesson;
-  index: number;
+  sequence: readonly TourStepId[];
   ready: boolean;
   libraryMode: boolean;
   busy: boolean;
@@ -35,7 +32,8 @@ type Props = {
   onExamples(kind: "layout" | "control"): void;
 };
 export function GuidedTour(props: Props) {
-  const { lesson, index } = props;
+  const { lesson, sequence } = props;
+  const index = sequence.indexOf(lesson.id);
   const card = useRef<HTMLDivElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
   const focusedLesson = useRef("");
@@ -128,7 +126,8 @@ export function GuidedTour(props: Props) {
     window.addEventListener("keydown", escape);
     return () => window.removeEventListener("keydown", escape);
   }, [props.onPause]);
-  const last = index === TOUR_STEPS.length - 1;
+  const previous = sequence[index - 1];
+  const next = sequence[index + 1];
   return createPortal(
     <div className="guided-tour editor-guided-tour">
       {layout.target && layout.target.width > 0 && layout.target.height > 0 && (
@@ -151,7 +150,11 @@ export function GuidedTour(props: Props) {
         style={{ left: layout.left, top: layout.top }}
       >
         <div className="tour-topline">
-          <span>{lesson.chapter}</span>
+          <span>
+            {sequence.length > 1
+              ? `Step ${index + 1} of ${sequence.length}`
+              : "Tutorial"}
+          </span>
           <div className="tour-top-actions">
             <Button
               size="icon-sm"
@@ -175,64 +178,32 @@ export function GuidedTour(props: Props) {
             </Button>
           </div>
         </div>
-        <div className="tour-details" hidden={minimized}>
-          <div
-            className="tour-progress"
-            aria-label={`Tour step ${index + 1} of ${TOUR_STEPS.length}`}
-          >
-            {TOUR_STEPS.map((step, n) => (
+        {sequence.length > 1 && !minimized && (
+          <div className="tour-progress" aria-hidden="true">
+            {sequence.map((id, n) => (
               <span
-                key={step.id}
+                key={id}
                 data-passed={n < index}
                 data-current={n === index}
               />
             ))}
           </div>
-          <div className="tour-lesson-picker">
-            <span>
-              {String(index + 1).padStart(2, "0")} / {TOUR_STEPS.length}
-            </span>
-            <SelectControl
-              aria-label="Tour lesson"
-              value={lesson.id}
-              onChange={(e) => props.onJump(e.target.value as TourStepId)}
-            >
-              {TOUR_STEPS.map((step) => (
-                <option key={step.id} value={step.id}>
-                  {step.label}
-                </option>
-              ))}
-            </SelectControl>
-          </div>
-        </div>
+        )}
         <h2 ref={heading} tabIndex={-1}>
-          {minimized ? lesson.label : lesson.title}
+          {props.libraryMode && lesson.id === "studio"
+            ? "Download and import"
+            : lesson.label}
         </h2>
         <div className="tour-details" hidden={minimized}>
-          <p>
+          <p role={lesson.id === "analyze" ? "status" : undefined}>
             {props.libraryMode && lesson.id === "studio"
               ? "Download the package and open its JSON in Framebridge for Studio."
               : props.libraryMode && lesson.id === "images"
                 ? "Link Roblox image IDs or download unuploaded artwork with the package."
-                : lesson.description}
+                : lesson.id === "analyze" && props.ready
+                  ? "Your preview is ready. Continue to check its layers and layout."
+                  : lesson.description}
           </p>
-          <div className="tour-try">
-            <Lightbulb size={16} />
-            <div>
-              <strong>Try it</strong>
-              <p>{lesson.try}</p>
-            </div>
-          </div>
-          {!props.ready && lesson.id !== "analyze" && (
-            <p className="tour-context-note">
-              Analyze a frame to try this with your design.
-            </p>
-          )}
-          {lesson.id === "analyze" && props.ready && (
-            <p className="tour-context-note" role="status">
-              Preview ready. Continue to Layers.
-            </p>
-          )}
           {lesson.id === "analyze" && (
             <Button
               variant="outline"
@@ -256,7 +227,7 @@ export function GuidedTour(props: Props) {
                 disabled={props.busy}
                 onClick={() => props.onExamples("layout")}
               >
-                Try layout examples instead
+                Use an example frame
               </Button>
             )}
           {lesson.id === "review" && (
@@ -281,32 +252,30 @@ export function GuidedTour(props: Props) {
             )}
           {lesson.id === "studio" && (
             <Button variant="outline" size="sm" onClick={props.onFirstImport}>
-              First import <ArrowRight size={14} />
+              Open import checklist <ArrowRight size={14} />
             </Button>
           )}
         </div>
-        <div className="tour-navigation">
-          <Button
-            variant="ghost"
-            size="sm"
-            disabled={index === 0}
-            onClick={() => props.onJump(TOUR_STEPS[index - 1].id)}
-          >
-            <ArrowLeft size={14} /> Back
-          </Button>
-          <Button
-            size="sm"
-            onClick={() =>
-              last ? props.onFinish() : props.onJump(TOUR_STEPS[index + 1].id)
-            }
-          >
-            {last ? "Finish tour" : "Next"}
-            {last ? <Check size={14} /> : <ArrowRight size={14} />}
-          </Button>
-        </div>
-        <small className="tour-footnote" hidden={minimized}>
-          Esc to pause
-        </small>
+        {!minimized && (
+          <div className="tour-navigation">
+            {previous && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => props.onJump(previous)}
+              >
+                <ArrowLeft size={14} /> Back
+              </Button>
+            )}
+            <Button
+              size="sm"
+              onClick={() => (next ? props.onJump(next) : props.onFinish())}
+            >
+              {next ? "Next" : "Done"}
+              {next ? <ArrowRight size={14} /> : <Check size={14} />}
+            </Button>
+          </div>
+        )}
       </section>
     </div>,
     document.body,

@@ -1,23 +1,23 @@
 # Getting started in Framebridge
 
-Open **More options → Getting started** at any time. First-time users see this overview automatically; previous skip and completion choices remain respected.
+## Sign in or continue
 
-## Explore the editor
+When Framebridge opens for the first time, choose **Sign in with Roblox** to upload artwork under your Roblox account. Approve access in your browser, then return to Figma. Choose **Continue without Roblox** to enter the workspace and connect later under **Images → Account**.
 
-**Show me around** starts nine short lessons in the actual workspace: Analyze, Layers, Properties, responsive preview, scrolling/layouts, interactions, Images, review and Studio transfer. Feature cards jump directly to a lesson. Each lesson highlights the relevant pane, explains what it does and offers something to try. The underlying controls remain interactive.
+The updated plugin offers onboarding again if you left the previous guide unfinished. If your saved Roblox connection is active, you can go straight to the tutorial. Completed tutorials, skips and current lesson progress are remembered on this installation.
 
-Use **Back**, **Next** or the lesson picker to navigate. Minimize the tips when you need more space to work. **Escape** or the close button pauses the tour. Your lesson is saved on this device, including across plugin restarts. **Resume tour** returns to it; **Replay tour** starts again after completion. Finishing the feature tour does not claim a design was imported.
+## Take the tutorial
 
-**Layout examples** and **Control examples** create complete, clearly named example frames on the current Figma page using the existing example generators. Example creation is disabled during work and in the development browser preview. The installed plugin supports it.
+Choose **Start tutorial** or open **Tutorial** from the sidebar at any time.
+
+1. **Analyze a frame.** Select your UI in Figma and click **Analyze selection**. Use an example frame to practice in the installed plugin.
+2. **Check the Roblox preview.** Select layers and inspect size, position and layout in Properties. Check how the design fits using the device picker.
+3. **Send to Studio.** Pair the plugins and transfer your design, or open the import checklist for step-by-step help.
+
+Choose **Skip tutorial** to open the workspace. Use **Back** and **Next** to move between lessons. Escape or the close button pauses the tutorial, and **Resume tutorial** returns to the saved step. **More lessons** covers layers, layouts, interactions, artwork and review tools.
+
+Create layout, control or artwork examples from **More options** in the installed Figma plugin. Example creation adds frames to your current page.
 
 ## Complete a first import
 
-Choose **Guide my first import** to follow your design’s real progress:
-
-1. Select and Analyze a UI frame in Figma. Review native layers, generated images and the Source/Roblox previews.
-2. Pair Studio using its connection code, or choose **Download a copy**. Automatic image uploads require Roblox sign-in or the configured upload credentials; exploring and downloading do not.
-3. Send the design and import it in Studio. The connected checklist completes only when Studio reports an import receipt. Downloading alone does not prove import: the offline path requires your explicit confirmation that you imported it.
-
-Blocked property drafts, conversion issues, upload setup, pending deliveries and queued Play-mode imports have contextual guidance. Closing the checklist leaves the workspace usable; reopen it from Getting started.
-
-Both the overview and tour use the plugin’s dark/light theme. Compact windows get scrollable content and a minimizable coach. Keyboard focus moves to each new lesson without trapping users away from the highlighted controls. Open dropdowns consume Escape before the tour does.
+Open **First import checklist** from **More lessons** or from the Studio lesson. Choose **Connect Studio** to pair the plugins, or **Download a copy** to import a package. Automatic image uploads require Roblox sign-in or configured upload credentials. A connected checklist finishes when Studio reports a successful import. When using a download, confirm the import after opening the package in Studio.

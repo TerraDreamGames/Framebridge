@@ -53,7 +53,10 @@ import { StructureReview } from "../src/StructureReview";
 import { EMPTY_REVIEW_PREFERENCES } from "../../../packages/core/src/structure-review";
 import type { useReviewPreferences } from "../src/review-preferences";
 import { OnboardingGuide } from "../src/OnboardingGuide";
-import { DEFAULT_ONBOARDING } from "../src/onboarding";
+import {
+  DEFAULT_ONBOARDING,
+  type OnboardingPreferences,
+} from "../src/onboarding";
 import {
   Moon,
   Sun,
@@ -94,6 +97,21 @@ import {
 
 const route = demoRoute(location.search);
 const noop = () => {};
+const noAccountAction = async () => {};
+const sampleOnboarding = (scene: DemoScene): OnboardingPreferences => ({
+  ...DEFAULT_ONBOARDING,
+  status: scene === "welcome" ? "new" : "dismissed",
+});
+const sampleAccount = {
+  userId: "1",
+  username: "SampleCreator",
+  displayName: "Sample Creator",
+  owners: [],
+  expiresAt: Number.MAX_SAFE_INTEGER,
+  needsAuthorization: false,
+};
+const hasSetupDialog = (scene: DemoScene) =>
+  scene === "welcome" || scene === "tutorial";
 const editorScenes = new Set<DemoScene>([
   "workspace",
   "properties",
@@ -167,10 +185,10 @@ function App() {
     rules: [...EMPTY_REVIEW_PREFERENCES.rules],
   });
   const [tourOpen, setTourOpen] = useState(route.scene === "tutorial");
-  const [onboarding, setOnboarding] = useState({
-    ...DEFAULT_ONBOARDING,
-    status: "dismissed" as "active" | "complete" | "dismissed",
-  });
+  const [onboarding, setOnboarding] = useState(() =>
+    sampleOnboarding(route.scene),
+  );
+  const [demoSignedIn, setDemoSignedIn] = useState(false);
   const [captureBusy, setCaptureBusy] = useState(false);
   const frame = useRef<HTMLDivElement>(null);
   const [captureSize, setCaptureSize] = useState<{
@@ -343,6 +361,8 @@ function App() {
       options,
       mode,
       tourOpen,
+      onboarding,
+      demoSignedIn,
     };
     setCaptureBusy(true);
     // Source artwork rasterizes faithfully in browser image exports; the live native preview remains interactive.
@@ -364,14 +384,15 @@ function App() {
       for (const item of scenes)
         for (const appearance of all ? (["light", "dark"] as const) : [theme]) {
           setNotice(`Capturing ${item.label} · ${appearance}`);
-          const dimensions =
-            item.id === "tutorial"
-              ? { width: innerWidth, height: innerHeight }
-              : { width: item.width, height: item.height };
+          const dimensions = hasSetupDialog(item.id)
+            ? { width: innerWidth, height: innerHeight }
+            : { width: item.width, height: item.height };
           setCaptureSize(dimensions);
           setScene(item.id);
           setTheme(appearance);
           setTourOpen(item.id === "tutorial");
+          setOnboarding(sampleOnboarding(item.id));
+          setDemoSignedIn(false);
           select(editorSelection[item.id] ?? "demo:inventory");
           setOverrides(
             item.id === "scrolling"
@@ -401,7 +422,7 @@ function App() {
             ),
           );
           const blob = await toBlob(
-            item.id === "tutorial" ? document.body : frame.current,
+            hasSetupDialog(item.id) ? document.body : frame.current,
             {
               pixelRatio: 1,
               width: dimensions.width,
@@ -441,6 +462,8 @@ function App() {
     } finally {
       setCaptureSize(undefined);
       setTourOpen(restore.tourOpen);
+      setOnboarding(restore.onboarding);
+      setDemoSignedIn(restore.demoSignedIn);
       setMode(restore.mode);
       setScene(restore.scene);
       setTheme(restore.theme);
@@ -990,13 +1013,52 @@ function App() {
                   ? notice
                   : "Interactive sample · edits stay in this demo"}
               </span>
-              <Button variant="ghost" size="sm" onClick={reset}>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  reset();
+                  setScene(route.scene);
+                  setOnboarding(sampleOnboarding(route.scene));
+                  setDemoSignedIn(false);
+                  setTourOpen(route.scene === "tutorial");
+                }}
+              >
                 Reset sample
               </Button>
             </footer>
             <OnboardingGuide
               open={tourOpen}
               onOpenChange={setTourOpen}
+              setup={
+                scene === "welcome" && onboarding.status === "new"
+                  ? {
+                      stage:
+                        demoSignedIn || onboarding.skippedSignIn
+                          ? "tutorial"
+                          : "sign-in",
+                      betaAccess: "",
+                      roblox: {
+                        state: {
+                          loading: false,
+                          busy: false,
+                          retry: false,
+                          error: "",
+                          notice: "",
+                          available: true,
+                          simulation: true,
+                          account: demoSignedIn ? sampleAccount : undefined,
+                        },
+                        manager: {
+                          start: async () => setDemoSignedIn(true),
+                          reopen: noAccountAction,
+                          retry: noAccountAction,
+                          cancel: noAccountAction,
+                        },
+                      },
+                    }
+                  : undefined
+              }
               preferences={onboarding}
               facts={{
                 analyzed: !!result,
@@ -1014,14 +1076,7 @@ function App() {
               persistenceError=""
               onRetrySave={noop}
               onChoose={(patch) =>
-                setOnboarding((before) => ({
-                  ...before,
-                  ...patch,
-                  status:
-                    patch.status === "new"
-                      ? "active"
-                      : (patch.status ?? before.status),
-                }))
+                setOnboarding((before) => ({ ...before, ...patch }))
               }
               onAnalyze={reset}
               onConnect={() => setScene("studio")}
@@ -1030,7 +1085,15 @@ function App() {
               onSend={unavailable}
               onDownload={unavailable}
               onVisit={(step) => {
-                setScene(step === "images" ? "images" : "workspace");
+                setScene(
+                  step === "images"
+                    ? "images"
+                    : step === "studio"
+                      ? "studio"
+                      : step === "review"
+                        ? "notes"
+                        : "workspace",
+                );
                 setTourOpen(false);
               }}
               onTourEnd={noop}

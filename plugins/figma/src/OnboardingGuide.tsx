@@ -3,16 +3,18 @@ import { BrandMark } from "./BrandMark";
 import {
   ArrowRight,
   Check,
+  ChevronDown,
   ChevronRight,
+  ExternalLink,
   Focus,
   Grid2X2,
   Image,
   Layers,
   Link,
+  LoaderCircle,
   Monitor,
   MousePointer2,
   SlidersHorizontal,
-  Sparkles,
   X,
 } from "./components/Glyph";
 import { Button } from "./components/ui/button";
@@ -23,16 +25,22 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./components/ui/dialog";
+import { ConnectionExpiry } from "./ConnectionExpiry";
 import {
   FirstTransferGuide,
   type FirstTransferGuideProps,
 } from "./FirstTransferGuide";
 import { GuidedTour } from "./GuidedTour";
-import { onboardingStep } from "./onboarding";
-import { TOUR_STEPS, tourLesson, type TourStepId } from "./onboarding-tour";
+import {
+  QUICK_TOUR_STEPS,
+  tourLesson,
+  type TourStepId,
+} from "./onboarding-tour";
+import { PRIVATE_BETA } from "./transfer";
+import type { useRobloxAccount } from "./useRobloxAccount";
 import "./editor-pages.css";
 
-export const TOUR_ICONS = {
+const TOUR_ICONS = {
   scan: Focus,
   layers: Layers,
   sliders: SlidersHorizontal,
@@ -43,93 +51,196 @@ export const TOUR_ICONS = {
   check: Check,
   link: Link,
 };
+
+type Setup = {
+  stage: "sign-in" | "tutorial";
+  roblox: {
+    state: ReturnType<typeof useRobloxAccount>["state"];
+    manager: Pick<
+      ReturnType<typeof useRobloxAccount>["manager"],
+      "start" | "retry" | "reopen" | "cancel"
+    >;
+  };
+  betaAccess: string;
+};
 type Props = FirstTransferGuideProps & {
+  setup?: Setup;
   onVisit(step: TourStepId): void;
   onTourEnd(): void;
   onSettings(): void;
   onExample(kind: "layout" | "control"): void;
   examplesAvailable: boolean;
 };
-const FEATURES: { id: TourStepId; title: string }[] = [
-  {
-    id: "layers",
-    title: "Layers",
-  },
-  {
-    id: "properties",
-    title: "Properties",
-  },
-  {
-    id: "preview",
-    title: "Device previews",
-  },
-  {
-    id: "layouts",
-    title: "Scrolling & layouts",
-  },
-  {
-    id: "interactions",
-    title: "Interactions",
-  },
-  {
-    id: "images",
-    title: "Artwork",
-  },
+const EXTRA_LESSONS: TourStepId[] = [
+  "layers",
+  "preview",
+  "layouts",
+  "interactions",
+  "images",
+  "review",
 ];
+
+function SignInActions({
+  roblox: { state, manager },
+  betaAccess,
+  onSkip,
+}: Pick<Setup, "roblox" | "betaAccess"> & { onSkip(): void }) {
+  const blocked = state.loading || state.busy;
+  const needsCode = PRIVATE_BETA && !betaAccess;
+  const simulatedInPlugin = state.simulation && !import.meta.env.DEV;
+  const waiting = state.loading ? undefined : state.pending;
+  return (
+    <>
+      {(state.loading || state.busy || waiting) && (
+        <p className="setup-status" role="status">
+          <LoaderCircle size={15} className="animate-spin" />
+          {state.loading
+            ? "Checking your connection…"
+            : waiting
+              ? state.simulation
+                ? "Waiting for simulated approval"
+                : "Finish in your browser"
+              : "Starting Roblox sign-in…"}
+          {waiting && (
+            <ConnectionExpiry
+              label="Sign-in link"
+              expiresAt={waiting.expiresAt}
+            />
+          )}
+        </p>
+      )}
+      {state.error && (
+        <p className="setup-error" role="alert">
+          {state.error}
+        </p>
+      )}
+      {!blocked &&
+        !state.error &&
+        (state.available === false || simulatedInPlugin || needsCode) && (
+          <p className="setup-status" role="status">
+            {needsCode
+              ? "Enter your access code in Images → Account to sign in later."
+              : "Roblox sign-in is unavailable. You can continue and connect later in Images."}
+          </p>
+        )}
+      <div className="setup-sign-in-actions">
+        {waiting ? (
+          <>
+            {(!state.simulation || state.retry) && (
+              <Button
+                disabled={blocked}
+                onClick={() =>
+                  void (state.retry ? manager.retry() : manager.reopen())
+                }
+              >
+                <ExternalLink size={15} />{" "}
+                {state.retry ? "Retry sign-in" : "Open Roblox"}
+              </Button>
+            )}
+            <Button
+              variant="outline"
+              disabled={blocked}
+              onClick={() => void manager.cancel()}
+            >
+              Cancel sign-in
+            </Button>
+          </>
+        ) : (
+          <Button
+            disabled={
+              blocked ||
+              simulatedInPlugin ||
+              needsCode ||
+              (!state.retry && state.available !== true)
+            }
+            onClick={() =>
+              void (state.retry ? manager.retry() : manager.start(betaAccess))
+            }
+          >
+            <Link size={15} />
+            {state.retry
+              ? "Retry sign-in"
+              : state.simulation
+                ? "Try sign-in demo"
+                : "Sign in with Roblox"}
+          </Button>
+        )}
+        <Button variant="ghost" onClick={onSkip}>
+          Continue without Roblox
+        </Button>
+      </div>
+    </>
+  );
+}
 
 export function OnboardingGuide(props: Props) {
   const [page, setPage] = useState<"hub" | "transfer">("hub");
-  const requestedPage = useRef<"hub" | "transfer" | undefined>(undefined);
-  const [touring, setTouring] = useState(false);
-  const { preferences, onChoose } = props;
-  const lesson = tourLesson(preferences.tourStep);
-  const index = TOUR_STEPS.findIndex((step) => step.id === lesson.id);
-  const route = props.libraryMode ? "download" : preferences.route;
-  const importStep = onboardingStep(route, props.facts);
+  const [activeStep, setActiveStep] = useState<TourStepId>();
+  const heading = useRef<HTMLHeadingElement>(null);
+  const { preferences, onChoose, setup } = props;
+  const firstLaunch = setup?.stage;
+  const signIn = setup?.stage === "sign-in";
+  const hubOpen = !!firstLaunch || (props.open && page === "hub");
+  const lesson = tourLesson(activeStep ?? preferences.tourStep);
+  const touring = !!activeStep;
+  const resume = !!preferences.tourStep && !preferences.tourDone;
+  const sequence = QUICK_TOUR_STEPS.includes(lesson.id)
+    ? QUICK_TOUR_STEPS
+    : [lesson.id];
+
   useEffect(() => {
-    if (props.open) {
-      setPage(requestedPage.current ?? "hub");
-      requestedPage.current = undefined;
-      setTouring(false);
-    }
+    if (!props.open) setPage("hub");
+    else setActiveStep(undefined);
   }, [props.open]);
+
+  // A successful or skipped sign-in replaces the content of the open dialog.
+  useEffect(() => {
+    if (firstLaunch === "tutorial")
+      heading.current?.focus({ preventScroll: true });
+  }, [firstLaunch]);
+
+  const pause = () => {
+    setActiveStep(undefined);
+    props.onTourEnd();
+  };
   const visit = (id: TourStepId) => {
-    onChoose({ status: "active", tourStep: id, tourDone: false });
+    if (QUICK_TOUR_STEPS.includes(id))
+      onChoose({ status: "active", tourStep: id, tourDone: false });
     props.onVisit(id);
     props.onOpenChange(false);
-    setTouring(true);
-  };
-  const pause = () => {
-    setTouring(false);
-    props.onTourEnd();
+    setActiveStep(id);
   };
   const firstImport = () => {
     pause();
-    onChoose({ status: "active" });
+    onChoose({
+      status: "active",
+      ...(activeStep === "studio" && { tourDone: true }),
+    });
     setPage("transfer");
-    if (!props.open) requestedPage.current = "transfer";
     props.onOpenChange(true);
   };
   const finish = () => {
-    onChoose({ tourDone: true });
+    if (sequence === QUICK_TOUR_STEPS)
+      onChoose({ status: "complete", tourDone: true });
+    else if (preferences.tourStep === activeStep)
+      onChoose({ status: "dismissed", tourStep: undefined });
     pause();
-    setPage("hub");
-    props.onOpenChange(true);
   };
   const dismiss = () => {
     pause();
     onChoose({ status: "dismissed" });
     props.onOpenChange(false);
   };
-  const createExample = (kind: "layout" | "control") => {
-    pause();
-    onChoose({
-      status: "active",
-      tourStep: kind === "layout" ? "layouts" : "interactions",
-    });
-    props.onOpenChange(false);
-    props.onExample(kind);
+  const closeHub = () => {
+    if (firstLaunch === "tutorial") dismiss();
+    else props.onOpenChange(false);
   };
+  const skipSignIn = () => {
+    if (setup?.roblox.state.pending || setup?.roblox.state.busy)
+      void setup.roblox.manager.cancel();
+    onChoose({ skippedSignIn: true });
+  };
+
   return (
     <>
       {preferences.status === "active" && !touring && (
@@ -137,27 +248,15 @@ export function OnboardingGuide(props: Props) {
           className="onboarding-bar editor-guide-bar"
           aria-label="Getting started guide"
         >
-          <span className="onboarding-bar-marker" aria-hidden="true">
-            <Sparkles size={15} />
-          </span>
           <div className="onboarding-bar-copy">
-            <strong>
-              {importStep === 3
-                ? "Import complete"
-                : preferences.tourStep && !preferences.tourDone
-                  ? lesson.label
-                  : "Tutorial"}
-            </strong>
+            <strong>{resume ? lesson.label : "First import"}</strong>
           </div>
           <Button
             variant="outline"
             size="sm"
-            onClick={() => props.onOpenChange(true)}
+            onClick={() => (resume ? visit(lesson.id) : firstImport())}
           >
-            {preferences.tourStep && !preferences.tourDone
-              ? "Resume"
-              : "Open tutorial"}{" "}
-            <ArrowRight size={14} />
+            Resume <ArrowRight size={14} />
           </Button>
           <Button
             variant="ghost"
@@ -170,144 +269,145 @@ export function OnboardingGuide(props: Props) {
         </section>
       )}
       <Dialog
-        open={props.open && page === "hub"}
+        open={hubOpen}
         onOpenChange={(open) => {
-          if (!open && preferences.status === "new")
-            onChoose({ status: "dismissed" });
-          props.onOpenChange(open);
+          if (!open && !signIn) closeHub();
         }}
       >
         <DialogContent
-          className="welcome-dialog editor-tutorial"
+          className="editor-tutorial setup-dialog"
+          data-stage={signIn ? "sign-in" : "tutorial"}
           overlayClassName="onboarding-overlay"
-          onCloseAutoFocus={(event) => {
-            if (touring) {
+          showCloseButton={!signIn}
+          onPointerDownOutside={(event) => {
+            if (firstLaunch) event.preventDefault();
+          }}
+          onEscapeKeyDown={(event) => {
+            if (signIn) {
               event.preventDefault();
-              document
-                .querySelector<HTMLElement>(".tour-card h2")
-                ?.focus({ preventScroll: true });
+              skipSignIn();
             }
           }}
           onOpenAutoFocus={(event) => {
             event.preventDefault();
-            document
-              .querySelector<HTMLButtonElement>("[data-onboarding-start]")
-              ?.focus();
+            heading.current?.focus({ preventScroll: true });
+          }}
+          onCloseAutoFocus={(event) => {
+            if (touring) event.preventDefault();
           }}
         >
-          <DialogHeader>
-            <span className="onboarding-eyebrow">
-              <BrandMark className="welcome-brand-mark" /> Framebridge
-            </span>
-            <DialogTitle>Tutorial</DialogTitle>
-            <DialogDescription className="sr-only">
-              Choose a lesson to practice in the editor, or follow your first
-              import.
+          <DialogHeader className="setup-heading">
+            {signIn && (
+              <div className="setup-bridge" aria-hidden="true">
+                <BrandMark />
+                <span className="setup-bridge-line" />
+                <span className="setup-bridge-device">
+                  <Monitor size={22} />
+                </span>
+              </div>
+            )}
+            {firstLaunch === "tutorial" &&
+              !preferences.skippedSignIn &&
+              setup?.roblox.state.account && (
+                <p className="setup-account">
+                  <Check size={14} />{" "}
+                  {setup.roblox.state.simulation
+                    ? "Demo account @"
+                    : "Connected as @"}
+                  {setup.roblox.state.account.username}
+                </p>
+              )}
+            <DialogTitle ref={heading} tabIndex={-1}>
+              {signIn ? "Welcome to Framebridge" : "Tutorial"}
+            </DialogTitle>
+            <DialogDescription>
+              {signIn
+                ? "Sign in with Roblox to upload your design’s images."
+                : "Bring a Figma design into Roblox Studio in three steps."}
             </DialogDescription>
           </DialogHeader>
-          <div className="welcome-start">
-            <div>
-              <h3>
-                {preferences.tourStep && !preferences.tourDone
-                  ? lesson.label
-                  : "Editor tour"}
-              </h3>
-              <p>{TOUR_STEPS.length} hands-on lessons</p>
-            </div>
-            <Button
-              data-onboarding-start
-              onClick={() =>
-                visit(preferences.tourDone ? "analyze" : lesson.id)
-              }
-            >
-              {preferences.tourStep && !preferences.tourDone
-                ? "Resume tour"
-                : preferences.tourDone
-                  ? "Replay tour"
-                  : "Start tour"}
-              <ArrowRight size={15} />
-            </Button>
-          </div>
-          <section
-            className="welcome-features"
-            aria-label="Explore Framebridge features"
-          >
-            {FEATURES.map((feature) => {
-              const step = tourLesson(feature.id),
-                Icon = TOUR_ICONS[step.icon];
-              return (
-                <button
-                  key={feature.id}
-                  className="welcome-feature"
-                  aria-current={
-                    preferences.tourStep === feature.id ? "step" : undefined
-                  }
-                  onClick={() => visit(feature.id)}
-                >
-                  <span className="welcome-feature-icon">
-                    <Icon size={18} />
-                  </span>
+          {signIn ? (
+            <SignInActions
+              roblox={setup.roblox}
+              betaAccess={setup.betaAccess}
+              onSkip={skipSignIn}
+            />
+          ) : (
+            <>
+              <ol className="setup-tutorial-steps">
+                <li>
+                  <Focus size={17} />{" "}
                   <span>
-                    <strong>{feature.title}</strong>
+                    <strong>Analyze a frame</strong>
+                    <small>Select your UI in Figma.</small>
                   </span>
-                  <ChevronRight size={14} />
-                </button>
-              );
-            })}
-          </section>
-          <div className="welcome-paths">
-            <button className="welcome-path" onClick={firstImport}>
-              <span className="welcome-feature-icon">
-                <Link size={18} />
-              </span>
-              <span>
-                <strong>First import</strong>
-              </span>
-              <ArrowRight size={15} />
-            </button>
-            <div className="welcome-example">
-              <Grid2X2 size={18} />
-              <div>
-                <strong>Example frames</strong>
-                <div className="welcome-example-actions">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    disabled={!props.examplesAvailable || props.busy}
-                    onClick={() => createExample("layout")}
-                  >
-                    Lists & grids
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    disabled={!props.examplesAvailable || props.busy}
-                    onClick={() => createExample("control")}
-                  >
-                    Controls
-                  </Button>
-                </div>
-                <small>
-                  {props.examplesAvailable
-                    ? "Adds example frames to your current Figma page."
-                    : "Open the installed Figma plugin to create examples."}
-                </small>
+                </li>
+                <li>
+                  <SlidersHorizontal size={17} />{" "}
+                  <span>
+                    <strong>Check the Roblox preview</strong>
+                    <small>Inspect layers, size, and layout.</small>
+                  </span>
+                </li>
+                <li>
+                  <Link size={17} />{" "}
+                  <span>
+                    <strong>
+                      {props.libraryMode
+                        ? "Download and import"
+                        : "Send to Studio"}
+                    </strong>
+                    <small>
+                      {props.libraryMode
+                        ? "Open your export in Studio."
+                        : "Pair the plugins and import your UI."}
+                    </small>
+                  </span>
+                </li>
+              </ol>
+              <div className="setup-tutorial-actions">
+                <Button variant="ghost" onClick={closeHub}>
+                  {firstLaunch ? "Skip tutorial" : "Back to workspace"}
+                </Button>
+                <Button onClick={() => visit(resume ? lesson.id : "analyze")}>
+                  {resume
+                    ? "Resume tutorial"
+                    : preferences.tourDone
+                      ? "Replay tutorial"
+                      : "Start tutorial"}
+                  <ArrowRight size={15} />
+                </Button>
               </div>
-            </div>
-          </div>
-          {props.persistenceError && (
-            <div className="onboarding-feedback" role="status">
-              <p>{props.persistenceError}</p>
-              <Button variant="outline" size="sm" onClick={props.onRetrySave}>
-                Retry saving
-              </Button>
-            </div>
+              {!firstLaunch && (
+                <details className="setup-extra-lessons">
+                  <summary>
+                    <ChevronDown size={14} /> More lessons
+                  </summary>
+                  <div>
+                    {EXTRA_LESSONS.map((id) => {
+                      const step = tourLesson(id);
+                      const Icon = TOUR_ICONS[step.icon];
+                      return (
+                        <Button
+                          key={id}
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => visit(id)}
+                        >
+                          <Icon size={15} /> {step.label}{" "}
+                          <ChevronRight size={13} />
+                        </Button>
+                      );
+                    })}
+                    <Button variant="ghost" size="sm" onClick={firstImport}>
+                      <Link size={15} /> First import checklist{" "}
+                      <ChevronRight size={13} />
+                    </Button>
+                  </div>
+                </details>
+              )}
+            </>
           )}
-          <div className="welcome-footer">
-            <Button variant="ghost" size="sm" onClick={dismiss}>
-              {preferences.status === "new" ? "Skip for now" : "Close tutorial"}
-            </Button>
-          </div>
         </DialogContent>
       </Dialog>
       <FirstTransferGuide
@@ -318,7 +418,7 @@ export function OnboardingGuide(props: Props) {
       {touring && (
         <GuidedTour
           lesson={lesson}
-          index={index}
+          sequence={sequence}
           ready={props.facts.analyzed}
           libraryMode={props.libraryMode}
           busy={props.busy}
@@ -329,7 +429,7 @@ export function OnboardingGuide(props: Props) {
           onFirstImport={firstImport}
           onAnalyze={props.onAnalyze}
           onSettings={props.onSettings}
-          onExamples={createExample}
+          onExamples={props.onExample}
           examplesAvailable={props.examplesAvailable}
         />
       )}

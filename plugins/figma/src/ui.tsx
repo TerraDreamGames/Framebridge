@@ -176,6 +176,7 @@ import { OnboardingGuide } from "./OnboardingGuide";
 import { DocumentationLink } from "./DocumentationLink";
 import { openDocumentation } from "./open-documentation";
 import { useOnboarding } from "./useOnboarding";
+import { firstLaunchStage } from "./onboarding";
 import { type TourStepId } from "./onboarding-tour";
 import { ImageLibrary, useImageLibrary } from "./ImageLibrary";
 import { imagePage } from "./image-pages";
@@ -467,7 +468,6 @@ function PluginApp({
         action: { label: "Retry", onClick: onboarding.retry },
       });
   }, [onboarding.error, onboarding.retry]);
-  const welcomeOffered = useRef(false);
   const [propertyReveal, setPropertyReveal] = useState(0);
   const [tourSection, setTourSection] = useState<
     "layout" | "behavior" | "properties"
@@ -478,6 +478,16 @@ function PluginApp({
   const [guideDownload, setGuideDownload] = useState<AnalysisResult>();
   const propertyDrafts = usePropertyDrafts();
   const roblox = useRobloxAccount(!LIBRARY_MODE);
+  const firstLaunch = onboarding.loaded
+    ? firstLaunchStage(onboarding.preferences, {
+        accountEnabled: !LIBRARY_MODE,
+        connected:
+          !roblox.state.loading &&
+          !roblox.state.pending &&
+          !!roblox.state.account &&
+          !roblox.state.account.needsAuthorization,
+      })
+    : undefined;
   const [checkSettings, setCheckSettings] = useState<CheckSettings>({
     ...DEFAULT_CHECKS,
   });
@@ -534,16 +544,7 @@ function PluginApp({
     [feedbackOpen, setFeedbackOpen] = useState(false),
     [zoom, setZoom] = useState(1),
     [manualCopy, setManualCopy] = useState("");
-  useEffect(() => {
-    if (onboarding.loaded && !welcomeOffered.current) {
-      welcomeOffered.current = true;
-      if (onboarding.preferences.status === "new") setHelp(true);
-    }
-  }, [onboarding.loaded, onboarding.preferences.status]);
-  const openGuide = () => {
-    welcomeOffered.current = true;
-    setHelp(true);
-  };
+  const openGuide = () => setHelp(true);
   const layerIds = useMemo(() => {
     const ids: string[] = [];
     function collect(rows: ReturnType<typeof entries>) {
@@ -1914,6 +1915,13 @@ function PluginApp({
       <OnboardingGuide
         open={help}
         onOpenChange={setHelp}
+        setup={
+          firstLaunch && {
+            stage: firstLaunch,
+            roblox,
+            betaAccess: cloud.betaAccess?.trim() ?? "",
+          }
+        }
         preferences={onboarding.preferences}
         facts={{
           analyzed: analysisReady,
@@ -2000,7 +2008,8 @@ function PluginApp({
           } else {
             setTab("convert");
             setDetail("layers");
-            if (step === "preview" && result) setPreviewMode("roblox");
+            if ((step === "preview" || step === "properties") && result)
+              setPreviewMode("roblox");
             if (
               ["properties", "layouts", "interactions"].includes(step) &&
               result

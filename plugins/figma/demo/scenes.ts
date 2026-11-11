@@ -11,6 +11,7 @@ export const DEMO_SCENES = [
   { id: "usability", label: "Usability checks", width: 1100, height: 820 },
   { id: "structure", label: "Structure review", width: 1100, height: 820 },
   { id: "tutorial", label: "Tutorial", width: 1100, height: 820 },
+  { id: "welcome", label: "First launch", width: 1100, height: 820 },
   { id: "scrolling", label: "Scrolling frame", width: 620, height: 760 },
   { id: "grid", label: "Grid layout", width: 620, height: 680 },
   { id: "list", label: "List layout", width: 620, height: 680 },

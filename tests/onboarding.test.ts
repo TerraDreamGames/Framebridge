@@ -60,7 +60,7 @@ describe("first import guide", () => {
         secret: "discard",
       };
       expect(readOnboarding(saved)).toEqual({
-        version: 1,
+        version: 2,
         status,
         route: "download",
       });
@@ -68,7 +68,7 @@ describe("first import guide", () => {
     for (const value of [
       null,
       "complete",
-      { ...DEFAULT_ONBOARDING, version: 2 },
+      { ...DEFAULT_ONBOARDING, version: 3 },
       { ...DEFAULT_ONBOARDING, status: "imported" },
       { ...DEFAULT_ONBOARDING, route: "automatic" },
     ])
@@ -108,7 +108,7 @@ describe("first import guide", () => {
       ...DEFAULT_ONBOARDING,
       status: "complete",
     });
-    await expect(storage.save({ version: 2 })).rejects.toThrow(
+    await expect(storage.save({ version: 3 })).rejects.toThrow(
       "Invalid onboarding",
     );
   });
@@ -189,7 +189,7 @@ describe("onboarding preference messages", () => {
       revision: lastRequest().revision,
     });
     expect(manager.snapshot().preferences).toEqual({
-      version: 1,
+      version: 2,
       status: "active",
       route: "download",
     });

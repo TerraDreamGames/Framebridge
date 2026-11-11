@@ -272,9 +272,6 @@ input[type="range"] {
   height: calc(var(--brand-size) * 1.4);
   max-width: none;
 }
-.welcome-brand-mark {
-  --brand-size: 24px;
-}
 .workspace-tabs {
   flex-shrink: 0;
 }
@@ -1546,18 +1543,6 @@ input[type="range"] {
   padding: 8px 16px;
   border-bottom: 1px solid var(--border);
   background: var(--card);
-}
-.onboarding-bar-marker {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  flex-shrink: 0;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  color: var(--accent-text);
-  font-size: 10px;
-  font-weight: 600;
 }
 .onboarding-bar-copy {
   flex: 1;
@@ -3671,174 +3656,6 @@ input[type="range"] {
   font-weight: 600;
 }
 
-/* Getting started uses the same theme tokens as the workspace. */
-.welcome-dialog {
-  width: min(700px, calc(100vw - 32px));
-  max-width: none;
-  max-height: calc(100dvh - 32px);
-  overflow-y: auto;
-  gap: 20px;
-  padding: 28px;
-  background: var(--background);
-}
-.welcome-dialog [data-slot="dialog-header"] {
-  text-align: left;
-  gap: 12px;
-  padding-right: 20px;
-}
-.welcome-dialog [data-slot="dialog-title"] {
-  font-size: 28px;
-  line-height: 1.15;
-  letter-spacing: -0.8px;
-  max-width: 520px;
-}
-.welcome-dialog [data-slot="dialog-description"] {
-  font-size: 13px;
-  line-height: 1.65;
-  max-width: 540px;
-}
-.welcome-dialog .onboarding-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 10px;
-  letter-spacing: 0.8px;
-}
-.welcome-start {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px;
-  border: 1px solid color-mix(in srgb, var(--primary) 50%, var(--border));
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--primary) 7%, var(--card));
-}
-.welcome-label {
-  font-size: 9px;
-  letter-spacing: 1px;
-  color: var(--accent-text);
-  font-weight: 600;
-}
-.welcome-start h3 {
-  font-size: 15px;
-  margin-top: 4px;
-}
-.welcome-start p {
-  color: var(--muted-foreground);
-  font-size: 12px;
-  margin-top: 4px;
-}
-.welcome-start > button {
-  flex-shrink: 0;
-}
-.welcome-features {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-.welcome-feature,
-.welcome-path {
-  display: flex;
-  align-items: flex-start;
-  text-align: left;
-  gap: 12px;
-  min-width: 0;
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  transition:
-    background 120ms,
-    border-color 120ms;
-}
-.welcome-feature:hover,
-.welcome-path:hover {
-  background: var(--card);
-  border-color: var(--accent-text);
-}
-.welcome-feature > span:nth-child(2),
-.welcome-path > span:nth-child(2) {
-  flex: 1;
-  min-width: 0;
-}
-.welcome-feature > svg,
-.welcome-path > svg {
-  color: var(--muted-foreground);
-  margin-top: 3px;
-}
-.welcome-feature-icon {
-  color: var(--accent-text);
-  padding-top: 2px;
-  flex-shrink: 0;
-}
-.welcome-feature strong,
-.welcome-path strong,
-.welcome-example strong {
-  font-size: 12px;
-  font-weight: 600;
-  display: block;
-}
-.welcome-feature small,
-.welcome-path small {
-  display: block;
-  font-size: 11px;
-  line-height: 1.5;
-  margin-top: 4px;
-  color: var(--muted-foreground);
-}
-.welcome-paths {
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: 12px;
-}
-.welcome-example {
-  display: flex;
-  gap: 12px;
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-}
-.welcome-example > svg {
-  color: var(--accent-text);
-  margin-top: 2px;
-}
-.welcome-example > div {
-  min-width: 0;
-}
-.welcome-example p {
-  font-size: 11px;
-  line-height: 1.5;
-  color: var(--muted-foreground);
-  margin: 4px 0 10px;
-}
-.welcome-example small {
-  font-size: 10px;
-  color: var(--muted-foreground);
-  line-height: 1.5;
-  display: block;
-  margin-top: 8px;
-}
-.welcome-example-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.welcome-example-actions button {
-  font-size: 11px;
-}
-.welcome-footer {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  justify-content: space-between;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
-  font-size: 11px;
-  color: var(--muted-foreground);
-}
-.welcome-footer > button {
-  flex-shrink: 0;
-}
 .guided-tour {
   position: fixed;
   inset: 0;
@@ -3894,23 +3711,6 @@ input[type="range"] {
 .tour-progress > span[data-passed="true"] {
   background: var(--accent-text);
 }
-.tour-lesson-picker {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
-}
-.tour-lesson-picker > span {
-  font-size: 10px;
-  white-space: nowrap;
-  color: var(--muted-foreground);
-  font-variant-numeric: tabular-nums;
-}
-.tour-lesson-picker > [data-slot="select-trigger"] {
-  flex: 1;
-  min-width: 0;
-  font-size: 11px;
-}
 .tour-card h2 {
   font-size: 19px;
   letter-spacing: -0.4px;
@@ -3923,52 +3723,6 @@ input[type="range"] {
   line-height: 1.65;
   color: var(--muted-foreground);
 }
-.tour-details > ul {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  gap: 9px;
-  margin: 14px 0;
-}
-.tour-details > ul > li {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  font-size: 11px;
-  line-height: 1.5;
-}
-.tour-details > ul svg {
-  color: var(--accent-text);
-  margin-top: 2px;
-}
-.tour-try {
-  display: flex;
-  align-items: flex-start;
-  gap: 9px;
-  padding: 12px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  margin: 14px 0;
-}
-.tour-try > svg {
-  color: var(--accent-text);
-  margin-top: 2px;
-}
-.tour-try strong {
-  font-size: 11px;
-  font-weight: 600;
-}
-.tour-try p {
-  font-size: 11px;
-  line-height: 1.6;
-  color: var(--muted-foreground);
-  margin-top: 4px;
-}
-.tour-details > .tour-context-note {
-  font-size: 11px;
-  margin: 12px 0;
-}
 .tour-navigation {
   display: flex;
   justify-content: space-between;
@@ -3977,49 +3731,6 @@ input[type="range"] {
   margin-top: 14px;
   border-top: 1px solid var(--border);
 }
-.tour-footnote {
-  display: block;
-  font-size: 10px;
-  line-height: 1.5;
-  margin-top: 12px;
-  color: var(--muted-foreground);
-}
-@media (max-width: 600px) {
-  .welcome-dialog {
-    padding: 20px;
-    gap: 16px;
-  }
-  .welcome-dialog [data-slot="dialog-title"] {
-    font-size: 24px;
-  }
-  .welcome-start {
-    flex-wrap: wrap;
-    gap: 12px;
-    padding: 14px;
-  }
-  .welcome-paths {
-    grid-template-columns: 1fr;
-  }
-  .welcome-footer {
-    flex-wrap: wrap;
-  }
-}
-@media (max-width: 390px) {
-  .welcome-features {
-    grid-template-columns: 1fr;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .welcome-feature,
-  .welcome-path {
-    transition: none;
-  }
-  .welcome-dialog,
-  .onboarding-dialog {
-    animation: none !important;
-  }
-}
-
 .tour-top-actions {
   display: flex;
   align-items: center;
@@ -4028,8 +3739,7 @@ input[type="range"] {
 .tour-top-actions > button {
   color: var(--muted-foreground);
 }
-.tour-details[hidden],
-.tour-footnote[hidden] {
+.tour-details[hidden] {
   display: none;
 }
 .tour-card[data-minimized="true"] h2 {
@@ -4037,7 +3747,6 @@ input[type="range"] {
   font-size: 14px;
 }
 
-.welcome-dialog[data-state="closed"],
 .onboarding-dialog[data-state="closed"],
 .onboarding-overlay[data-state="closed"] {
   animation: none !important;
