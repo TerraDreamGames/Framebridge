@@ -11,6 +11,8 @@ import { SelectControl } from "./components/SelectControl";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
 import { Switch } from "./components/ui/switch";
+import { UsageSharing } from "./UsageSharing";
+import type { useFigmaUsage } from "./useFigmaUsage";
 import { ToggleGroup, ToggleGroupItem } from "./components/ui/toggle-group";
 import {
   Tooltip,
@@ -87,6 +89,7 @@ function ToggleRow({
 
 /** Focused settings categories share the workspace's control and spacing system. */
 export function SettingsPage({
+  usage,
   options,
   onChange,
   appearance,
@@ -95,6 +98,7 @@ export function SettingsPage({
   initialSection = "Workspace",
 }: {
   options: ExportOptions;
+  usage?: ReturnType<typeof useFigmaUsage>;
   onChange: (patch: Partial<ExportOptions>) => void;
   appearance: {
     theme: PluginTheme;
@@ -201,6 +205,7 @@ export function SettingsPage({
                     onChange={(includeHidden) => onChange({ includeHidden })}
                   />
                 </fieldset>
+                {usage?.available && <UsageSharing usage={usage} />}
                 <Disclosure className="settings-layer-hints">
                   <DisclosureSummary>Layer name shortcuts</DisclosureSummary>
                   <dl>

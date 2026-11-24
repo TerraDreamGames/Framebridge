@@ -26,7 +26,7 @@ Both plugins show the connection lifetime, with a warning in the final five minu
 2. The pure compiler classifies supported native properties, required raster fallbacks, and approximations. No browser CSS is used to decide Roblox layout.
 3. Image fallbacks use temporary Figma clones, with parent transforms removed and local transforms baked into the raster. The scratch frame encloses the rendered bounds, including effects. Its bounds are returned to the compiler so PNGs do not double-apply rotation, opacity, or cropping.
 4. A second compilation includes rendered image bounds. The controller checks the source snapshot again to reject results if the design changed during the asynchronous work. Scratch nodes are removed in `finally`.
-5. The UI sends compiled data and PNGs through the paired relay, or exports JSON/ZIP files as an offline fallback. Production bundles contain no external scripts, font requests or telemetry; network access is restricted to the configured relay origin.
+5. The UI sends compiled data and PNGs through the paired relay, or exports JSON/ZIP files as an offline fallback. Network access is restricted to the configured relay origin. Optional [usage reporting](OPERATIONS.md) in the connected Figma build sends daily activity and onboarding steps after opt-in.
 6. Studio validates classes, property allowlists, enum families, IDs, bounds, depth, text lengths, and asset references. It constructs detached native instances before starting a change-history recording.
 7. Fresh imports attach staged ScreenGuis. Updates reuse matching instances by source ID and layer ID. Property and parent changes are journaled and rolled back if a mutation fails.
 

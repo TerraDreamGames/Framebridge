@@ -38,6 +38,8 @@ import {
 } from "./onboarding-tour";
 import { PRIVATE_BETA } from "./transfer";
 import type { useRobloxAccount } from "./useRobloxAccount";
+import type { useFigmaUsage } from "./useFigmaUsage";
+import { UsageSharing } from "./UsageSharing";
 import "./editor-pages.css";
 
 const TOUR_ICONS = {
@@ -65,6 +67,7 @@ type Setup = {
 };
 type Props = FirstTransferGuideProps & {
   setup?: Setup;
+  usage?: ReturnType<typeof useFigmaUsage>;
   onVisit(step: TourStepId): void;
   onTourEnd(): void;
   onSettings(): void;
@@ -84,7 +87,11 @@ function SignInActions({
   roblox: { state, manager },
   betaAccess,
   onSkip,
-}: Pick<Setup, "roblox" | "betaAccess"> & { onSkip(): void }) {
+  onSignIn,
+}: Pick<Setup, "roblox" | "betaAccess"> & {
+  onSkip(): void;
+  onSignIn(): void;
+}) {
   const blocked = state.loading || state.busy;
   const needsCode = PRIVATE_BETA && !betaAccess;
   const simulatedInPlugin = state.simulation && !import.meta.env.DEV;
@@ -153,9 +160,10 @@ function SignInActions({
               needsCode ||
               (!state.retry && state.available !== true)
             }
-            onClick={() =>
-              void (state.retry ? manager.retry() : manager.start(betaAccess))
-            }
+            onClick={() => {
+              onSignIn();
+              void (state.retry ? manager.retry() : manager.start(betaAccess));
+            }}
           >
             <Link size={15} />
             {state.retry
@@ -180,6 +188,19 @@ export function OnboardingGuide(props: Props) {
   const { preferences, onChoose, setup } = props;
   const firstLaunch = setup?.stage;
   const signIn = setup?.stage === "sign-in";
+  const { track, checked } = props.usage ?? {};
+  const connected =
+    !!setup?.roblox.state.account &&
+    !setup.roblox.state.account.needsAuthorization &&
+    !preferences.skippedSignIn;
+  useEffect(() => {
+    if (!firstLaunch || !checked) return;
+    track?.("opened", true);
+    if (!signIn) {
+      track?.("tutorialOffered");
+      if (connected) track?.("connectedAtTutorial");
+    }
+  }, [firstLaunch, signIn, connected, checked, track]);
   const hubOpen = !!firstLaunch || (props.open && page === "hub");
   const lesson = tourLesson(activeStep ?? preferences.tourStep);
   const touring = !!activeStep;
@@ -204,13 +225,18 @@ export function OnboardingGuide(props: Props) {
     props.onTourEnd();
   };
   const visit = (id: TourStepId) => {
-    if (QUICK_TOUR_STEPS.includes(id))
+    if (QUICK_TOUR_STEPS.includes(id)) {
+      track?.("tutorialStarted");
+      if (id === "properties" || id === "studio") track?.("previewReached");
+      if (id === "studio") track?.("studioReached");
       onChoose({ status: "active", tourStep: id, tourDone: false });
+    }
     props.onVisit(id);
     props.onOpenChange(false);
     setActiveStep(id);
   };
   const firstImport = () => {
+    if (activeStep === "studio") track?.("tutorialCompleted");
     pause();
     onChoose({
       status: "active",
@@ -220,13 +246,15 @@ export function OnboardingGuide(props: Props) {
     props.onOpenChange(true);
   };
   const finish = () => {
-    if (sequence === QUICK_TOUR_STEPS)
+    if (sequence === QUICK_TOUR_STEPS) {
+      track?.("tutorialCompleted");
       onChoose({ status: "complete", tourDone: true });
-    else if (preferences.tourStep === activeStep)
+    } else if (preferences.tourStep === activeStep)
       onChoose({ status: "dismissed", tourStep: undefined });
     pause();
   };
   const dismiss = () => {
+    if (!preferences.tourDone) track?.("tutorialSkipped");
     pause();
     onChoose({ status: "dismissed" });
     props.onOpenChange(false);
@@ -236,6 +264,7 @@ export function OnboardingGuide(props: Props) {
     else props.onOpenChange(false);
   };
   const skipSignIn = () => {
+    track?.("continuedWithoutRoblox");
     if (setup?.roblox.state.pending || setup?.roblox.state.busy)
       void setup.roblox.manager.cancel();
     onChoose({ skippedSignIn: true });
@@ -326,11 +355,24 @@ export function OnboardingGuide(props: Props) {
                 : "Bring a Figma design into Roblox Studio in three steps."}
             </DialogDescription>
           </DialogHeader>
+          {firstLaunch && props.usage?.available && (
+            <UsageSharing
+              usage={props.usage}
+              initialEvents={
+                signIn
+                  ? ["opened"]
+                  : connected
+                    ? ["opened", "tutorialOffered", "connectedAtTutorial"]
+                    : ["opened", "tutorialOffered"]
+              }
+            />
+          )}
           {signIn ? (
             <SignInActions
               roblox={setup.roblox}
               betaAccess={setup.betaAccess}
               onSkip={skipSignIn}
+              onSignIn={() => track?.("signInStarted")}
             />
           ) : (
             <>

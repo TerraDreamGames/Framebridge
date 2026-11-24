@@ -5,6 +5,11 @@ import { createHash } from "node:crypto";
 import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import {
+  FIGMA_USAGE_PATH,
+  ONBOARDING_EVENTS as event,
+  utcDay,
+} from "../packages/core/src/figma-usage";
 const token = "a".repeat(64),
   hash = createHash("sha256").update(token).digest("hex");
 let script: string, directory: string;
@@ -78,6 +83,136 @@ async function start(name: string, overrides: Record<string, string> = {}) {
   return { call, sql };
 }
 describe("private operator metrics in real workerd + SQLite", () => {
+  it("deduplicates daily usage and onboarding steps across retries and restarts", async () => {
+    let host = await start("figma-usage");
+    const day = utcDay();
+    const key = "1".repeat(64);
+    const cohortKey = "2".repeat(64);
+    const opened = event.opened | event.signInStarted;
+    const complete =
+      opened |
+      event.tutorialOffered |
+      event.tutorialStarted |
+      event.previewReached |
+      event.studioReached |
+      event.tutorialCompleted;
+    const report = (events: number, installation = key) => ({
+      day,
+      key: installation,
+      onboarding: { day: day - 1, key: cohortKey, events },
+    });
+    expect((await host.call(FIGMA_USAGE_PATH, "", report(opened))).status).toBe(
+      200,
+    );
+    await Promise.all([
+      host.call(FIGMA_USAGE_PATH, "", report(complete)),
+      host.call(FIGMA_USAGE_PATH, "", report(opened)),
+    ]);
+    await runtimes.at(-1)!.dispose();
+    host = await start("figma-usage");
+    await host.call(FIGMA_USAGE_PATH, "", report(complete));
+    expect(
+      (await host.call(FIGMA_USAGE_PATH, "", { day, key: "3".repeat(64) }))
+        .status,
+    ).toBe(200);
+    const { body } = await host.call("/v1/operations", token);
+    expect(
+      body.quotas.find((quota: { name: string }) => quota.name === "requests")
+        .used,
+    ).toBe(0);
+    expect(body.figmaUsage.days).toHaveLength(30);
+    expect(body.figmaUsage.days.at(-1)).toMatchObject({
+      installations: 2,
+      onboarding: {},
+    });
+    expect(body.figmaUsage.days.at(-2)).toMatchObject({
+      installations: null,
+      followUpOpen: true,
+      onboarding: { opened: 1, signInStarted: 1, tutorialCompleted: 1 },
+    });
+    const serialized = JSON.stringify(body);
+    expect(serialized).not.toContain(key);
+    expect(serialized).not.toContain(cohortKey);
+  });
+
+  it("rejects malformed, expired and out-of-sequence reports", async () => {
+    const host = await start("figma-usage-rejection");
+    const day = utcDay();
+    const key = "1".repeat(64);
+    for (const report of [
+      { day: day - 1, key },
+      { day, key, account: "should-not-be-stored" },
+      { day, key: "bad" },
+      { day, key, onboarding: { day: day - 7, key, events: event.opened } },
+      {
+        day,
+        key,
+        onboarding: {
+          day,
+          key,
+          events: event.opened | event.tutorialCompleted,
+        },
+      },
+    ])
+      expect((await host.call(FIGMA_USAGE_PATH, "", report)).status).toBe(400);
+    expect((await host.call(FIGMA_USAGE_PATH)).status).toBe(404);
+    expect(
+      (
+        await host.call(FIGMA_USAGE_PATH, "", {
+          day,
+          key,
+          payload: "x".repeat(512),
+        })
+      ).status,
+    ).toBe(413);
+    expect((await host.call("/v1/operations")).status).toBe(404);
+    expect(
+      (await host.call("/v1/operations", token)).body.figmaUsage.days.at(-1)
+        .installations,
+    ).toBeNull();
+  });
+
+  it("prunes deduplication keys ahead of the aggregate history", async () => {
+    const host = await start("figma-usage-expiry");
+    const day = utcDay();
+    const key = "1".repeat(64);
+    await host.call(FIGMA_USAGE_PATH, "", { day, key });
+    const storage = await host.sql();
+    await storage.exec(
+      "INSERT INTO figma_usage_seen VALUES (?,?)",
+      day - 1,
+      key,
+    );
+    await storage.exec(
+      "INSERT INTO figma_onboarding_seen VALUES (?,?,?)",
+      day - 7,
+      key,
+      event.opened,
+    );
+    await storage.exec(
+      "INSERT INTO figma_usage_daily VALUES (?,1),(?,2)",
+      day - 30,
+      day - 29,
+    );
+    await storage.exec(
+      "INSERT INTO figma_onboarding_daily VALUES (?,'opened',1),(?,'opened',2)",
+      day - 30,
+      day - 29,
+    );
+    await host.call("/v1/sessions", "", {});
+    expect(await storage.exec("SELECT day FROM figma_usage_seen")).toEqual([
+      { day },
+    ]);
+    expect(await storage.exec("SELECT day FROM figma_onboarding_seen")).toEqual(
+      [],
+    );
+    expect(
+      await storage.exec("SELECT day FROM figma_usage_daily ORDER BY day"),
+    ).toEqual([{ day: day - 29 }, { day }]);
+    expect(
+      await storage.exec("SELECT day FROM figma_onboarding_daily"),
+    ).toEqual([{ day: day - 29 }]);
+  });
   it("denies public, invalid and ordinary session tokens, and rejects writes", async () => {
     const host = await start("authorization");
     for (const credential of [
@@ -171,6 +306,10 @@ describe("private operator metrics in real workerd + SQLite", () => {
   it("leaves monitoring disabled when no operator credential is configured", async () => {
     const host = await start("disabled", { OPERATIONS_ADMIN_HASH: "" });
     expect((await host.call("/v1/operations", token)).status).toBe(404);
+    expect(
+      (await host.call(FIGMA_USAGE_PATH, "", { day: utcDay(), key: token }))
+        .status,
+    ).toBe(404);
     await host.call("/v1/sessions", "", {});
     const storage = await host.sql();
     expect(
