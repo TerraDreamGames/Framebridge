@@ -292,6 +292,29 @@
 .setup-dialog {
   width: min(418px, calc(100vw - 28px));
 }
+.usage-sharing {
+  display: grid;
+  gap: 5px;
+  padding-block: 10px;
+  border-top: 1px solid var(--border);
+}
+.usage-sharing label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.usage-sharing p {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+.usage-sharing .usage-privacy-link {
+  display: inline;
+  padding: 0;
+  height: auto;
+  font-size: inherit;
+}
 .setup-dialog[data-stage="sign-in"] {
   padding: 26px;
 }

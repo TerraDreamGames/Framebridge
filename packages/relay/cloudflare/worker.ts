@@ -1,6 +1,12 @@
 import { IMAGE_BATCH_LIMITS } from "../../core/src/image-batches";
 import { env as currentBindings } from "cloudflare:workers";
 import { OperationsStore, operationsAuthorized } from "./operations-store";
+import { FigmaUsageStore } from "./figma-usage-store";
+import {
+  FIGMA_USAGE_PATH,
+  readFigmaUsage,
+  utcDay,
+} from "../../core/src/figma-usage";
 import {
   createHash,
   randomBytes,
@@ -282,6 +288,8 @@ type Job = {
 };
 export class RelayRoom {
   private operations?: OperationsStore;
+  private figmaUsage?: FigmaUsageStore;
+  private usageAlarmDay?: number;
   private waiters = new Waiters();
   private handoffs: Handoffs;
   private oauth: RobloxOAuth;
@@ -402,6 +410,12 @@ export class RelayRoom {
     );
     if (/^[a-f0-9]{64}$/.test(env.OPERATIONS_ADMIN_HASH ?? ""))
       this.operations = new OperationsStore(ctx.storage);
+    if (
+      this.operations ||
+      this.rows("SELECT name FROM sqlite_master WHERE name='figma_usage_seen'")
+        .length
+    )
+      this.figmaUsage = new FigmaUsageStore(ctx.storage);
   }
   private rows(query: string, ...values: SqlStorageValue[]) {
     return this.ctx.storage.sql.exec(query, ...values).toArray();
@@ -432,6 +446,7 @@ export class RelayRoom {
     this.feedback.prune();
     this.review.prune();
     this.vision.prune();
+    this.figmaUsage?.prune();
     this.ctx.storage.transactionSync(() => {
       for (const row of this.rows(
         "SELECT id FROM sessions WHERE expires<=?",
@@ -590,8 +605,8 @@ export class RelayRoom {
         !this.operations
       )
         throw new PublicError("Not found.", 404);
-      return json(
-        this.operations.snapshot(
+      return json({
+        ...this.operations.snapshot(
           {
             requests: limit(this.env.DAILY_REQUESTS, 25_000),
             transfers: limit(this.env.DAILY_TRANSFERS, 1000),
@@ -600,7 +615,29 @@ export class RelayRoom {
           },
           this.env.ARTWORK_ENABLED === "1" && !!this.env.ARTWORK_BUCKET,
         ),
-      );
+        figmaUsage: this.figmaUsage?.snapshot(Date.now()),
+      });
+    }
+    if (path === FIGMA_USAGE_PATH) {
+      if (
+        request.method !== "POST" ||
+        !publicAccess(this.env) ||
+        !this.operations ||
+        !this.figmaUsage
+      )
+        throw new PublicError("Not found.", 404);
+      // Usage reports have their own ceiling so they cannot exhaust transfer quotas.
+      this.daily("figma-usage", 25_000);
+      const body = await readJson(request, 512);
+      const day = utcDay();
+      const report = readFigmaUsage(body, day);
+      if (!report) throw new PublicError("Invalid usage report.", 400);
+      this.figmaUsage.add(report);
+      if (this.usageAlarmDay !== day) {
+        await this.scheduleAlarm();
+        this.usageAlarmDay = day;
+      }
+      return json({ accepted: true });
     }
     // Global request budget bounds background polling and service costs.
     this.daily("requests", limit(this.env.DAILY_REQUESTS, 25_000));
@@ -1522,6 +1559,8 @@ export class RelayRoom {
       .map(Number);
     const artwork = this.artwork.nextCleanup();
     if (artwork !== undefined) expiries.push(artwork);
+    const usage = this.figmaUsage?.nextCleanup();
+    if (usage !== undefined) expiries.push(usage);
     const row = { next: expiries.length ? Math.min(...expiries) : null };
     if (row.next) await this.ctx.storage.setAlarm(Number(row.next));
     else await this.ctx.storage.deleteAlarm();

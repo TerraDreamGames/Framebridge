@@ -177,6 +177,7 @@ import { DocumentationLink } from "./DocumentationLink";
 import { openDocumentation } from "./open-documentation";
 import { useOnboarding } from "./useOnboarding";
 import { firstLaunchStage } from "./onboarding";
+import { useFigmaUsage } from "./useFigmaUsage";
 import { type TourStepId } from "./onboarding-tour";
 import { ImageLibrary, useImageLibrary } from "./ImageLibrary";
 import { imagePage } from "./image-pages";
@@ -462,6 +463,7 @@ function PluginApp({
   appearance: ReturnType<typeof usePluginTheme>;
 }) {
   const onboarding = useOnboarding();
+  const usage = useFigmaUsage();
   useEffect(() => {
     if (onboarding.error)
       notify.error(onboarding.error, {
@@ -1913,6 +1915,7 @@ function PluginApp({
         </div>
       </header>
       <OnboardingGuide
+        usage={usage}
         open={help}
         onOpenChange={setHelp}
         setup={
@@ -2938,6 +2941,7 @@ function PluginApp({
               )}
               {tab === "settings" && (
                 <SettingsPage
+                  usage={usage}
                   initialSection={settingsEntry}
                   options={options}
                   onChange={update}

@@ -28,6 +28,36 @@
         </div>
       </div>
       <div id="messages" role="status"></div>
+      <div class="columns figma-usage">
+        <section class="panel" aria-labelledby="figma-usage-title">
+          <div class="section-head">
+            <h2 id="figma-usage-title">Daily Figma users</h2>
+            <span class="muted">UTC</span>
+          </div>
+          <div class="usage-kpi">
+            <strong id="figma-today">—</strong>
+            <span id="figma-today-label" class="muted">Today</span>
+          </div>
+          <p class="muted">
+            Each opted-in installation counts once per UTC day.
+          </p>
+          <div class="usage-history" id="figma-history"></div>
+        </section>
+        <section class="panel" aria-labelledby="onboarding-title">
+          <div class="section-head">
+            <h2 id="onboarding-title">Onboarding funnel</h2>
+            <label class="cohort-choice">
+              <span class="muted">Cohort</span>
+              <select id="onboarding-cohort">
+                <option value="">Waiting for data</option>
+              </select>
+            </label>
+          </div>
+          <p class="muted" id="onboarding-summary"></p>
+          <ol id="onboarding-steps" class="onboarding-steps"></ol>
+          <p class="note" id="onboarding-choices"></p>
+        </section>
+      </div>
       <section class="metrics" aria-label="Key metrics">
         <article>
           <h2>Studio online</h2>
@@ -154,6 +184,15 @@
           images, tokens or transfer contents are returned.
         </p>
         <p id="monitoring-since"></p>
+        <p>
+          Figma usage comes from opt-in reports from the updated plugin. Daily
+          values count unique reporting installations in UTC. An em dash
+          indicates no reports. The funnel counts one onboarding per
+          installation in its start cohort, with seven UTC days for follow-up.
+          Recent cohorts can still progress. Tutorial completion measures
+          reaching Done or opening the import checklist in the final lesson. It
+          does not measure a successful Studio import.
+        </p>
       </details>
       <footer>
         <span

@@ -21,6 +21,14 @@ const $ = (id) => document.getElementById(id),
 let period = "24h",
   busy = false,
   sequence = 0;
+let usageDays = [];
+let usageRevision = "";
+const shortDate = new Intl.DateTimeFormat(undefined, {
+  month: "short",
+  day: "numeric",
+  timeZone: "UTC",
+});
+const dateLabel = (date) => shortDate.format(new Date(date + "T00:00:00Z"));
 function element(tag, content, className) {
   const node = document.createElement(tag);
   if (content != null) node.textContent = content;
@@ -129,6 +137,153 @@ function chart(data) {
   );
   host.append(svg);
 }
+function showFunnel() {
+  const cohort = usageDays.find(
+    (day) => day.date === $("onboarding-cohort").value,
+  );
+  const host = $("onboarding-steps");
+  host.replaceChildren();
+  text("onboarding-choices", "");
+  if (!cohort?.onboarding.opened) {
+    text(
+      "onboarding-summary",
+      "Waiting for onboarding reports from opted-in Figma users.",
+    );
+    return;
+  }
+  const events = cohort.onboarding;
+  const steps = [
+    ["opened", "Opened onboarding"],
+    ["tutorialOffered", "Reached tutorial prompt"],
+    ["tutorialStarted", "Started tutorial"],
+    ["previewReached", "Reached Roblox preview lesson"],
+    ["studioReached", "Reached Studio lesson"],
+    ["tutorialCompleted", "Completed tutorial"],
+  ];
+  const started = events.tutorialStarted ?? 0;
+  const completion = started
+    ? Math.round((100 * (events.tutorialCompleted ?? 0)) / started) +
+      "% completed"
+    : "No tutorial starts";
+  text(
+    "onboarding-summary",
+    completion +
+      (started ? " among " + number(started) + " tutorial starters" : "") +
+      (cohort.followUpOpen
+        ? " · Follow-up in progress"
+        : " · Follow-up closed"),
+  );
+  let previous;
+  for (const [event, label] of steps) {
+    const count = events[event] ?? 0;
+    const row = element("li");
+    const heading = element("div", null, "funnel-label");
+    heading.append(element("span", label), element("b", number(count)));
+    const bar = element("progress");
+    bar.max = events.opened;
+    bar.value = count;
+    bar.setAttribute("aria-label", label);
+    row.append(heading, bar);
+    if (previous && previous > count) {
+      row.append(
+        element(
+          "small",
+          number(previous - count) + " fewer reached this step",
+          "muted",
+        ),
+      );
+    }
+    host.append(row);
+    previous = count;
+  }
+  text(
+    "onboarding-choices",
+    [
+      [events.signInStarted, "started Roblox sign-in"],
+      [events.connectedAtTutorial, "connected at tutorial prompt"],
+      [events.continuedWithoutRoblox, "continued without Roblox"],
+      [events.tutorialSkipped, "skipped tutorial"],
+    ]
+      .map(([count, label]) => number(count ?? 0) + " " + label)
+      .join(" · "),
+  );
+}
+function showFigmaUsage(data, relayAvailable) {
+  const revision = JSON.stringify(data ?? relayAvailable);
+  if (revision === usageRevision) return;
+  usageRevision = revision;
+  usageDays = data?.days ?? [];
+  const today = usageDays.at(-1);
+  const historical = usageDays.slice(0, -1);
+  const host = $("figma-history");
+  const countsOpen = host.querySelector("details")?.open;
+  const select = $("onboarding-cohort");
+  const selected = select.value;
+  const cohorts = usageDays.filter((day) => day.onboarding.opened).reverse();
+  select.replaceChildren(
+    ...(cohorts.length
+      ? cohorts.map((day) => {
+          const option = element("option", dateLabel(day.date));
+          option.value = day.date;
+          return option;
+        })
+      : [element("option", "No cohorts yet")]),
+  );
+  select.disabled = !cohorts.length;
+  if (cohorts.some((day) => day.date === selected)) select.value = selected;
+  text("figma-today", number(today?.installations));
+  text(
+    "figma-today-label",
+    today ? dateLabel(today.date) + " · Today so far" : "Today",
+  );
+  host.replaceChildren();
+  const reported = usageDays.filter((day) => day.installations !== null);
+  if (!reported.length) {
+    host.append(
+      element(
+        "p",
+        data
+          ? "No usage reports yet. Data appears after users opt in on the updated plugin."
+          : relayAvailable
+            ? "Usage metrics require the updated Framebridge relay."
+            : "Usage metrics are currently unavailable.",
+        "muted",
+      ),
+    );
+  } else {
+    const max = Math.max(1, ...reported.map((day) => day.installations));
+    const chart = element("div", null, "usage-bars");
+    for (const day of usageDays) {
+      const bar = element("meter");
+      bar.max = max;
+      bar.value = day.installations ?? 0;
+      bar.title =
+        dateLabel(day.date) + ": " + (day.installations ?? "No reports");
+      bar.setAttribute("aria-label", bar.title);
+      chart.append(bar);
+    }
+    const range = element("div", null, "funnel-label muted");
+    range.append(
+      element("span", dateLabel(usageDays[0].date)),
+      element("span", dateLabel(today.date)),
+    );
+    const details = element("details", null, "daily-counts");
+    details.open = !!countsOpen;
+    details.append(element("summary", "Daily counts"));
+    const list = element("dl");
+    for (const day of [today, ...historical.reverse()]) {
+      const row = element("div");
+      row.append(
+        element("dt", dateLabel(day.date)),
+        element("dd", number(day.installations)),
+      );
+      list.append(row);
+    }
+    details.append(list);
+    host.append(chart, range, details);
+  }
+  showFunnel();
+}
 function show(data) {
   $("messages").replaceChildren();
   for (const part of [data.application, data.traffic])
@@ -142,6 +297,7 @@ function show(data) {
   ])
     $(id).href = data.links[key];
   const app = data.application.available ? data.application.data : null;
+  showFigmaUsage(app?.figmaUsage, !!app);
   text("online", number(app?.connections.studioOnline));
   text("paired", number(app?.connections.paired));
   text(
@@ -299,6 +455,7 @@ async function refresh() {
   }
 }
 $("refresh").addEventListener("click", refresh);
+$("onboarding-cohort").addEventListener("change", showFunnel);
 document.querySelectorAll("[data-period]").forEach((button) =>
   button.addEventListener("click", () => {
     period = button.dataset.period;

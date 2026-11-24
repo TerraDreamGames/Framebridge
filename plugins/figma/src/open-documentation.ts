@@ -1,6 +1,6 @@
 import { documentationUrl, type GuideTopic } from "./documentation";
 
-export function openDocumentation(topic: GuideTopic = "overview") {
+export function openDocumentation(topic: GuideTopic | "privacy" = "overview") {
   const url = documentationUrl(topic)!;
   if (import.meta.env.DEV) window.open(url, "_blank", "noopener,noreferrer");
   else

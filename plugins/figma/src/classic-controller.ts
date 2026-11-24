@@ -60,6 +60,15 @@ import { SIDEBAR_LAYOUT_KEY, readSidebarLayout } from "./sidebar-layout";
 import { createAppearanceStorage } from "./plugin-appearance";
 import { documentationUrl } from "./documentation";
 import { createOnboardingStorage } from "./onboarding";
+import {
+  USAGE_PREFERENCES_KEY,
+  readUsagePreferences,
+} from "./usage-preferences";
+import {
+  readOnboardingUsage,
+  usageKey,
+  utcDay,
+} from "../../../packages/core/src/figma-usage";
 declare const __html__: string;
 declare const __FRAMEBRIDGE_LIBRARY_COMMAND__: string;
 export function startClassicController() {
@@ -894,6 +903,7 @@ export function startClassicController() {
   let feedbackSave = Promise.resolve();
   let windowSave = Promise.resolve();
   let sidebarSave = Promise.resolve();
+  let usageSave = Promise.resolve();
   figma.ui.onmessage = async (message: {
     type: string;
     topic?: unknown;
@@ -919,6 +929,7 @@ export function startClassicController() {
     layout?: unknown;
     theme?: unknown;
     onboarding?: unknown;
+    seed?: unknown;
     rootIds?: string[];
     jobId?: string;
     imagePreparation?: unknown;
@@ -935,7 +946,8 @@ export function startClassicController() {
           figma.openExternal(url);
         } catch {
           send("error", {
-            message: "Could not open the guides. Visit framebridge.terradream.games/#docs in your browser.",
+            message:
+              "Could not open the guides. Visit framebridge.terradream.games/#docs in your browser.",
           });
         }
       }
@@ -1135,6 +1147,53 @@ export function startClassicController() {
       } catch {
         send("onboarding-error", { action, revision: message.revision });
       }
+      return;
+    }
+    if (
+      !libraryCommand &&
+      (message.type === "load-figma-usage" ||
+        message.type === "save-figma-usage-choice" ||
+        message.type === "save-figma-onboarding-usage")
+    ) {
+      const { type, seed, onboarding, revision } = message;
+      const work = usageSave
+        .then(async () => {
+          const now = utcDay();
+          let value = readUsagePreferences(
+            await figma.clientStorage.getAsync(USAGE_PREFERENCES_KEY),
+            now,
+          );
+          if (type === "save-figma-usage-choice") {
+            if (seed === undefined) {
+              await figma.clientStorage.deleteAsync(USAGE_PREFERENCES_KEY);
+              value = undefined;
+            } else {
+              if (!usageKey(seed)) throw new Error("Invalid usage preference.");
+              value ??= { seed };
+              await figma.clientStorage.setAsync(USAGE_PREFERENCES_KEY, value);
+            }
+          }
+          if (type === "save-figma-onboarding-usage") {
+            const cohort = readOnboardingUsage(onboarding, now);
+            if (!cohort || !value || seed !== value.seed) return;
+            const old = value.onboarding;
+            if (old && old.day !== cohort.day) return;
+            await figma.clientStorage.setAsync(USAGE_PREFERENCES_KEY, {
+              seed,
+              onboarding: {
+                day: cohort.day,
+                events: cohort.events | (old?.events ?? 0),
+              },
+            });
+          } else
+            send("figma-usage-preferences", { revision, preferences: value });
+        })
+        .catch(() => {
+          if (type !== "save-figma-onboarding-usage")
+            send("figma-usage-preferences", { revision, error: true });
+        });
+      usageSave = work;
+      await work;
       return;
     }
     if (message.type === "load-sidebar-layout") {
@@ -1466,6 +1525,7 @@ export function startClassicController() {
     }
     if (message.type === "close") {
       await onboardingStorage.flush();
+      await usageSave;
       await appearanceStorage.flush();
       await windowSave;
       await sidebarSave;
